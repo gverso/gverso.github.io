@@ -5,6 +5,9 @@
 <title>Gverso</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Fonte futurista -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
+
 <style>
 
 body {
@@ -14,6 +17,8 @@ body {
   color: white;
   text-align: center;
 }
+
+/* HEADER */
 
 header {
   padding: 80px 20px;
@@ -29,41 +34,68 @@ h1 {
 }
 
 .btn-explorar {
-  padding: 12px 25px;
+  padding: 12px 30px;
   background: #ffcc00;
   border: none;
-  border-radius: 25px;
+  border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
 }
+
+.btn-explorar:hover {
+  transform: scale(1.05);
+}
+
+/* SEÇÃO PORTAIS */
 
 .section {
   background: #f4f4f4;
   color: #1e3c72;
-  padding: 60px 20px;
+  padding: 70px 20px;
 }
 
 .portais {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 25px;
   margin-top: 40px;
 }
 
+/* PORTAL ESTILO FUTURISTA */
+
 .portal {
   background: white;
-  width: 220px;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  width: 230px;
+  padding: 35px;
+  border-radius: 22px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
   cursor: pointer;
+
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 22px;
+  letter-spacing: 3px;
+
   transition: 0.3s;
+  animation: flutuar 4s ease-in-out infinite;
 }
 
-.portal:hover {
-  transform: scale(1.05);
+/* Movimento suave infinito */
+@keyframes flutuar {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
 }
+
+/* Ativação no hover */
+.portal:hover {
+  transform: scale(1.07);
+  box-shadow: 0 20px 45px rgba(30, 60, 114, 0.5);
+}
+
+/* FOOTER */
 
 footer {
   background: black;
@@ -84,25 +116,31 @@ footer {
 .modal-content {
   background: white;
   color: #1e3c72;
-  padding: 30px;
-  border-radius: 12px;
+  padding: 35px;
+  border-radius: 15px;
   width: 90%;
-  max-width: 400px;
+  max-width: 420px;
   text-align: center;
 }
 
 .modal-content a,
 .btn-enviar {
   display: block;
-  margin: 12px 0;
+  margin: 15px 0;
   padding: 12px;
   background: #ffcc00;
-  border-radius: 20px;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
   color: black;
   border: none;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-content a:hover,
+.btn-enviar:hover {
+  transform: scale(1.05);
 }
 
 .modal-content input {
@@ -116,7 +154,7 @@ footer {
 .close {
   float: right;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 </style>
@@ -222,4 +260,3 @@ window.onclick = function(event) {
 
 </body>
 </html>
-
