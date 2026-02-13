@@ -1,105 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Gverso • Treinador Digital</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Gverso • Treinador Digital</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  text-align: center;
+}
 
-    header {
-      padding: 80px 20px;
-    }
+header {
+  padding: 80px 20px;
+}
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
 
-    p {
-      font-size: 20px;
-      opacity: 0.9;
-    }
+p {
+  font-size: 20px;
+  opacity: 0.9;
+}
 
-    .btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: #ffcc00;
-      color: black;
-      font-weight: bold;
-      border-radius: 30px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 25px;
+  background: #ffcc00;
+  color: black;
+  font-weight: bold;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
 
-    .btn:hover {
-      background: #ffd633;
-      transform: scale(1.05);
-    }
+.btn:hover {
+  background: #ffd633;
+  transform: scale(1.05);
+}
 
-    .section {
-      padding: 60px 20px;
-      background: white;
-      color: #333;
-    }
+.section {
+  padding: 60px 20px;
+  background: white;
+  color: #333;
+}
 
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 30px;
-    }
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
 
-    .card {
-      background: #f4f4f4;
-      padding: 25px;
-      width: 260px;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-      transition: 0.3s;
-    }
+.card {
+  background: #f4f4f4;
+  padding: 25px;
+  width: 220px;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  cursor: pointer;
+  font-weight: bold;
+  color: #2a5298;
+}
 
-    .card:hover {
-      transform: translateY(-10px);
-    }
+.card:hover {
+  transform: translateY(-10px);
+}
 
-    .card h3 {
-      margin-top: 0;
-      color: #2a5298;
-    }
+footer {
+  padding: 30px;
+  font-size: 14px;
+  background: #111;
+  color: white;
+}
 
-    footer {
-      padding: 30px;
-      font-size: 14px;
-      background: #111;
-    }
-  </style>
+/* MODAL */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+}
+
+.modal-conteudo {
+  background: #ffffff;
+  width: 90%;
+  max-width: 400px;
+  margin: 10% auto;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  color: #1f3c88;
+}
+
+.modal-conteudo input {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.btn-enviar {
+  background: #f4c20d;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.fechar {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+}
+</style>
 </head>
-<!-- BOTÃO -->
-<button class="btn-acesso" onclick="abrirModal()">
-  Registrar acesso antecipado
-</button>
+
+<body>
+
+<header>
+  <h1>⚡ Gverso</h1>
+  <p>Um novo universo está se formando.</p>
+  <a href="#portais" class="btn">Explorar</a>
+</header>
+
+<section id="portais" class="section">
+  <h2>Escolha seu destino</h2>
+
+  <div class="cards">
+
+    <div class="card" onclick="abrirModal('PORTAL 01')">
+      PORTAL 01
+    </div>
+
+    <div class="card" onclick="abrirModal('PORTAL 02')">
+      PORTAL 02
+    </div>
+
+    <div class="card" onclick="abrirModal('PORTAL 03')">
+      PORTAL 03
+    </div>
+
+    <div class="card" onclick="abrirModal('PORTAL 04')">
+      PORTAL 04
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 Gverso • Todos os direitos reservados
+</footer>
 
 <!-- MODAL -->
+
 <div id="modalAcesso" class="modal">
   <div class="modal-conteudo">
     <span class="fechar" onclick="fecharModal()">&times;</span>
     
-    <h2>🌌 Acesso em preparação</h2>
-    <p>Deixe seu contato para ser avisado quando o portal for ativado.</p>
+    <h2>🌌 Acesso ao <span id="nomePortal"></span></h2>
+    <p>Deixe seu contato para ser avisado quando for ativado.</p>
 
     <form action="https://formspree.io/f/xwvnqlpl" method="POST">
-      
+
       <input type="hidden" name="_subject" value="Novo cadastro - Portal Gverso">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="portal" id="portalInput">
 
       <input 
         type="email" 
@@ -123,74 +207,12 @@
   </div>
 </div>
 
-<!-- CSS -->
-<style>
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.6);
-}
-
-.modal-conteudo {
-  background: #ffffff;
-  width: 90%;
-  max-width: 400px;
-  margin: 10% auto;
-  padding: 30px;
-  border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-}
-
-.modal-conteudo h2 {
-  margin-bottom: 10px;
-  color: #1f3c88;
-}
-
-.modal-conteudo input {
-  width: 100%;
-  padding: 12px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-.btn-acesso {
-  background: #f4c20d;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.btn-enviar {
-  background: #f4c20d;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  cursor: pointer;
-  margin-top: 10px;
-  font-weight: bold;
-}
-
-.fechar {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-</style>
-
-<!-- JAVASCRIPT -->
 <script>
-function abrirModal() {
+
+function abrirModal(portal) {
   document.getElementById("modalAcesso").style.display = "block";
+  document.getElementById("nomePortal").innerText = portal;
+  document.getElementById("portalInput").value = portal;
 }
 
 function fecharModal() {
@@ -203,48 +225,8 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
 </script>
-
-<body>
-
-  <header>
-    <h1>⚡ Gverso</h1>
-    <p>Treinador Digital • Soluções Técnicas • Desenvolvimento Web</p>
-    <a href="#servicos" class="btn">Explorar</a>
-  </header>
-
-  <section id="servicos" class="section">
-    <h2>🧩 Minhas Habilidades</h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3>🔐 Segurança Digital</h3>
-        <p>Boas práticas, análise e proteção de sistemas.</p>
-      </div>
-
-      <div class="card">
-        <h3>🌐 Desenvolvimento Web</h3>
-        <p>Sites modernos, responsivos e otimizados.</p>
-      </div>
-
-      <div class="card">
-        <h3>🛠 Suporte Técnico</h3>
-        <p>Resolução de problemas e manutenção de sistemas.</p>
-      </div>
-
-      <div class="card">
-        <h3>⚙️ Automação</h3>
-        <p>Soluções inteligentes para facilitar processos.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <footer>
-    © 2026 Gverso • Todos os direitos reservados
-  </footer>
 
 </body>
 </html>
-
