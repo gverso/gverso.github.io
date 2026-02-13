@@ -5,9 +5,6 @@
 <title>Gverso</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!-- Fonte futurista -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-
 <style>
 
 body {
@@ -59,40 +56,49 @@ h1 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 40px;
   margin-top: 40px;
 }
 
-/* PORTAL ESTILO FUTURISTA */
+/* BOTÃO PORTAL 3D */
 
 .portal {
-  background: white;
-  width: 230px;
-  padding: 35px;
-  border-radius: 22px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-  cursor: pointer;
-
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 900;
+  display: inline-block;
+  padding: 25px 60px;
   font-size: 22px;
-  letter-spacing: 3px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: white;
 
-  transition: 0.3s;
-  animation: flutuar 4s ease-in-out infinite;
+  border-radius: 16px;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
-/* Movimento suave infinito */
-@keyframes flutuar {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+/* Estilo padrão azul */
+.portal-azul {
+  background: linear-gradient(145deg, #1e3c72, #162b52);
+  box-shadow:
+    0 8px 0 #0f1f3d,
+    0 18px 30px rgba(0,0,0,0.4);
 }
 
-/* Ativação no hover */
-.portal:hover {
-  transform: scale(1.07);
-  box-shadow: 0 20px 45px rgba(30, 60, 114, 0.5);
+/* Hover - sobe */
+.portal-azul:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 16px 0 #0f1f3d,
+    0 28px 40px rgba(0,0,0,0.5);
+}
+
+/* Clique - afunda */
+.portal-azul:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 4px 0 #0f1f3d,
+    0 10px 20px rgba(0,0,0,0.3);
 }
 
 /* FOOTER */
@@ -172,10 +178,10 @@ footer {
   <h2>Escolha seu destino</h2>
 
   <div class="portais">
-    <div class="portal" onclick="abrirModal('PORTAL 01')">PORTAL 01</div>
-    <div class="portal" onclick="abrirModal('PORTAL 02')">PORTAL 02</div>
-    <div class="portal" onclick="abrirModal('PORTAL 03')">PORTAL 03</div>
-    <div class="portal" onclick="abrirModal('PORTAL 04')">PORTAL 04</div>
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 01')">PORTAL 01</div>
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 02')">PORTAL 02</div>
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 03')">PORTAL 03</div>
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 04')">PORTAL 04</div>
   </div>
 </section>
 
