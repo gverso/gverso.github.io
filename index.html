@@ -1,268 +1,144 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>Gverso</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G-VERSO Portal</title>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
-  color: white;
-  text-align: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at center, #0f2027, #000814);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
 }
 
-/* HEADER */
-
-header {
-  padding: 80px 20px;
+/* Fundo estrelado animado */
+body::before {
+    content: "";
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: url("https://www.transparenttextures.com/patterns/stardust.png");
+    animation: moveStars 60s linear infinite;
+    opacity: 0.3;
 }
 
-h1 {
-  font-size: 48px;
+@keyframes moveStars {
+    from { transform: translate(0,0); }
+    to { transform: translate(-500px,-500px); }
 }
 
-.frase {
-  font-style: italic;
-  margin: 15px 0;
+/* Container 3D */
+.portal-container {
+    perspective: 1000px;
 }
 
-.btn-explorar {
-  padding: 12px 30px;
-  background: #ffcc00;
-  border: none;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.btn-explorar:hover {
-  transform: scale(1.05);
-}
-
-/* SEÇÃO PORTAIS */
-
-.section {
-  background: #f4f4f4;
-  color: #1e3c72;
-  padding: 70px 20px;
-}
-
-.portais {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 40px;
-  margin-top: 40px;
-}
-
-/* BOTÃO PORTAL 3D */
-
+/* Portal principal */
 .portal {
-  display: inline-block;
-  padding: 25px 60px;
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: white;
-
-  border-radius: 16px;
-  position: relative;
-  transition: all 0.3s ease;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    position: relative;
+    background: radial-gradient(circle, #00f0ff, #001f3f);
+    box-shadow:
+        0 0 40px #00f0ff,
+        0 0 80px #00f0ff,
+        inset 0 0 40px #00f0ff;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: pulse 3s infinite ease-in-out;
+    cursor: pointer;
 }
 
-/* Estilo padrão azul */
-.portal-azul {
-  background: linear-gradient(145deg, #1e3c72, #162b52);
-  box-shadow:
-    0 8px 0 #0f1f3d,
-    0 18px 30px rgba(0,0,0,0.4);
+/* Energia girando */
+.portal::before {
+    content: "";
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 3px solid rgba(0,255,255,0.6);
+    top: -20px;
+    left: -20px;
+    animation: rotate 8s linear infinite;
 }
 
-/* Hover - sobe */
-.portal-azul:hover {
-  transform: translateY(-8px);
-  box-shadow:
-    0 16px 0 #0f1f3d,
-    0 28px 40px rgba(0,0,0,0.5);
+/* Glow externo */
+.portal::after {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,255,255,0.4), transparent 70%);
+    top: -40px;
+    left: -40px;
+    animation: pulse 4s infinite ease-in-out;
 }
 
-/* Clique - afunda */
-.portal-azul:active {
-  transform: translateY(4px);
-  box-shadow:
-    0 4px 0 #0f1f3d,
-    0 10px 20px rgba(0,0,0,0.3);
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-/* FOOTER */
-
-footer {
-  background: black;
-  padding: 20px;
+@keyframes pulse {
+    0% { box-shadow: 0 0 40px #00f0ff; }
+    50% { box-shadow: 0 0 80px #00f0ff; }
+    100% { box-shadow: 0 0 40px #00f0ff; }
 }
 
-/* MODAIS */
-
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  justify-content: center;
-  align-items: center;
+/* Efeito 3D no hover */
+.portal-container:hover .portal {
+    transform: rotateY(20deg) rotateX(10deg) scale(1.1);
+    box-shadow:
+        0 0 60px #00f0ff,
+        0 0 120px #00f0ff,
+        inset 0 0 60px #00f0ff;
 }
 
-.modal-content {
-  background: white;
-  color: #1e3c72;
-  padding: 35px;
-  border-radius: 15px;
-  width: 90%;
-  max-width: 420px;
-  text-align: center;
+/* Texto central */
+.portal-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px #00f0ff;
 }
 
-.modal-content a,
-.btn-enviar {
-  display: block;
-  margin: 15px 0;
-  padding: 12px;
-  background: #ffcc00;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: bold;
-  color: black;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+/* Explosão ao clicar */
+.portal:active {
+    transform: scale(1.3);
+    box-shadow:
+        0 0 120px #00f0ff,
+        0 0 200px #00f0ff,
+        inset 0 0 100px #00f0ff;
 }
-
-.modal-content a:hover,
-.btn-enviar:hover {
-  transform: scale(1.05);
-}
-
-.modal-content input {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-.close {
-  float: right;
-  cursor: pointer;
-  font-size: 22px;
-}
-
 </style>
 </head>
 
 <body>
 
-<header>
-  <h1>⚡ Gverso</h1>
-  <div class="frase">Um novo universo está se formando.</div>
-  <button class="btn-explorar" onclick="abrirRedes()">Explorar</button>
-</header>
-
-<section class="section">
-  <h2>Escolha seu destino</h2>
-
-  <div class="portais">
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 01')">PORTAL 01</div>
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 02')">PORTAL 02</div>
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 03')">PORTAL 03</div>
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 04')">PORTAL 04</div>
-  </div>
-</section>
-
-<footer>
-  © 2026 Gverso • Todos os direitos reservados
-</footer>
-
-<!-- MODAL REDES -->
-
-<div id="modalRedes" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharRedes()">×</span>
-
-    <h3>
-      Enquanto o universo está em construção,<br>
-      acompanhe o construtor.
-    </h3>
-
-    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">
-      🔴 YouTube
-    </a>
-
-    <a href="https://www.twitch.tv/geraltwinx" target="_blank">
-      🎮 Twitch
-    </a>
-
-  </div>
+<div class="portal-container">
+    <div class="portal">
+        <div class="portal-text">
+            ENTRAR
+        </div>
+    </div>
 </div>
-
-<!-- MODAL PORTAL -->
-
-<div id="modalPortal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">×</span>
-
-    <h3>Acesso ao <span id="nomePortal"></span></h3>
-    <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
-
-    <form action="https://formspree.io/f/xwvnlqpl" method="POST">
-      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="portal" id="portalInput">
-
-      <input type="email" name="email" placeholder="Seu email" required>
-      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
-
-      <button type="submit" class="btn-enviar">
-        ⚡ Ativar notificação
-      </button>
-    </form>
-
-  </div>
-</div>
-
-<script>
-
-function abrirRedes() {
-  document.getElementById("modalRedes").style.display = "flex";
-}
-
-function fecharRedes() {
-  document.getElementById("modalRedes").style.display = "none";
-}
-
-function abrirModal(portal) {
-  document.getElementById("modalPortal").style.display = "flex";
-  document.getElementById("nomePortal").innerText = portal;
-  document.getElementById("portalInput").value = portal;
-}
-
-function fecharModal() {
-  document.getElementById("modalPortal").style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target.classList.contains("modal")) {
-    event.target.style.display = "none";
-  }
-}
-
-</script>
 
 </body>
 </html>
