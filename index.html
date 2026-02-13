@@ -15,8 +15,6 @@ body {
   text-align: center;
 }
 
-/* HEADER */
-
 header {
   padding: 80px 20px;
 }
@@ -39,8 +37,6 @@ h1 {
   cursor: pointer;
 }
 
-/* PORTAIS */
-
 .section {
   background: #f4f4f4;
   color: #1e3c72;
@@ -62,24 +58,24 @@ h1 {
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0,0,0,0.1);
   cursor: pointer;
+  transition: 0.3s;
 }
 
-/* FOOTER */
+.portal:hover {
+  transform: scale(1.05);
+}
 
 footer {
   background: black;
   padding: 20px;
 }
 
-/* MODAL */
+/* MODAIS */
 
 .modal {
   display: none;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: rgba(0,0,0,0.7);
   justify-content: center;
   align-items: center;
@@ -89,21 +85,32 @@ footer {
   background: white;
   color: #1e3c72;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 12px;
   width: 90%;
   max-width: 400px;
   text-align: center;
 }
 
-.modal-content a {
+.modal-content a,
+.btn-enviar {
   display: block;
-  margin: 10px 0;
+  margin: 12px 0;
   padding: 12px;
   background: #ffcc00;
   border-radius: 20px;
   text-decoration: none;
   font-weight: bold;
   color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
 }
 
 .close {
@@ -127,10 +134,10 @@ footer {
   <h2>Escolha seu destino</h2>
 
   <div class="portais">
-    <div class="portal">PORTAL 01</div>
-    <div class="portal">PORTAL 02</div>
-    <div class="portal">PORTAL 03</div>
-    <div class="portal">PORTAL 04</div>
+    <div class="portal" onclick="abrirModal('PORTAL 01')">PORTAL 01</div>
+    <div class="portal" onclick="abrirModal('PORTAL 02')">PORTAL 02</div>
+    <div class="portal" onclick="abrirModal('PORTAL 03')">PORTAL 03</div>
+    <div class="portal" onclick="abrirModal('PORTAL 04')">PORTAL 04</div>
   </div>
 </section>
 
@@ -144,7 +151,10 @@ footer {
   <div class="modal-content">
     <span class="close" onclick="fecharRedes()">×</span>
 
-    <h3>🌐 Siga o Gverso</h3>
+    <h3>
+      Enquanto o universo está em construção,<br>
+      acompanhe o construtor.
+    </h3>
 
     <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">
       🔴 YouTube
@@ -153,6 +163,31 @@ footer {
     <a href="https://www.twitch.tv/geraltwinx" target="_blank">
       🎮 Twitch
     </a>
+
+  </div>
+</div>
+
+<!-- MODAL PORTAL -->
+
+<div id="modalPortal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">×</span>
+
+    <h3>Acesso ao <span id="nomePortal"></span></h3>
+    <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
+
+    <form action="https://formspree.io/f/xwvnlqpl" method="POST">
+      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="portal" id="portalInput">
+
+      <input type="email" name="email" placeholder="Seu email" required>
+      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
+
+      <button type="submit" class="btn-enviar">
+        ⚡ Ativar notificação
+      </button>
+    </form>
 
   </div>
 </div>
@@ -167,10 +202,19 @@ function fecharRedes() {
   document.getElementById("modalRedes").style.display = "none";
 }
 
+function abrirModal(portal) {
+  document.getElementById("modalPortal").style.display = "flex";
+  document.getElementById("nomePortal").innerText = portal;
+  document.getElementById("portalInput").value = portal;
+}
+
+function fecharModal() {
+  document.getElementById("modalPortal").style.display = "none";
+}
+
 window.onclick = function(event) {
-  let modal = document.getElementById("modalRedes");
-  if (event.target === modal) {
-    fecharRedes();
+  if (event.target.classList.contains("modal")) {
+    event.target.style.display = "none";
   }
 }
 
@@ -178,3 +222,4 @@ window.onclick = function(event) {
 
 </body>
 </html>
+
