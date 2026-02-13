@@ -39,6 +39,11 @@ h1 {
   border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-explorar:hover {
+  transform: scale(1.05);
 }
 
 /* SEÇÃO PORTAIS */
@@ -85,7 +90,7 @@ footer {
   font-size: 14px;
 }
 
-/* MODAL */
+/* MODAL PADRÃO */
 
 .modal {
   display: none;
@@ -121,6 +126,12 @@ footer {
   border-radius: 25px;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-enviar:hover {
+  transform: scale(1.05);
 }
 
 .fechar {
@@ -137,7 +148,7 @@ footer {
 <header>
   <h1>⚡ Gverso</h1>
   <div class="frase">Um novo universo está se formando.</div>
-  <button class="btn-explorar" onclick="document.getElementById('destino').scrollIntoView({behavior:'smooth'})">
+  <button class="btn-explorar" onclick="abrirRedes()">
     Explorar
   </button>
 </header>
@@ -157,7 +168,31 @@ footer {
   © 2026 Gverso • Todos os direitos reservados
 </footer>
 
-<!-- MODAL -->
+<!-- MODAL REDES SOCIAIS -->
+
+<div class="modal" id="modalRedes">
+  <div class="modal-conteudo">
+    <span class="fechar" onclick="fecharRedes()">×</span>
+
+    <h3>🌐 Siga o Gverso</h3>
+    <p>Escolha sua plataforma:</p>
+
+    <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
+
+      <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank" class="btn-enviar">
+        🔴 YouTube
+      </a>
+
+      <a href="https://www.twitch.tv/geraltwinx" target="_blank" class="btn-enviar">
+        🎮 Twitch
+      </a>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL CADASTRO PORTAL -->
 
 <div class="modal" id="modal">
   <div class="modal-conteudo">
@@ -167,7 +202,6 @@ footer {
     <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
 
     <form action="https://formspree.io/f/xwvnqlpl" method="POST">
-
       <input type="hidden" name="_subject" value="Novo cadastro Gverso">
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="portal" id="portalInput">
@@ -178,13 +212,23 @@ footer {
       <button type="submit" class="btn-enviar">
         ⚡ Ativar notificação
       </button>
-
     </form>
+
   </div>
 </div>
 
 <script>
 
+/* REDES */
+function abrirRedes() {
+  document.getElementById("modalRedes").style.display = "flex";
+}
+
+function fecharRedes() {
+  document.getElementById("modalRedes").style.display = "none";
+}
+
+/* PORTAIS */
 function abrirModal(portal) {
   document.getElementById("modal").style.display = "flex";
   document.getElementById("nomePortal").innerText = portal;
@@ -198,6 +242,9 @@ function fecharModal() {
 window.onclick = function(e) {
   if (e.target == document.getElementById("modal")) {
     fecharModal();
+  }
+  if (e.target == document.getElementById("modalRedes")) {
+    fecharRedes();
   }
 }
 
