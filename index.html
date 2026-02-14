@@ -13,9 +13,38 @@
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: #0e2f5a;
   color: white;
   text-align: center;
+  background: black;
+  overflow-x: hidden;
+}
+
+/* FUNDO DE ESTRELAS */
+
+#stars {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  opacity: 0.8;
+  animation: moveStar linear infinite;
+}
+
+@keyframes moveStar {
+  from {
+    transform: translateY(-10vh);
+  }
+  to {
+    transform: translateY(110vh);
+  }
 }
 
 /* HEADER AZUL COM LOGO */
@@ -150,6 +179,8 @@ footer {
 
 <body>
 
+<div id="stars"></div>
+
 <header>
   <div class="logo-container">
     <img src="assets/Gverso.webp" alt="Logo Gverso">
@@ -173,36 +204,24 @@ footer {
   © 2026 Gverso • Todos os direitos reservados
 </footer>
 
-<!-- MODAL REDES -->
-
 <div id="modalRedes" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharRedes()">×</span>
-
     <h3>Acompanhe o construtor do universo</h3>
-
     <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">🔴 YouTube</a>
     <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
   </div>
 </div>
 
-<!-- MODAL PORTAL -->
-
 <div id="modalPortal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharModal()">×</span>
-
     <h3>Acesso ao <span id="nomePortal"></span></h3>
     <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
 
     <form action="https://formspree.io/f/xwvnlqpl" method="POST">
-      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
-      <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="portal" id="portalInput">
-
       <input type="email" name="email" placeholder="Seu email" required>
-      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
-
       <button type="submit" class="btn-enviar">⚡ Ativar notificação</button>
     </form>
   </div>
@@ -212,25 +231,31 @@ footer {
 function abrirRedes() {
   document.getElementById("modalRedes").style.display = "flex";
 }
-
 function fecharRedes() {
   document.getElementById("modalRedes").style.display = "none";
 }
-
 function abrirModal(portal) {
   document.getElementById("modalPortal").style.display = "flex";
   document.getElementById("nomePortal").innerText = portal;
   document.getElementById("portalInput").value = portal;
 }
-
 function fecharModal() {
   document.getElementById("modalPortal").style.display = "none";
 }
+window.onclick = function(e) {
+  if (e.target.classList.contains("modal")) e.target.style.display = "none";
+}
 
-window.onclick = function(event) {
-  if (event.target.classList.contains("modal")) {
-    event.target.style.display = "none";
-  }
+/* CRIA ESTRELAS */
+const stars = document.getElementById("stars");
+for (let i = 0; i < 80; i++) {
+  const star = document.createElement("div");
+  star.className = "star";
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.animationDuration = (8 + Math.random() * 10) + "s";
+  star.style.opacity = Math.random();
+  stars.appendChild(star);
 }
 </script>
 
