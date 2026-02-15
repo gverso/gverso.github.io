@@ -6,31 +6,64 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  background: #f4f4f4;
   color: white;
   text-align: center;
 }
 
-/* HEADER */
+/* HEADER COM FUNDO ANIMADO */
 
 header {
-  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0b3c6f, #0a2b4f);
+  padding: 60px 20px 40px;
 }
 
-h1 {
-  font-size: 48px;
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.25) 0px,
+      rgba(255,255,255,0.25) 2px,
+      transparent 2px,
+      transparent 40px
+    );
+  animation: starsMove 2.5s linear infinite;
+  opacity: 0.35;
 }
 
-.frase {
-  font-style: italic;
-  margin: 15px 0;
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to   { background-position: -300px 0; }
+}
+
+header .content {
+  position: relative;
+  z-index: 2;
+}
+
+.logo {
+  max-width: 320px;
+  width: 80%;
+  height: auto;
+}
+
+/* SEÇÃO BRANCA */
+
+.section {
+  background: #f4f4f4;
+  color: #1e3c72;
+  padding: 50px 20px 70px;
 }
 
 .btn-explorar {
+  margin-top: 20px;
   padding: 12px 30px;
   background: #ffcc00;
   border: none;
@@ -44,13 +77,7 @@ h1 {
   transform: scale(1.05);
 }
 
-/* SEÇÃO PORTAIS */
-
-.section {
-  background: #f4f4f4;
-  color: #1e3c72;
-  padding: 70px 20px;
-}
+/* PORTAIS */
 
 .portais {
   display: flex;
@@ -59,8 +86,6 @@ h1 {
   gap: 40px;
   margin-top: 40px;
 }
-
-/* BOTÃO PORTAL 3D */
 
 .portal {
   display: inline-block;
@@ -71,13 +96,11 @@ h1 {
   text-transform: uppercase;
   text-decoration: none;
   color: white;
-
   border-radius: 16px;
   position: relative;
   transition: all 0.3s ease;
 }
 
-/* Estilo padrão azul */
 .portal-azul {
   background: linear-gradient(145deg, #1e3c72, #162b52);
   box-shadow:
@@ -85,7 +108,6 @@ h1 {
     0 18px 30px rgba(0,0,0,0.4);
 }
 
-/* Hover - sobe */
 .portal-azul:hover {
   transform: translateY(-8px);
   box-shadow:
@@ -93,7 +115,6 @@ h1 {
     0 28px 40px rgba(0,0,0,0.5);
 }
 
-/* Clique - afunda */
 .portal-azul:active {
   transform: translateY(4px);
   box-shadow:
@@ -162,19 +183,22 @@ footer {
   cursor: pointer;
   font-size: 22px;
 }
-
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>⚡ Gverso</h1>
-  <div class="frase">Um novo universo está se formando.</div>
-  <button class="btn-explorar" onclick="abrirRedes()">Explorar</button>
+  <div class="header-bg"></div>
+
+  <div class="content">
+    <img src="assets/Gverso.webp" class="logo" alt="Logo Gverso">
+  </div>
 </header>
 
 <section class="section">
+  <button class="btn-explorar" onclick="abrirRedes()">Explorar</button>
+
   <h2>Escolha seu destino</h2>
 
   <div class="portais">
@@ -189,7 +213,7 @@ footer {
   © 2026 Gverso • Todos os direitos reservados
 </footer>
 
-<!-- MODAL REDES -->
+<!-- MODAIS -->
 
 <div id="modalRedes" class="modal">
   <div class="modal-content">
@@ -200,18 +224,10 @@ footer {
       acompanhe o construtor.
     </h3>
 
-    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">
-      🔴 YouTube
-    </a>
-
-    <a href="https://www.twitch.tv/geraltwinx" target="_blank">
-      🎮 Twitch
-    </a>
-
+    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">🔴 YouTube</a>
+    <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
   </div>
 </div>
-
-<!-- MODAL PORTAL -->
 
 <div id="modalPortal" class="modal">
   <div class="modal-content">
@@ -228,16 +244,12 @@ footer {
       <input type="email" name="email" placeholder="Seu email" required>
       <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
 
-      <button type="submit" class="btn-enviar">
-        ⚡ Ativar notificação
-      </button>
+      <button type="submit" class="btn-enviar">⚡ Ativar notificação</button>
     </form>
-
   </div>
 </div>
 
 <script>
-
 function abrirRedes() {
   document.getElementById("modalRedes").style.display = "flex";
 }
@@ -261,7 +273,6 @@ window.onclick = function(event) {
     event.target.style.display = "none";
   }
 }
-
 </script>
 
 </body>
