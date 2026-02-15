@@ -67,10 +67,9 @@ header .content {
 /* BARRA AZUL DAS REDES */
 
 .barra-redes {
-  display: none;
+  display: none; /* COMEÇA OCULTA */
   background: #0b3c6f;
   padding: 14px;
-  display: flex;
   justify-content: center;
   gap: 25px;
   flex-wrap: wrap;
@@ -179,7 +178,6 @@ footer {
   text-decoration: none;
   font-weight: bold;
   color: black;
-  remember: none;
   border: none;
   cursor: pointer;
   transition: 0.3s;
@@ -286,7 +284,7 @@ function animate() {
 
   particles.forEach(p => {
     ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
-    ctx.lineWidth = 0.55; // ENGROSSADO AQUI
+    ctx.lineWidth = 1.2; // RABISCOS MAIS GROSSOS (AJUSTADO)
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x + p.length, p.y);
