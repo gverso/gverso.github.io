@@ -70,7 +70,6 @@ header .content {
   display: none;
   background: #0b3c6f;
   padding: 14px;
-  display: flex;
   justify-content: center;
   gap: 25px;
   flex-wrap: wrap;
@@ -228,10 +227,10 @@ footer {
   <h2>Escolha seu destino</h2>
 
   <div class="portais">
-    <div class="portal portal-azul" onclick="abrirModal('modal1')">PORTAL 01</div>
-    <div class="portal portal-azul" onclick="abrirModal('modal2')">PORTAL 02</div>
-    <div class="portal portal-azul" onclick="abrirModal('modal3')">PORTAL 03</div>
-    <div class="portal portal-azul" onclick="abrirModal('modal4')">PORTAL 04</div>
+    <div class="portal portal-azul" onclick="abrirPortal('PORTAL 01')">PORTAL 01</div>
+    <div class="portal portal-azul" onclick="abrirPortal('PORTAL 02')">PORTAL 02</div>
+    <div class="portal portal-azul" onclick="abrirPortal('PORTAL 03')">PORTAL 03</div>
+    <div class="portal portal-azul" onclick="abrirPortal('PORTAL 04')">PORTAL 04</div>
   </div>
 </section>
 
@@ -239,41 +238,23 @@ footer {
   © 2026 Gverso • Todos os direitos reservados
 </footer>
 
-<!-- MODAIS -->
+<!-- MODAL CADASTRO -->
 
-<div id="modal1" class="modal">
+<div id="modalPortal" class="modal">
   <div class="modal-content">
-    <span class="close" onclick="fecharModal('modal1')">✖</span>
-    <h3>Portal 01</h3>
-    <a href="#">Opção 1</a>
-    <a href="#">Opção 2</a>
-  </div>
-</div>
+    <span class="close" onclick="fecharModal()">×</span>
+    <h3>Acesso ao <span id="nomePortal"></span></h3>
+    <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
 
-<div id="modal2" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal('modal2')">✖</span>
-    <h3>Portal 02</h3>
-    <a href="#">Opção 1</a>
-    <a href="#">Opção 2</a>
-  </div>
-</div>
+    <form action="https://formspree.io/f/xwvnlqpl" method="POST">
+      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="portal" id="portalInput">
 
-<div id="modal3" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal('modal3')">✖</span>
-    <h3>Portal 03</h3>
-    <a href="#">Opção 1</a>
-    <a href="#">Opção 2</a>
-  </div>
-</div>
-
-<div id="modal4" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal('modal4')">✖</span>
-    <h3>Portal 04</h3>
-    <a href="#">Opção 1</a>
-    <a href="#">Opção 2</a>
+      <input type="email" name="email" placeholder="Seu email" required>
+      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
+      <button type="submit" class="btn-enviar">⚡ Ativar notificação</button>
+    </form>
   </div>
 </div>
 
@@ -327,14 +308,17 @@ function toggleRedes() {
   barra.style.display = barra.style.display === "flex" ? "none" : "flex";
 }
 
-function abrirModal(id) {
-  document.getElementById(id).style.display = "flex";
+function abrirPortal(nome) {
+  document.getElementById("modalPortal").style.display = "flex";
+  document.getElementById("nomePortal").innerText = nome;
+  document.getElementById("portalInput").value = nome;
 }
 
-function fecharModal(id) {
-  document.getElementById(id).style.display = "none";
+function fecharModal() {
+  document.getElementById("modalPortal").style.display = "none";
 }
 </script>
 
 </body>
 </html>
+
