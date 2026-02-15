@@ -20,7 +20,7 @@ header {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #0b3c6f, #0a2b4f);
-  height: 42vh;               /* define a altura da área animada */
+  height: 42vh;
   min-height: 240px;
   display: flex;
   align-items: center;
@@ -40,15 +40,16 @@ header .content {
   position: relative;
   z-index: 2;
   height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logo {
-  height: 85%;          /* cresce na vertical */
-  width: auto;         /* NÃO estica na horizontal */
-  max-width: 90%;
+  height: 95%;
+  width: auto;
+  max-width: 95%;
   object-fit: contain;
 }
 
@@ -136,6 +137,7 @@ footer {
   background: rgba(0,0,0,0.7);
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .modal-content {
@@ -181,6 +183,9 @@ footer {
   cursor: pointer;
   font-size: 22px;
 }
+
+/* CANVAS CLICK THROUGH */
+#warp { pointer-events: none; }
 </style>
 </head>
 
@@ -188,7 +193,6 @@ footer {
 
 <header>
   <canvas id="warp"></canvas>
-
   <div class="content">
     <img src="assets/Gverso.webp" class="logo" alt="Logo Gverso">
   </div>
@@ -210,6 +214,38 @@ footer {
   © 2026 Gverso • Todos os direitos reservados
 </footer>
 
+<!-- MODAL REDES -->
+<div id="modalRedes" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharRedes()">×</span>
+    <h3>
+      Enquanto o universo está em construção,<br>
+      acompanhe o construtor.
+    </h3>
+    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">🔴 YouTube</a>
+    <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
+  </div>
+</div>
+
+<!-- MODAL PORTAL -->
+<div id="modalPortal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">×</span>
+    <h3>Acesso ao <span id="nomePortal"></span></h3>
+    <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
+
+    <form action="https://formspree.io/f/xwvnlqpl" method="POST">
+      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="portal" id="portalInput">
+
+      <input type="email" name="email" placeholder="Seu email" required>
+      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
+      <button type="submit" class="btn-enviar">⚡ Ativar notificação</button>
+    </form>
+  </div>
+</div>
+
 <script>
 const canvas = document.getElementById("warp");
 const ctx = canvas.getContext("2d");
@@ -223,13 +259,13 @@ resize();
 
 const particles = [];
 
-for (let i = 0; i < 140; i++) {
+for (let i = 0; i < 120; i++) {
   particles.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    length: Math.random() * 40 + 20,
-    speed: Math.random() * 1.0 + 0.5,
-    alpha: Math.random() * 0.5 + 0.2
+    length: Math.random() * 30 + 15,
+    speed: Math.random() * 0.4 + 0.25,
+    alpha: Math.random() * 0.4 + 0.2
   });
 }
 
@@ -238,14 +274,13 @@ function animate() {
 
   particles.forEach(p => {
     ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
-    ctx.lineWidth = 0.25;
+    ctx.lineWidth = 0.2;
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x + p.length, p.y);
     ctx.stroke();
 
     p.x += p.speed;
-
     if (p.x > canvas.width) {
       p.x = -p.length;
       p.y = Math.random() * canvas.height;
@@ -256,6 +291,7 @@ function animate() {
 }
 animate();
 
+/* FUNÇÕES DOS BOTÕES */
 function abrirRedes() {
   document.getElementById("modalRedes").style.display = "flex";
 }
@@ -270,9 +306,9 @@ function abrirModal(portal) {
 function fecharModal() {
   document.getElementById("modalPortal").style.display = "none";
 }
-window.onclick = function(event) {
-  if (event.target.classList.contains("modal")) {
-    event.target.style.display = "none";
+window.onclick = function(e) {
+  if (e.target.classList.contains("modal")) {
+    e.target.style.display = "none";
   }
 }
 </script>
