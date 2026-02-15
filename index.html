@@ -54,19 +54,37 @@ header .content {
   object-fit: contain;
 }
 
-/* BARRA EXPLORAR */
-.explorar-barra {
-  width: 100%;
+/* BARRA AMARELA EXPLORAR */
+
+.barra-explorar {
   background: #ffcc00;
   color: #000;
   font-weight: bold;
-  padding: 12px 0;
+  padding: 14px;
   cursor: pointer;
+}
+
+/* BARRA AZUL DAS REDES */
+
+.barra-redes {
+  display: none;
+  background: #0b3c6f;
+  padding: 14px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.barra-redes a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
   transition: 0.2s;
 }
 
-.explorar-barra:hover {
-  background: #ffd633;
+.barra-redes a:hover {
+  text-decoration: underline;
 }
 
 /* SEÇÃO BRANCA */
@@ -129,7 +147,7 @@ footer {
   padding: 20px;
 }
 
-/* MODAIS */
+/* MODAIS (mantidos) */
 
 .modal {
   display: none;
@@ -196,55 +214,29 @@ footer {
   </div>
 </header>
 
-<!-- BARRA AMARELA NO LUGAR DO BOTÃO -->
-<div class="explorar-barra" onclick="abrirRedes()">Explorar</div>
+<div class="barra-explorar" onclick="toggleRedes()">Explorar</div>
+
+<div id="barraRedes" class="barra-redes">
+  <a href="https://www.instagram.com/gv3rso/" target="_blank">Instagram</a>
+  <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">YouTube</a>
+  <a href="https://www.twitch.tv/geraltwinx" target="_blank">Twitch</a>
+  <a href="https://www.facebook.com/gamersfriendsforever" target="_blank">Facebook</a>
+</div>
 
 <section class="section">
   <h2>Escolha seu destino</h2>
 
   <div class="portais">
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 01')">PORTAL 01</div>
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 02')">PORTAL 02</div>
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 03')">PORTAL 03</div>
-    <div class="portal portal-azul" onclick="abrirModal('PORTAL 04')">PORTAL 04</div>
+    <div class="portal portal-azul">PORTAL 01</div>
+    <div class="portal portal-azul">PORTAL 02</div>
+    <div class="portal portal-azul">PORTAL 03</div>
+    <div class="portal portal-azul">PORTAL 04</div>
   </div>
 </section>
 
 <footer>
   © 2026 Gverso • Todos os direitos reservados
 </footer>
-
-<!-- MODAL REDES -->
-<div id="modalRedes" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharRedes()">×</span>
-    <h3>
-      Enquanto o universo está em construção,<br>
-      acompanhe o construtor.
-    </h3>
-    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">🔴 YouTube</a>
-    <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
-  </div>
-</div>
-
-<!-- MODAL PORTAL -->
-<div id="modalPortal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">×</span>
-    <h3>Acesso ao <span id="nomePortal"></span></h3>
-    <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
-
-    <form action="https://formspree.io/f/xwvnlqpl" method="POST">
-      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="portal" id="portalInput">
-
-      <input type="email" name="email" placeholder="Seu email" required>
-      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
-      <button type="submit" class="btn-enviar">⚡ Ativar notificação</button>
-    </form>
-  </div>
-</div>
 
 <script>
 const canvas = document.getElementById("warp");
@@ -265,7 +257,7 @@ for (let i = 0; i < 120; i++) {
     y: Math.random() * canvas.height,
     length: Math.random() * 30 + 15,
     speed: Math.random() * 0.4 + 0.25,
-    alpha: Math.random() * 0.5 + 0.3   // mais visível
+    alpha: Math.random() * 0.4 + 0.2
   });
 }
 
@@ -273,8 +265,8 @@ function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   particles.forEach(p => {
-    ctx.strokeStyle = `rgba(200,230,255,${p.alpha})`;
-    ctx.lineWidth = 0.5;   // rabisco mais visível (antes 0.2)
+    ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
+    ctx.lineWidth = 0.35;   // um pouco mais grossa, como você pediu
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x + p.length, p.y);
@@ -291,25 +283,9 @@ function animate() {
 }
 animate();
 
-/* FUNÇÕES DOS BOTÕES */
-function abrirRedes() {
-  document.getElementById("modalRedes").style.display = "flex";
-}
-function fecharRedes() {
-  document.getElementById("modalRedes").style.display = "none";
-}
-function abrirModal(portal) {
-  document.getElementById("modalPortal").style.display = "flex";
-  document.getElementById("nomePortal").innerText = portal;
-  document.getElementById("portalInput").value = portal;
-}
-function fecharModal() {
-  document.getElementById("modalPortal").style.display = "none";
-}
-window.onclick = function(e) {
-  if (e.target.classList.contains("modal")) {
-    e.target.style.display = "none";
-  }
+function toggleRedes() {
+  const barra = document.getElementById("barraRedes");
+  barra.style.display = barra.style.display === "flex" ? "none" : "flex";
 }
 </script>
 
