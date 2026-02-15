@@ -14,7 +14,7 @@ body {
   text-align: center;
 }
 
-/* HEADER COM FUNDO ANIMADO */
+/* HEADER */
 
 header {
   position: relative;
@@ -23,7 +23,8 @@ header {
   padding: 60px 20px 40px;
 }
 
-canvas#warp {
+/* CANVAS DA ANIMAÇÃO */
+#warp {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -206,12 +207,10 @@ footer {
 <div id="modalRedes" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharRedes()">×</span>
-
     <h3>
       Enquanto o universo está em construção,<br>
       acompanhe o construtor.
     </h3>
-
     <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">🔴 YouTube</a>
     <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
   </div>
@@ -220,7 +219,6 @@ footer {
 <div id="modalPortal" class="modal">
   <div class="modal-content">
     <span class="close" onclick="fecharModal()">×</span>
-
     <h3>Acesso ao <span id="nomePortal"></span></h3>
     <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
 
@@ -238,6 +236,52 @@ footer {
 </div>
 
 <script>
+const canvas = document.getElementById("warp");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const particles = [];
+
+for (let i = 0; i < 140; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    length: Math.random() * 40 + 20,
+    speed: Math.random() * 5 + 3,
+    alpha: Math.random() * 0.6 + 0.3
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
+    ctx.lineWidth = 0.7; // mais fino, igual tu pediu
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    ctx.lineTo(p.x + p.length, p.y);
+    ctx.stroke();
+
+    p.x += p.speed;
+
+    if (p.x > canvas.width) {
+      p.x = -p.length;
+      p.y = Math.random() * canvas.height;
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+
 function abrirRedes() {
   document.getElementById("modalRedes").style.display = "flex";
 }
@@ -261,54 +305,6 @@ window.onclick = function(event) {
     event.target.style.display = "none";
   }
 }
-
-// ANIMAÇÃO ORIGINAL DO FUNDO ATRÁS DA LOGO (warp)
-
-const canvas = document.getElementById("warp");
-const ctx = canvas.getContext("2d");
-
-function resize() {
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
-}
-window.addEventListener("resize", resize);
-resize();
-
-const particles = [];
-
-for (let i = 0; i < 140; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    length: Math.random() * 40 + 20,
-    speed: Math.random() * 4 + 2,
-    alpha: Math.random() * 0.6 + 0.3
-  });
-}
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  particles.forEach(p => {
-    ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(p.x, p.y);
-    ctx.lineTo(p.x + p.length, p.y);
-    ctx.stroke();
-
-    p.x += p.speed;
-
-    if (p.x > canvas.width) {
-      p.x = -p.length;
-      p.y = Math.random() * canvas.height;
-    }
-  });
-
-  requestAnimationFrame(animate);
-}
-
-animate();
 </script>
 
 </body>
