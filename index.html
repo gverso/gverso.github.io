@@ -20,7 +20,11 @@ header {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #0b3c6f, #0a2b4f);
-  padding: 70px 20px 50px; /* mais espaço pra logo */
+  height: 42vh;               /* define a altura da área animada */
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* CANVAS DA ANIMAÇÃO */
@@ -35,12 +39,17 @@ header {
 header .content {
   position: relative;
   z-index: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo {
-  max-width: 420px;   /* AUMENTEI */
-  width: 90%;        /* ocupa mais */
-  height: auto;
+  height: 85%;          /* cresce na vertical */
+  width: auto;         /* NÃO estica na horizontal */
+  max-width: 90%;
+  object-fit: contain;
 }
 
 /* SEÇÃO BRANCA */
@@ -187,7 +196,6 @@ footer {
 
 <section class="section">
   <button class="btn-explorar" onclick="abrirRedes()">Explorar</button>
-
   <h2>Escolha seu destino</h2>
 
   <div class="portais">
@@ -201,39 +209,6 @@ footer {
 <footer>
   © 2026 Gverso • Todos os direitos reservados
 </footer>
-
-<!-- MODAIS -->
-
-<div id="modalRedes" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharRedes()">×</span>
-    <h3>
-      Enquanto o universo está em construção,<br>
-      acompanhe o construtor.
-    </h3>
-    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">🔴 YouTube</a>
-    <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
-  </div>
-</div>
-
-<div id="modalPortal" class="modal">
-  <div class="modal-content">
-    <span class="close" onclick="fecharModal()">×</span>
-    <h3>Acesso ao <span id="nomePortal"></span></h3>
-    <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
-
-    <form action="https://formspree.io/f/xwvnlqpl" method="POST">
-      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="portal" id="portalInput">
-
-      <input type="email" name="email" placeholder="Seu email" required>
-      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
-
-      <button type="submit" class="btn-enviar">⚡ Ativar notificação</button>
-    </form>
-  </div>
-</div>
 
 <script>
 const canvas = document.getElementById("warp");
@@ -253,7 +228,7 @@ for (let i = 0; i < 140; i++) {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     length: Math.random() * 40 + 20,
-    speed: Math.random() * 1.0 + 0.5, // lento e suave
+    speed: Math.random() * 1.0 + 0.5,
     alpha: Math.random() * 0.5 + 0.2
   });
 }
@@ -263,7 +238,7 @@ function animate() {
 
   particles.forEach(p => {
     ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
-    ctx.lineWidth = 0.25; // AINDA MAIS FINO
+    ctx.lineWidth = 0.25;
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x + p.length, p.y);
