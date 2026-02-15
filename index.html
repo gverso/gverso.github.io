@@ -117,6 +117,7 @@ header .content {
   border-radius: 16px;
   position: relative;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .portal-azul {
@@ -147,7 +148,7 @@ footer {
   padding: 20px;
 }
 
-/* MODAIS (mantidos) */
+/* MODAIS */
 
 .modal {
   display: none;
@@ -227,16 +228,54 @@ footer {
   <h2>Escolha seu destino</h2>
 
   <div class="portais">
-    <div class="portal portal-azul">PORTAL 01</div>
-    <div class="portal portal-azul">PORTAL 02</div>
-    <div class="portal portal-azul">PORTAL 03</div>
-    <div class="portal portal-azul">PORTAL 04</div>
+    <div class="portal portal-azul" onclick="abrirModal('modal1')">PORTAL 01</div>
+    <div class="portal portal-azul" onclick="abrirModal('modal2')">PORTAL 02</div>
+    <div class="portal portal-azul" onclick="abrirModal('modal3')">PORTAL 03</div>
+    <div class="portal portal-azul" onclick="abrirModal('modal4')">PORTAL 04</div>
   </div>
 </section>
 
 <footer>
   © 2026 Gverso • Todos os direitos reservados
 </footer>
+
+<!-- MODAIS -->
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal('modal1')">✖</span>
+    <h3>Portal 01</h3>
+    <a href="#">Opção 1</a>
+    <a href="#">Opção 2</a>
+  </div>
+</div>
+
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal('modal2')">✖</span>
+    <h3>Portal 02</h3>
+    <a href="#">Opção 1</a>
+    <a href="#">Opção 2</a>
+  </div>
+</div>
+
+<div id="modal3" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal('modal3')">✖</span>
+    <h3>Portal 03</h3>
+    <a href="#">Opção 1</a>
+    <a href="#">Opção 2</a>
+  </div>
+</div>
+
+<div id="modal4" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal('modal4')">✖</span>
+    <h3>Portal 04</h3>
+    <a href="#">Opção 1</a>
+    <a href="#">Opção 2</a>
+  </div>
+</div>
 
 <script>
 const canvas = document.getElementById("warp");
@@ -266,7 +305,7 @@ function animate() {
 
   particles.forEach(p => {
     ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
-    ctx.lineWidth = 0.35;   // um pouco mais grossa, como você pediu
+    ctx.lineWidth = 0.35;
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x + p.length, p.y);
@@ -286,6 +325,14 @@ animate();
 function toggleRedes() {
   const barra = document.getElementById("barraRedes");
   barra.style.display = barra.style.display === "flex" ? "none" : "flex";
+}
+
+function abrirModal(id) {
+  document.getElementById(id).style.display = "flex";
+}
+
+function fecharModal(id) {
+  document.getElementById(id).style.display = "none";
 }
 </script>
 
