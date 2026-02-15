@@ -20,7 +20,7 @@ header {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #0b3c6f, #0a2b4f);
-  padding: 60px 20px 40px;
+  padding: 70px 20px 50px; /* mais espaço pra logo */
 }
 
 /* CANVAS DA ANIMAÇÃO */
@@ -38,8 +38,8 @@ header .content {
 }
 
 .logo {
-  max-width: 320px;
-  width: 80%;
+  max-width: 420px;   /* AUMENTEI */
+  width: 90%;        /* ocupa mais */
   height: auto;
 }
 
@@ -253,7 +253,7 @@ for (let i = 0; i < 140; i++) {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     length: Math.random() * 40 + 20,
-    speed: Math.random() * 1.2 + 0.6, // MAIS LENTO
+    speed: Math.random() * 1.0 + 0.5, // lento e suave
     alpha: Math.random() * 0.5 + 0.2
   });
 }
@@ -263,7 +263,7 @@ function animate() {
 
   particles.forEach(p => {
     ctx.strokeStyle = `rgba(180,220,255,${p.alpha})`;
-    ctx.lineWidth = 0.4; // MAIS FINO AINDA
+    ctx.lineWidth = 0.25; // AINDA MAIS FINO
     ctx.beginPath();
     ctx.moveTo(p.x, p.y);
     ctx.lineTo(p.x + p.length, p.y);
@@ -279,27 +279,22 @@ function animate() {
 
   requestAnimationFrame(animate);
 }
-
 animate();
 
 function abrirRedes() {
   document.getElementById("modalRedes").style.display = "flex";
 }
-
 function fecharRedes() {
   document.getElementById("modalRedes").style.display = "none";
 }
-
 function abrirModal(portal) {
   document.getElementById("modalPortal").style.display = "flex";
   document.getElementById("nomePortal").innerText = portal;
   document.getElementById("portalInput").value = portal;
 }
-
 function fecharModal() {
   document.getElementById("modalPortal").style.display = "none";
 }
-
 window.onclick = function(event) {
   if (event.target.classList.contains("modal")) {
     event.target.style.display = "none";
