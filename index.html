@@ -2,168 +2,314 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>GVerso</title>
+<title>Gverso</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-@keyframes stars {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 1000px; }
-}
-
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f4f4;
+  color: white;
+  text-align: center;
 }
 
-/* Header com fundo animado */
-.header-bg {
+/* HEADER */
+
+header {
   position: relative;
-  width: 100%;
-  height: 360px;
-  background: linear-gradient(#0a3d78, #0b4f9a);
   overflow: hidden;
+  background: linear-gradient(135deg, #0b3c6f, #0a2b4f);
+  height: 42vh;
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.header-bg::before {
-  content: "";
+/* CANVAS DA ANIMAÇÃO */
+#warp {
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(255,255,255,0.25) 0px,
-    rgba(255,255,255,0.25) 2px,
-    transparent 2px,
-    transparent 22px
-  );
-  animation: stars 25s linear infinite;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
   pointer-events: none;
 }
 
-/* Logo maior */
-.logo-container {
+header .content {
   position: relative;
   z-index: 2;
-  text-align: center;
-  padding-top: 40px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.logo-container img {
-  height: 200px;
-  max-width: 100%;
+.logo {
+  height: 95%;
+  width: auto;
+  max-width: 95%;
+  object-fit: contain;
 }
 
-/* Barra Explorar */
+/* BARRA EXPLORAR */
 .explorar-barra {
   width: 100%;
-  background: #f6c400;
-  padding: 12px 0;
-  text-align: center;
-  cursor: pointer;
+  background: #ffcc00;
+  color: #000;
   font-weight: bold;
-  transition: 0.3s;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .explorar-barra:hover {
-  background: #ffd43b;
+  background: #ffd633;
 }
 
-/* Menu de redes */
-.menu-explorar {
-  display: none;
-  background: #0a3d78;
-  padding: 12px;
-  text-align: center;
+/* SEÇÃO BRANCA */
+
+.section {
+  background: #f4f4f4;
+  color: #1e3c72;
+  padding: 50px 20px 70px;
 }
 
-.menu-explorar a {
-  color: white;
-  margin: 0 12px;
-  text-decoration: none;
-  font-weight: bold;
-}
+/* PORTAIS */
 
-.menu-explorar a:hover {
-  text-decoration: underline;
-}
-
-/* Área de portais */
 .portais {
-  text-align: center;
-  padding: 30px 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px;
 }
 
-.portais h2 {
-  color: #0a3d78;
-}
-
-.botao-portal {
+.portal {
   display: inline-block;
-  margin: 10px;
-  padding: 15px 30px;
-  background: #0a3d78;
+  padding: 25px 60px;
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
   color: white;
-  border-radius: 10px;
+  border-radius: 16px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.portal-azul {
+  background: linear-gradient(145deg, #1e3c72, #162b52);
+  box-shadow:
+    0 8px 0 #0f1f3d,
+    0 18px 30px rgba(0,0,0,0.4);
+}
+
+.portal-azul:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 16px 0 #0f1f3d,
+    0 28px 40px rgba(0,0,0,0.5);
+}
+
+.portal-azul:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 4px 0 #0f1f3d,
+    0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+
+footer {
+  background: black;
+  padding: 20px;
+}
+
+/* MODAIS */
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  color: #1e3c72;
+  padding: 35px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 420px;
+  text-align: center;
+}
+
+.modal-content a,
+.btn-enviar {
+  display: block;
+  margin: 15px 0;
+  padding: 12px;
+  background: #ffcc00;
+  border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
+  color: black;
+  border: none;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.botao-portal:hover {
-  background: #083063;
+.modal-content a:hover,
+.btn-enviar:hover {
+  transform: scale(1.05);
 }
 
-/* Rodapé */
-footer {
-  background: #000;
-  color: white;
-  text-align: center;
-  padding: 15px;
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+  font-size: 22px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header-bg">
-  <div class="logo-container">
-    <img src="sua-logo.png" alt="GVerso">
+<header>
+  <canvas id="warp"></canvas>
+  <div class="content">
+    <img src="assets/Gverso.webp" class="logo" alt="Logo Gverso">
+  </div>
+</header>
+
+<!-- BARRA AMARELA NO LUGAR DO BOTÃO -->
+<div class="explorar-barra" onclick="abrirRedes()">Explorar</div>
+
+<section class="section">
+  <h2>Escolha seu destino</h2>
+
+  <div class="portais">
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 01')">PORTAL 01</div>
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 02')">PORTAL 02</div>
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 03')">PORTAL 03</div>
+    <div class="portal portal-azul" onclick="abrirModal('PORTAL 04')">PORTAL 04</div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Gverso • Todos os direitos reservados
+</footer>
+
+<!-- MODAL REDES -->
+<div id="modalRedes" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharRedes()">×</span>
+    <h3>
+      Enquanto o universo está em construção,<br>
+      acompanhe o construtor.
+    </h3>
+    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">🔴 YouTube</a>
+    <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
   </div>
 </div>
 
-<!-- BARRA EXPLORAR -->
-<div class="explorar-barra" onclick="toggleExplorar()">
-  Explorar
-</div>
+<!-- MODAL PORTAL -->
+<div id="modalPortal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="fecharModal()">×</span>
+    <h3>Acesso ao <span id="nomePortal"></span></h3>
+    <p>Cadastre-se para ser avisado quando este portal for ativado.</p>
 
-<!-- MENU REDES -->
-<div class="menu-explorar" id="menuExplorar">
-  <a href="https://youtube.com" target="_blank">YouTube</a>
-  <a href="https://instagram.com" target="_blank">Instagram</a>
-  <a href="https://twitch.tv" target="_blank">Twitch</a>
-  <a href="https://discord.com" target="_blank">Discord</a>
-</div>
+    <form action="https://formspree.io/f/xwvnlqpl" method="POST">
+      <input type="hidden" name="_subject" value="Novo cadastro Gverso">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="portal" id="portalInput">
 
-<!-- PORTAIS -->
-<div class="portais">
-  <h2>Escolha seu destino</h2>
-  <a class="botao-portal" href="#">PORTAL 01</a>
-  <a class="botao-portal" href="#">PORTAL 02</a>
-  <a class="botao-portal" href="#">PORTAL 03</a>
-  <a class="botao-portal" href="#">PORTAL 04</a>
+      <input type="email" name="email" placeholder="Seu email" required>
+      <input type="text" name="whatsapp" placeholder="Seu WhatsApp (opcional)">
+      <button type="submit" class="btn-enviar">⚡ Ativar notificação</button>
+    </form>
+  </div>
 </div>
-
-<!-- RODAPÉ -->
-<footer>
-  © 2026 GVerso - Todos os direitos reservados
-</footer>
 
 <script>
-function toggleExplorar() {
-  const menu = document.getElementById("menuExplorar");
-  menu.style.display = menu.style.display === "block" ? "none" : "block";
+const canvas = document.getElementById("warp");
+const ctx = canvas.getContext("2d");
+
+function resize() {
+  canvas.width = canvas.offsetWidth;
+  canvas.height = canvas.offsetHeight;
+}
+window.addEventListener("resize", resize);
+resize();
+
+const particles = [];
+
+for (let i = 0; i < 120; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    length: Math.random() * 30 + 15,
+    speed: Math.random() * 0.4 + 0.25,
+    alpha: Math.random() * 0.5 + 0.3   // mais visível
+  });
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  particles.forEach(p => {
+    ctx.strokeStyle = `rgba(200,230,255,${p.alpha})`;
+    ctx.lineWidth = 0.5;   // rabisco mais visível (antes 0.2)
+    ctx.beginPath();
+    ctx.moveTo(p.x, p.y);
+    ctx.lineTo(p.x + p.length, p.y);
+    ctx.stroke();
+
+    p.x += p.speed;
+    if (p.x > canvas.width) {
+      p.x = -p.length;
+      p.y = Math.random() * canvas.height;
+    }
+  });
+
+  requestAnimationFrame(animate);
+}
+animate();
+
+/* FUNÇÕES DOS BOTÕES */
+function abrirRedes() {
+  document.getElementById("modalRedes").style.display = "flex";
+}
+function fecharRedes() {
+  document.getElementById("modalRedes").style.display = "none";
+}
+function abrirModal(portal) {
+  document.getElementById("modalPortal").style.display = "flex";
+  document.getElementById("nomePortal").innerText = portal;
+  document.getElementById("portalInput").value = portal;
+}
+function fecharModal() {
+  document.getElementById("modalPortal").style.display = "none";
+}
+window.onclick = function(e) {
+  if (e.target.classList.contains("modal")) {
+    e.target.style.display = "none";
+  }
 }
 </script>
 
