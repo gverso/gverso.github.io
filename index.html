@@ -8,20 +8,20 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --navy:#061240;--navy2:#0A1D6A;--blue:#1A8FE3;
-  --gold:#F5C400;--gold2:#C8960A;
-  --white:#fff;--muted:#8BA8D0;--border:rgba(245,196,0,0.25);
+ --navy:#061240;--navy2:#0A1D6A;--blue:#1A8FE3;
+ --gold:#F5C400;--gold2:#C8960A;
+ --white:#fff;--muted:#8BA8D0;--border:rgba(245,196,0,0.25);
 }
 
 /* ─── HOME ─────────────────────────────── */
 #home{min-height:100vh;font-family:'Exo 2',sans-serif;background:#f4f4f4;color:white;text-align:center;}
 header{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b3c6f,#0a2b4f);
-  height:42vh;min-height:240px;display:flex;align-items:center;justify-content:center;}
+ height:42vh;min-height:240px;display:flex;align-items:center;justify-content:center;}
 #warp{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;}
 header .content{position:relative;z-index:2;height:100%;width:100%;display:flex;align-items:center;justify-content:center;}
 .logo{height:95%;width:auto;max-width:95%;object-fit:contain;}
 .barra-explorar{background:#ffcc00;color:#000;font-weight:bold;padding:14px;cursor:pointer;
-  font-family:'Exo 2',sans-serif;font-size:15px;letter-spacing:1px;transition:background .2s;}
+ font-family:'Exo 2',sans-serif;font-size:15px;letter-spacing:1px;transition:background .2s;}
 .barra-explorar:hover{background:#e6b800;}
 .barra-redes{display:none;background:#0b3c6f;padding:14px;justify-content:center;gap:25px;flex-wrap:wrap;}
 .barra-redes a{color:white;text-decoration:none;font-weight:bold;transition:.2s;font-family:'Exo 2',sans-serif;}
@@ -32,32 +32,32 @@ header .content{position:relative;z-index:2;height:100%;width:100%;display:flex;
 .portais{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;max-width:720px;margin:0 auto;}
 @media(max-width:540px){.portais{grid-template-columns:1fr;gap:18px;}}
 .portal{display:flex;flex-direction:column;align-items:center;padding:30px 20px 24px;
-  font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:2px;
-  text-transform:uppercase;color:white;border-radius:20px;cursor:pointer;border:none;
-  transition:all .3s ease;background:linear-gradient(145deg,#1e3c72,#162b52);
-  box-shadow:0 8px 0 #0f1f3d,0 18px 30px rgba(0,0,0,.4);}
+ font-family:'Orbitron',sans-serif;font-weight:900;letter-spacing:2px;
+ text-transform:uppercase;color:white;border-radius:20px;cursor:pointer;border:none;
+ transition:all .3s ease;background:linear-gradient(145deg,#1e3c72,#162b52);
+ box-shadow:0 8px 0 #0f1f3d,0 18px 30px rgba(0,0,0,.4);}
 .portal:hover{transform:translateY(-8px);box-shadow:0 16px 0 #0f1f3d,0 28px 40px rgba(0,0,0,.5);}
 .portal:active{transform:translateY(4px);box-shadow:0 4px 0 #0f1f3d,0 10px 20px rgba(0,0,0,.3);}
 .portal-icon{font-size:40px;margin-bottom:12px;line-height:1;}
 .portal-num{font-size:10px;color:rgba(245,196,0,.6);letter-spacing:3px;margin-bottom:4px;}
 .portal-name{font-size:13px;color:#fff;letter-spacing:2px;}
 .portal-desc{font-size:10px;color:rgba(139,168,208,.7);margin-top:6px;letter-spacing:.5px;
-  font-family:'Exo 2',sans-serif;font-weight:400;text-transform:none;}
+ font-family:'Exo 2',sans-serif;font-weight:400;text-transform:none;}
 footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;font-family:'Exo 2',sans-serif;}
 
 /* ─── PANELS ─────────────────────────────── */
 .panel{display:none;position:fixed;inset:0;z-index:1000;
-  background:linear-gradient(140deg,#040e28 0%,#0a1d6a 55%,#040e28 100%);
-  overflow-y:auto;animation:panelIn .3s ease;}
+ background:linear-gradient(140deg,#040e28 0%,#0a1d6a 55%,#040e28 100%);
+ overflow-y:auto;animation:panelIn .3s ease;}
 .panel.on{display:block;}
 @keyframes panelIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
 .panel::before{content:'';position:fixed;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 15% 50%,rgba(26,143,227,.07) 0,transparent 55%),
-             radial-gradient(ellipse at 85% 20%,rgba(245,196,0,.05) 0,transparent 45%);}
+ background:radial-gradient(ellipse at 15% 50%,rgba(26,143,227,.07) 0,transparent 55%),
+ radial-gradient(ellipse at 85% 20%,rgba(245,196,0,.05) 0,transparent 45%);}
 .panel-close{position:fixed;top:16px;right:16px;z-index:1100;width:44px;height:44px;
-  border-radius:50%;background:rgba(4,14,40,.9);border:2px solid rgba(245,196,0,.4);
-  color:var(--gold);font-size:20px;cursor:pointer;display:flex;align-items:center;
-  justify-content:center;transition:all .2s;backdrop-filter:blur(8px);}
+ border-radius:50%;background:rgba(4,14,40,.9);border:2px solid rgba(245,196,0,.4);
+ color:var(--gold);font-size:20px;cursor:pointer;display:flex;align-items:center;
+ justify-content:center;transition:all .2s;backdrop-filter:blur(8px);}
 .panel-close:hover{background:rgba(245,196,0,.15);border-color:var(--gold);}
 
 /* ─── SHARED STYLES ─────────────────────────────── */
@@ -72,22 +72,22 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 .hd p{color:var(--muted);font-size:12px;letter-spacing:.8px;}
 .card{background:rgba(10,29,106,.5);border:1px solid var(--border);border-radius:16px;padding:32px;backdrop-filter:blur(12px);}
 .card-title{font-family:'Orbitron',sans-serif;font-size:13px;font-weight:700;color:var(--gold);letter-spacing:2px;
-  text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:8px;}
+ text-transform:uppercase;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border);
+ display:flex;align-items:center;gap:8px;}
 .fg{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 .fi{display:flex;flex-direction:column;gap:7px;}
 .fi.full{grid-column:1/-1;}
 .fi label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
 .fi input,.fi select,.fi textarea{background:rgba(4,14,40,.7);border:1px solid rgba(26,143,227,.3);
-  border-radius:8px;padding:11px 15px;color:#fff;font-family:'Exo 2',sans-serif;font-size:14px;
-  outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
+ border-radius:8px;padding:11px 15px;color:#fff;font-family:'Exo 2',sans-serif;font-size:14px;
+ outline:none;transition:border-color .2s,box-shadow .2s;width:100%;}
 .fi input:focus,.fi select:focus,.fi textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(245,196,0,.1);}
 .fi input::placeholder,.fi textarea::placeholder{color:rgba(139,168,208,.45);}
 .fi select option{background:#0A1D6A;color:#fff;}
 .fi textarea{resize:vertical;min-height:80px;}
 .btn{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  border:none;cursor:pointer;padding:13px 28px;border-radius:8px;transition:all .2s;
-  display:inline-flex;align-items:center;gap:8px;}
+ border:none;cursor:pointer;padding:13px 28px;border-radius:8px;transition:all .2s;
+ display:inline-flex;align-items:center;gap:8px;}
 .btn-g{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);box-shadow:0 4px 18px rgba(245,196,0,.28);}
 .btn-g:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(245,196,0,.38);}
 .btn-s{background:transparent;color:var(--muted);border:1px solid rgba(139,168,208,.28);}
@@ -100,10 +100,10 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 /* ─── NAV DOTS ─────────────────────────────── */
 .tc-nav{display:flex;justify-content:center;align-items:center;padding:72px 20px 0;gap:0;position:relative;z-index:5;}
 .ndot{width:40px;height:40px;border-radius:50%;border:2px solid rgba(245,196,0,.3);background:rgba(10,29,106,.8);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Orbitron',sans-serif;
-  font-size:13px;font-weight:700;color:var(--muted);transition:all .3s;position:relative;}
+ display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Orbitron',sans-serif;
+ font-size:13px;font-weight:700;color:var(--muted);transition:all .3s;position:relative;}
 .ndot span{position:absolute;top:46px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9px;
-  color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+ color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
 .ndot.on{border-color:var(--gold);color:var(--gold);box-shadow:0 0 18px rgba(245,196,0,.35);}
 .ndot.done{border-color:var(--blue);background:var(--blue);color:#fff;}
 .nline{width:52px;height:2px;background:rgba(245,196,0,.18);flex-shrink:0;transition:background .3s;}
@@ -112,34 +112,34 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 /* ─── AVATAR ─────────────────────────────── */
 .av-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .av-card{border:2px solid rgba(245,196,0,.2);border-radius:12px;overflow:hidden;cursor:pointer;
-  transition:all .25s;background:rgba(4,14,40,.6);position:relative;}
+ transition:all .25s;background:rgba(4,14,40,.6);position:relative;}
 .av-card:hover{border-color:rgba(245,196,0,.6);transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.4);}
 .av-card.sel{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 8px 24px rgba(245,196,0,.25);}
 .av-card img{width:100%;height:180px;object-fit:cover;object-position:center top;display:block;}
 .av-card .av-lbl{padding:8px;text-align:center;font-size:11px;letter-spacing:1px;color:var(--muted);text-transform:uppercase;background:rgba(4,14,40,.8);}
 .av-card.sel .av-lbl{color:var(--gold);}
 .av-chk{position:absolute;top:8px;right:8px;width:22px;height:22px;border-radius:50%;
-  background:var(--gold);color:var(--navy);font-size:13px;font-weight:900;display:none;align-items:center;justify-content:center;}
+ background:var(--gold);color:var(--navy);font-size:13px;font-weight:900;display:none;align-items:center;justify-content:center;}
 .av-card.sel .av-chk{display:flex;}
 
 /* ─── POKEMON ─────────────────────────────── */
 .pslots{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px;}
 .pslot{aspect-ratio:1;background:rgba(4,14,40,.8);border:2px solid rgba(245,196,0,.22);border-radius:11px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
+ display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
 .pslot:hover{border-color:var(--gold);transform:translateY(-3px);}
 .pslot.filled{border-color:var(--blue);}
 .pslot img{width:82%;height:82%;object-fit:contain;}
 .pslot .sn{position:absolute;top:3px;left:6px;font-size:9px;color:var(--muted);font-weight:700;}
 .pslot .nm{position:absolute;bottom:2px;font-size:7px;color:var(--muted);text-transform:capitalize;}
 .pslot .rm{position:absolute;top:2px;right:2px;width:16px;height:16px;background:rgba(200,30,40,.85);
-  border-radius:50%;border:none;color:#fff;font-size:10px;cursor:pointer;display:none;align-items:center;justify-content:center;}
+ border-radius:50%;border:none;color:#fff;font-size:10px;cursor:pointer;display:none;align-items:center;justify-content:center;}
 .pslot.filled:hover .rm{display:flex;}
 .pslot .ico{font-size:22px;opacity:.25;}
 .pcnt{text-align:center;margin-bottom:16px;}
 .pcnt span{background:rgba(245,196,0,.1);border:1px solid rgba(245,196,0,.2);padding:4px 14px;border-radius:20px;font-size:11px;color:var(--gold);letter-spacing:1px;}
 .srch{position:relative;margin-bottom:12px;}
 .srch input{width:100%;background:rgba(4,14,40,.7);border:1px solid rgba(26,143,227,.3);border-radius:8px;
-  padding:11px 44px 11px 15px;color:#fff;font-family:'Exo 2',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
+ padding:11px 44px 11px 15px;color:#fff;font-family:'Exo 2',sans-serif;font-size:14px;outline:none;transition:border-color .2s;}
 .srch input:focus{border-color:var(--gold);}
 .srch .si{position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none;}
 .sres{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:7px;max-height:230px;overflow-y:auto;padding:2px;}
@@ -176,18 +176,18 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 .print-opt .ico{font-size:28px;margin-bottom:8px;}
 .print-opt label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:10px;}
 .print-opt input[type="text"]{background:rgba(4,14,40,.7);border:1px solid rgba(26,143,227,.3);border-radius:8px;
-  padding:9px 12px;color:#fff;font-family:'Exo 2',sans-serif;font-size:13px;outline:none;width:100%;transition:border-color .2s;}
+ padding:9px 12px;color:#fff;font-family:'Exo 2',sans-serif;font-size:13px;outline:none;width:100%;transition:border-color .2s;}
 .print-opt input[type="text"]:focus{border-color:var(--gold);}
 .print-opt input[type="text"]::placeholder{color:rgba(139,168,208,.45);font-size:11px;}
 .upload-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--navy2),var(--navy));
-  border:1px solid rgba(26,143,227,.4);border-radius:8px;padding:10px 16px;color:var(--blue);
-  font-family:'Exo 2',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;width:100%;justify-content:center;}
+ border:1px solid rgba(26,143,227,.4);border-radius:8px;padding:10px 16px;color:var(--blue);
+ font-family:'Exo 2',sans-serif;font-size:13px;cursor:pointer;transition:all .2s;width:100%;justify-content:center;}
 .upload-btn:hover{border-color:var(--gold);color:var(--gold);}
 .upload-preview{margin-top:10px;display:none;}
 .upload-preview img{max-width:100%;max-height:120px;border-radius:8px;border:1px solid rgba(245,196,0,.3);object-fit:cover;}
 .upload-name{font-size:10px;color:var(--gold);margin-top:4px;letter-spacing:1px;word-break:break-all;}
 .check-wrap{display:flex;align-items:flex-start;gap:12px;background:rgba(245,196,0,.05);
-  border:1px solid rgba(245,196,0,.15);border-radius:10px;padding:16px;}
+ border:1px solid rgba(245,196,0,.15);border-radius:10px;padding:16px;}
 .check-wrap input[type="checkbox"]{width:18px;height:18px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;margin-top:2px;}
 .check-wrap label{font-size:13px;color:var(--muted);line-height:1.5;cursor:pointer;}
 .check-wrap label strong{color:var(--white);}
@@ -199,7 +199,7 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 .trophy-anim{font-size:90px;margin-bottom:8px;animation:bounce .6s ease infinite alternate;}
 @keyframes bounce{from{transform:translateY(0) scale(1)}to{transform:translateY(-12px) scale(1.05)}}
 .result-inner h1{font-family:'Orbitron',sans-serif;font-size:clamp(18px,5vw,28px);font-weight:900;
-  color:var(--gold);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 30px rgba(245,196,0,.4);}
+ color:var(--gold);letter-spacing:3px;margin-bottom:8px;text-shadow:0 0 30px rgba(245,196,0,.4);}
 .result-inner .sub{color:var(--muted);font-size:13px;letter-spacing:1px;margin-bottom:32px;}
 .result-card-box{background:rgba(10,29,106,.6);border:1px solid var(--border);border-radius:16px;padding:28px;backdrop-filter:blur(12px);margin-bottom:24px;}
 .vs-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;}
@@ -210,7 +210,7 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 .rvs{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:rgba(139,168,208,.4);flex-shrink:0;}
 .rbadges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
 .rbadge{background:rgba(4,14,40,.7);border:1px solid rgba(245,196,0,.25);border-radius:20px;padding:6px 14px;
-  font-size:11px;letter-spacing:1px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+ font-size:11px;letter-spacing:1px;color:var(--muted);display:flex;align-items:center;gap:6px;}
 .rbadge strong{color:var(--gold);}
 .info-box{background:rgba(26,143,227,.08);border:1px solid rgba(26,143,227,.2);border-radius:12px;padding:16px;margin-bottom:24px;font-size:13px;color:var(--muted);line-height:1.7;}
 .info-box strong{color:var(--gold);}
@@ -225,8 +225,8 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 .pnl-header p{color:var(--muted);font-size:12px;letter-spacing:1px;}
 .ranking-wrap{max-width:760px;margin:36px auto;padding:0 18px 60px;}
 .season-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(245,196,0,.1);
-  border:1px solid rgba(245,196,0,.3);border-radius:30px;padding:8px 20px;margin:0 auto 28px;
-  font-size:11px;color:var(--gold);letter-spacing:2px;font-family:'Orbitron',sans-serif;}
+ border:1px solid rgba(245,196,0,.3);border-radius:30px;padding:8px 20px;margin:0 auto 28px;
+ font-size:11px;color:var(--gold);letter-spacing:2px;font-family:'Orbitron',sans-serif;}
 .rank-card{background:rgba(10,29,106,.5);border:1px solid var(--border);border-radius:16px;padding:24px;backdrop-filter:blur(12px);margin-bottom:16px;}
 .rank-title{font-family:'Orbitron',sans-serif;font-size:13px;color:var(--gold);letter-spacing:2px;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
 .gym-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
@@ -238,11 +238,11 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 .pts-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;}
 @media(max-width:480px){.pts-grid{grid-template-columns:1fr;}}
 .pts-item{display:flex;justify-content:space-between;align-items:center;background:rgba(4,14,40,.6);
-  border:1px solid rgba(245,196,0,.12);border-radius:8px;padding:10px 14px;}
+ border:1px solid rgba(245,196,0,.12);border-radius:8px;padding:10px 14px;}
 .pts-item .pi{font-size:12px;color:var(--muted);letter-spacing:.5px;}
 .pts-item .pv{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;color:var(--gold);}
 .em-breve{text-align:center;padding:50px 20px;background:rgba(10,29,106,.3);
-  border:1px dashed rgba(245,196,0,.25);border-radius:16px;margin-top:12px;}
+ border:1px dashed rgba(245,196,0,.25);border-radius:16px;margin-top:12px;}
 .em-breve .eb-ico{font-size:56px;margin-bottom:16px;}
 .em-breve h3{font-family:'Orbitron',sans-serif;font-size:16px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
 .em-breve p{color:var(--muted);font-size:13px;line-height:1.7;}
@@ -251,11 +251,11 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 .news-wrap{max-width:760px;margin:36px auto;padding:0 18px 60px;}
 .news-sources{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:24px;}
 .news-src{background:rgba(4,14,40,.7);border:1px solid rgba(26,143,227,.3);border-radius:20px;
-  padding:5px 14px;font-size:11px;color:var(--blue);letter-spacing:1px;cursor:pointer;transition:all .2s;}
+ padding:5px 14px;font-size:11px;color:var(--blue);letter-spacing:1px;cursor:pointer;transition:all .2s;}
 .news-src.on,.news-src:hover{background:rgba(26,143,227,.15);border-color:var(--blue);}
 .news-list{display:flex;flex-direction:column;gap:14px;}
 .news-item{background:rgba(10,29,106,.5);border:1px solid var(--border);border-radius:14px;padding:20px;
-  backdrop-filter:blur(8px);transition:border-color .2s;display:flex;gap:16px;align-items:flex-start;}
+ backdrop-filter:blur(8px);transition:border-color .2s;display:flex;gap:16px;align-items:flex-start;}
 .news-item:hover{border-color:rgba(245,196,0,.4);}
 .news-item .ni-src{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:4px;font-family:'Orbitron',sans-serif;}
 .news-item .ni-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:6px;line-height:1.4;}
@@ -263,12 +263,12 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 
 /* ─── RESPONSIVE ─────────────────────────────── */
 @media(max-width:620px){
-  .fg{grid-template-columns:1fr;}
-  .pslots{grid-template-columns:repeat(3,1fr);}
-  .av-grid{grid-template-columns:repeat(2,1fr);}
-  .card{padding:20px;}
-  .print-section{grid-template-columns:1fr;}
-  .torneio-opts{grid-template-columns:repeat(2,1fr);}
+ .fg{grid-template-columns:1fr;}
+ .pslots{grid-template-columns:repeat(3,1fr);}
+ .av-grid{grid-template-columns:repeat(2,1fr);}
+ .card{padding:20px;}
+ .print-section{grid-template-columns:1fr;}
+ .torneio-opts{grid-template-columns:repeat(2,1fr);}
 }
 </style>
 </head>
@@ -276,405 +276,401 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
 
 <!-- ════════ HOME ════════ -->
 <div id="home">
-  <header>
-    <canvas id="warp"></canvas>
-    <div class="content">
-      <img src="assets/Gverso.webp" class="logo" alt="Logo Gverso"
-           onerror="this.src='https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp'">
-    </div>
-  </header>
+ <header>
+ <canvas id="warp"></canvas>
+ <div class="content">
+ <img src="assets/Gverso.webp" class="logo" alt="Logo Gverso"
+ onerror="this.src='https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp'">
+ </div>
+ </header>
 
-  <div class="barra-explorar" onclick="toggleRedes()">🌐 Explorar</div>
-  <div id="barraRedes" class="barra-redes">
-    <a href="https://www.instagram.com/gv3rso/" target="_blank">📸 Instagram</a>
-    <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">▶ YouTube</a>
-    <a href="https://www.twitch.tv/geraltwinx" target="_blank">🎮 Twitch</a>
-    <a href="https://www.facebook.com/gamersfriendsforever" target="_blank">👥 Facebook</a>
-  </div>
+ <div class="barra-explorar" onclick="toggleRedes()">Explorar</div>
+ <div id="barraRedes" class="barra-redes">
+ <a href="https://www.instagram.com/gv3rso/" target="_blank">Instagram</a>
+ <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">YouTube</a>
+ <a href="https://www.twitch.tv/geraltwinx" target="_blank">Twitch</a>
+ <a href="https://www.facebook.com/gamersfriendsforever" target="_blank">Facebook</a>
+ </div>
 
-  <section class="section">
-    <h2>G-VERSO LIGA POKÉMON</h2>
-    <p>1ª Temporada Kanto · 2026 · Regulation J</p>
-    <div class="portais">
-      <div class="portal" onclick="openPanel('p1')">
-        <div class="portal-icon">🎴</div>
-        <div class="portal-num">PORTAL 01</div>
-        <div class="portal-name">Competição</div>
-        <div class="portal-desc">Registro & Trainer Card</div>
-      </div>
-      <div class="portal" onclick="openPanel('p2')">
-        <div class="portal-icon">⚔️</div>
-        <div class="portal-num">PORTAL 02</div>
-        <div class="portal-name">Resultado</div>
-        <div class="portal-desc">Reportar batalha</div>
-      </div>
-      <div class="portal" onclick="openPanel('p3')">
-        <div class="portal-icon">🏆</div>
-        <div class="portal-num">PORTAL 03</div>
-        <div class="portal-name">Ranking</div>
-        <div class="portal-desc">Tabela de classificação</div>
-      </div>
-      <div class="portal" onclick="openPanel('p4')">
-        <div class="portal-icon">📰</div>
-        <div class="portal-num">PORTAL 04</div>
-        <div class="portal-name">Novidades</div>
-        <div class="portal-desc">Notícias Pokémon</div>
-      </div>
-    </div>
-  </section>
-  <footer>© 2026 G-Verso Liga Pokémon · Todos os direitos reservados · gverso.github.io</footer>
+ <section class="section">
+ <h2>G-VERSO LIGA POKÉMON</h2>
+ <p>1ª Temporada Kanto · 2026 · Regulation J</p>
+ <div class="portais">
+ <div class="portal" onclick="openPanel('p4')">
+  <div class="portal-num">PORTAL 01</div>
+  <div class="portal-name">Novidades</div>
+  <div class="portal-desc">Notícias Pokémon</div>
+ </div>
+ <div class="portal" onclick="openPanel('p1-locked')">
+  <div class="portal-num">PORTAL 02</div>
+  <div class="portal-name">Competição</div>
+  <div class="portal-desc">Registro & Trainer Card</div>
+ </div>
+ <div class="portal" onclick="openPanel('p2-locked')">
+  <div class="portal-num">PORTAL 03</div>
+  <div class="portal-name">Resultados</div>
+  <div class="portal-desc">Reportar batalha</div>
+ </div>
+ <div class="portal" onclick="openPanel('p3')">
+  <div class="portal-num">PORTAL 04</div>
+  <div class="portal-name">Ranking</div>
+  <div class="portal-desc">Tabela de classificação</div>
+ </div>
+</div>
+ </section>
+ <footer>© 2026 G-Verso Liga Pokémon · Todos os direitos reservados · gverso.github.io</footer>
 </div>
 
 
 <!-- ════════ PORTAL 01 — TRAINER CARD ════════ -->
 <div class="panel" id="p1">
-  <button class="panel-close" onclick="closePanel('p1')">✕</button>
-  <div class="pn">
-    <nav class="tc-nav">
-      <div class="ndot on" id="d0">✓<span>Termos</span></div>
-      <div class="nline" id="l0"></div>
-      <div class="ndot" id="d1">1<span>Registro</span></div>
-      <div class="nline" id="l1"></div>
-      <div class="ndot" id="d2">2<span>Avatar</span></div>
-      <div class="nline" id="l2"></div>
-      <div class="ndot" id="d3">3<span>Pokémon</span></div>
-      <div class="nline" id="l3"></div>
-      <div class="ndot" id="d4">4<span>Card</span></div>
-    </nav>
-    <div class="wrap">
+ <button class="panel-close" onclick="closePanel('p1')"></button>
+ <div class="pn">
+ <nav class="tc-nav">
+ <div class="ndot on" id="d0"><span>Termos</span></div>
+ <div class="nline" id="l0"></div>
+ <div class="ndot" id="d1">1<span>Registro</span></div>
+ <div class="nline" id="l1"></div>
+ <div class="ndot" id="d2">2<span>Avatar</span></div>
+ <div class="nline" id="l2"></div>
+ <div class="ndot" id="d3">3<span>Pokémon</span></div>
+ <div class="nline" id="l3"></div>
+ <div class="ndot" id="d4">4<span>Card</span></div>
+ </nav>
+ <div class="wrap">
 
-      <!-- S0 TERMOS -->
-      <div class="scr on" id="s0">
-        <div class="hd"><h2>Termos & Condições</h2><p>Leia antes de criar seu Trainer Card</p></div>
-        <div class="card">
-          <div style="height:380px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;padding:20px 24px;background:rgba(4,14,40,.8);margin-bottom:20px;font-size:12px;color:var(--muted);line-height:1.8;">
-            <p style="text-align:center;font-family:'Orbitron',sans-serif;font-size:13px;color:var(--gold);font-weight:700;letter-spacing:2px;margin-bottom:4px;">G-VERSO LIGA POKÉMON 2026</p>
-            <p style="text-align:center;font-size:11px;color:var(--muted);margin-bottom:18px;">Termos e Condições — 1ª Temporada Kanto</p>
-            <p style="color:var(--white);font-weight:700;margin-bottom:6px;">1. ACEITAÇÃO DOS TERMOS</p>
-            <p style="margin-bottom:14px;">Ao se registrar e participar da G-Verso Liga Pokémon 2026, o participante declara ter lido, compreendido e concordado integralmente com todos os termos e condições aqui estabelecidos.</p>
-            <p style="color:var(--white);font-weight:700;margin-bottom:6px;">2. ELEGIBILIDADE E CADASTRO</p>
-            <p style="margin-bottom:4px;">• Ter idade mínima de 13 anos. Menores de 18 anos precisam de autorização dos responsáveis.</p>
-            <p style="margin-bottom:4px;">• Possuir Pokémon Scarlet ou Violet com Nintendo Switch Online ativa.</p>
-            <p style="margin-bottom:4px;">• Gerar seu Trainer Card G-Verso e possuir um Trainer ID válido (GV-XXXX).</p>
-            <p style="margin-bottom:14px;">• Fornecer informações verdadeiras no momento do registro.</p>
-            <p style="color:var(--white);font-weight:700;margin-bottom:6px;">3. CÓDIGO DE CONDUTA</p>
-            <p style="margin-bottom:4px;">• Linguagem ofensiva, ameaças ou assédio são expressamente proibidos.</p>
-            <p style="margin-bottom:4px;">• Discriminação de qualquer natureza resulta em banimento imediato.</p>
-            <p style="margin-bottom:14px;">• Fraude, trapaça ou uso de recursos não autorizados são proibidos.</p>
-            <p style="color:var(--white);font-weight:700;margin-bottom:6px;">4. INTEGRIDADE DOS RESULTADOS</p>
-            <p style="margin-bottom:4px;">• Reportar resultados verdadeiros com print/screenshot legítimo.</p>
-            <p style="margin-bottom:4px;">• Confirmar derrotas em até 24 horas após notificação.</p>
-            <p style="margin-bottom:14px;color:#ffaaaa;font-weight:700;">⚠️ Submissão de resultados falsos = BANIMENTO PERMANENTE, sem recurso.</p>
-            <p style="color:var(--white);font-weight:700;margin-bottom:6px;">5. PUNIÇÕES</p>
-            <p style="margin-bottom:4px;">• 1ª violação leve → Advertência formal</p>
-            <p style="margin-bottom:4px;">• 2ª violação → Suspensão do torneio seguinte</p>
-            <p style="margin-bottom:4px;">• Resultado falso / fraude → Banimento permanente</p>
-            <p style="margin-bottom:14px;">• Assédio ou discriminação → Banimento permanente imediato</p>
-            <p style="color:var(--white);font-weight:700;margin-bottom:6px;">6. PRIVACIDADE (LGPD)</p>
-            <p style="margin-bottom:4px;">Dados coletados (nome, nick, email, cidade) são usados exclusivamente para identificação no campeonato. O campo de telefone é <strong style="color:var(--gold)">opcional</strong>. Os dados não são compartilhados com terceiros.</p>
-            <p style="text-align:center;color:var(--gold);margin-top:20px;font-size:10px;letter-spacing:1px;">© 2026 G-Verso Liga Pokémon • gverso.github.io</p>
-          </div>
-          <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(245,196,0,.05);border:1px solid rgba(245,196,0,.2);border-radius:10px;padding:16px;margin-bottom:20px;">
-            <input type="checkbox" id="aceita-termos" onchange="toggleAceitar()"
-              style="width:20px;height:20px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;margin-top:2px;">
-            <label for="aceita-termos" style="font-size:13px;color:var(--muted);line-height:1.6;cursor:pointer;">
-              Li e aceito os <strong style="color:var(--white)">Termos & Condições</strong>, as <strong style="color:var(--white)">Regras do Torneio</strong> e a <strong style="color:var(--white)">Regulação J</strong> da G-Verso Liga Pokémon 2026.
-            </label>
-          </div>
-          <div class="btns">
-            <button class="btn btn-g" id="btn-aceitar" onclick="aceitarTermos()" disabled style="opacity:.4;cursor:not-allowed;">
-              ✅ Aceito os Termos — Criar meu Trainer Card →
-            </button>
-          </div>
-        </div>
-      </div>
+ <!-- S0 TERMOS -->
+ <div class="scr on" id="s0">
+ <div class="hd"><h2>Termos & Condições</h2><p>Leia antes de criar seu Trainer Card</p></div>
+ <div class="card">
+ <div style="height:380px;overflow-y:auto;border:1px solid var(--border);border-radius:10px;padding:20px 24px;background:rgba(4,14,40,.8);margin-bottom:20px;font-size:12px;color:var(--muted);line-height:1.8;">
+ <p style="text-align:center;font-family:'Orbitron',sans-serif;font-size:13px;color:var(--gold);font-weight:700;letter-spacing:2px;margin-bottom:4px;">G-VERSO LIGA POKÉMON 2026</p>
+ <p style="text-align:center;font-size:11px;color:var(--muted);margin-bottom:18px;">Termos e Condições — 1ª Temporada Kanto</p>
+ <p style="color:var(--white);font-weight:700;margin-bottom:6px;">1. ACEITAÇÃO DOS TERMOS</p>
+ <p style="margin-bottom:14px;">Ao se registrar e participar da G-Verso Liga Pokémon 2026, o participante declara ter lido, compreendido e concordado integralmente com todos os termos e condições aqui estabelecidos.</p>
+ <p style="color:var(--white);font-weight:700;margin-bottom:6px;">2. ELEGIBILIDADE E CADASTRO</p>
+ <p style="margin-bottom:4px;">• Ter idade mínima de 13 anos. Menores de 18 anos precisam de autorização dos responsáveis.</p>
+ <p style="margin-bottom:4px;">• Possuir Pokémon Scarlet ou Violet com Nintendo Switch Online ativa.</p>
+ <p style="margin-bottom:4px;">• Gerar seu Trainer Card G-Verso e possuir um Trainer ID válido (GV-XXXX).</p>
+ <p style="margin-bottom:14px;">• Fornecer informações verdadeiras no momento do registro.</p>
+ <p style="color:var(--white);font-weight:700;margin-bottom:6px;">3. CÓDIGO DE CONDUTA</p>
+ <p style="margin-bottom:4px;">• Linguagem ofensiva, ameaças ou assédio são expressamente proibidos.</p>
+ <p style="margin-bottom:4px;">• Discriminação de qualquer natureza resulta em banimento imediato.</p>
+ <p style="margin-bottom:14px;">• Fraude, trapaça ou uso de recursos não autorizados são proibidos.</p>
+ <p style="color:var(--white);font-weight:700;margin-bottom:6px;">4. INTEGRIDADE DOS RESULTADOS</p>
+ <p style="margin-bottom:4px;">• Reportar resultados verdadeiros com print/screenshot legítimo.</p>
+ <p style="margin-bottom:4px;">• Confirmar derrotas em até 24 horas após notificação.</p>
+ <p style="margin-bottom:14px;color:#ffaaaa;font-weight:700;">️ Submissão de resultados falsos = BANIMENTO PERMANENTE, sem recurso.</p>
+ <p style="color:var(--white);font-weight:700;margin-bottom:6px;">5. PUNIÇÕES</p>
+ <p style="margin-bottom:4px;">• 1ª violação leve → Advertência formal</p>
+ <p style="margin-bottom:4px;">• 2ª violação → Suspensão do torneio seguinte</p>
+ <p style="margin-bottom:4px;">• Resultado falso / fraude → Banimento permanente</p>
+ <p style="margin-bottom:14px;">• Assédio ou discriminação → Banimento permanente imediato</p>
+ <p style="color:var(--white);font-weight:700;margin-bottom:6px;">6. PRIVACIDADE (LGPD)</p>
+ <p style="margin-bottom:4px;">Dados coletados (nome, nick, email, cidade) são usados exclusivamente para identificação no campeonato. O campo de telefone é <strong style="color:var(--gold)">opcional</strong>. Os dados não são compartilhados com terceiros.</p>
+ <p style="text-align:center;color:var(--gold);margin-top:20px;font-size:10px;letter-spacing:1px;">© 2026 G-Verso Liga Pokémon • gverso.github.io</p>
+ </div>
+ <div style="display:flex;align-items:flex-start;gap:12px;background:rgba(245,196,0,.05);border:1px solid rgba(245,196,0,.2);border-radius:10px;padding:16px;margin-bottom:20px;">
+ <input type="checkbox" id="aceita-termos" onchange="toggleAceitar()"
+ style="width:20px;height:20px;flex-shrink:0;accent-color:var(--gold);cursor:pointer;margin-top:2px;">
+ <label for="aceita-termos" style="font-size:13px;color:var(--muted);line-height:1.6;cursor:pointer;">
+ Li e aceito os <strong style="color:var(--white)">Termos & Condições</strong>, as <strong style="color:var(--white)">Regras do Torneio</strong> e a <strong style="color:var(--white)">Regulação J</strong> da G-Verso Liga Pokémon 2026.
+ </label>
+ </div>
+ <div class="btns">
+ <button class="btn btn-g" id="btn-aceitar" onclick="aceitarTermos()" disabled style="opacity:.4;cursor:not-allowed;">
+ Aceito os Termos — Criar meu Trainer Card →
+ </button>
+ </div>
+ </div>
+ </div>
 
-      <!-- S1 REGISTRO -->
-      <div class="scr" id="s1">
-        <div class="hd"><h2>Criar Registro</h2><p>Preencha seus dados para o Trainer Card oficial</p></div>
-        <div class="card">
-          <div class="fg">
-            <div class="fi"><label>Nome Completo</label><input id="i-nome" placeholder="Seu nome" maxlength="30"></div>
-            <div class="fi"><label>Nick / Trainer Name</label><input id="i-nick" placeholder="Seu nick" maxlength="18"></div>
-            <div class="fi"><label>E-mail</label><input type="email" id="i-email" placeholder="email@exemplo.com"></div>
-            <div class="fi"><label>Telefone <span style="font-size:9px;color:var(--muted);font-weight:400;">(opcional)</span></label>
-              <input type="tel" id="i-fone" placeholder="(11) 99999-9999 — opcional"></div>
-            <div class="fi full"><label>Cidade / Estado</label><input id="i-cidade" placeholder="Ex: São Paulo, SP"></div>
-          </div>
-          <div class="btns">
-            <button class="btn btn-s" onclick="goStep(0)">← Voltar</button>
-            <button class="btn btn-g" onclick="go2()">Próximo: Escolher Avatar →</button>
-          </div>
-        </div>
-      </div>
+ <!-- S1 REGISTRO -->
+ <div class="scr" id="s1">
+ <div class="hd"><h2>Criar Registro</h2><p>Preencha seus dados para o Trainer Card oficial</p></div>
+ <div class="card">
+ <div class="fg">
+ <div class="fi"><label>Nome Completo</label><input id="i-nome" placeholder="Seu nome" maxlength="30"></div>
+ <div class="fi"><label>Nick / Trainer Name</label><input id="i-nick" placeholder="Seu nick" maxlength="18"></div>
+ <div class="fi"><label>E-mail</label><input type="email" id="i-email" placeholder="email@exemplo.com"></div>
+ <div class="fi"><label>Telefone <span style="font-size:9px;color:var(--muted);font-weight:400;">(opcional)</span></label>
+ <input type="tel" id="i-fone" placeholder="(11) 99999-9999 — opcional"></div>
+ <div class="fi full"><label>Cidade / Estado</label><input id="i-cidade" placeholder="Ex: São Paulo, SP"></div>
+ </div>
+ <div class="btns">
+ <button class="btn btn-s" onclick="goStep(0)">← Voltar</button>
+ <button class="btn btn-g" onclick="go2()">Próximo: Escolher Avatar →</button>
+ </div>
+ </div>
+ </div>
 
-      <!-- S2 AVATAR -->
-      <div class="scr" id="s2">
-        <div class="hd"><h2>Escolha seu Avatar</h2><p>Selecione o treinador que vai aparecer no card</p></div>
-        <div class="card">
-          <div class="av-grid" id="grid-all"></div>
-          <div class="btns" style="margin-top:24px;">
-            <button class="btn btn-s" onclick="goStep(1)">← Voltar</button>
-            <button class="btn btn-g" onclick="go3()">Próximo: Escolher Pokémon →</button>
-          </div>
-        </div>
-      </div>
+ <!-- S2 AVATAR -->
+ <div class="scr" id="s2">
+ <div class="hd"><h2>Escolha seu Avatar</h2><p>Selecione o treinador que vai aparecer no card</p></div>
+ <div class="card">
+ <div class="av-grid" id="grid-all"></div>
+ <div class="btns" style="margin-top:24px;">
+ <button class="btn btn-s" onclick="goStep(1)">← Voltar</button>
+ <button class="btn btn-g" onclick="go3()">Próximo: Escolher Pokémon →</button>
+ </div>
+ </div>
+ </div>
 
-      <!-- S3 POKEMON -->
-      <div class="scr" id="s3">
-        <div class="hd"><h2>Seu Time</h2><p>Escolha até 6 Pokémon para o card</p></div>
-        <div class="card">
-          <div class="pcnt"><span id="sc">0 / 6 Pokémon</span></div>
-          <div class="pslots" id="slots"></div>
-          <div class="srch">
-            <input id="psearch" placeholder="Buscar Pokémon pelo nome..." oninput="srch(this.value)">
-            <span class="si">🔍</span>
-          </div>
-          <div class="sres" id="sres"><div class="hint">Digite o nome de um Pokémon para buscar...</div></div>
-          <div class="btns">
-            <button class="btn btn-s" onclick="goStep(2)">← Voltar</button>
-            <button class="btn btn-g" onclick="go4()">Gerar Trainer Card →</button>
-          </div>
-        </div>
-      </div>
+ <!-- S3 POKEMON -->
+ <div class="scr" id="s3">
+ <div class="hd"><h2>Seu Time</h2><p>Escolha até 6 Pokémon para o card</p></div>
+ <div class="card">
+ <div class="pcnt"><span id="sc">0 / 6 Pokémon</span></div>
+ <div class="pslots" id="slots"></div>
+ <div class="srch">
+ <input id="psearch" placeholder="Buscar Pokémon pelo nome..." oninput="srch(this.value)">
+ <span class="si"></span>
+ </div>
+ <div class="sres" id="sres"><div class="hint">Digite o nome de um Pokémon para buscar...</div></div>
+ <div class="btns">
+ <button class="btn btn-s" onclick="goStep(2)">← Voltar</button>
+ <button class="btn btn-g" onclick="go4()">Gerar Trainer Card →</button>
+ </div>
+ </div>
+ </div>
 
-      <!-- S4 CARD FINAL -->
-      <div class="scr" id="s4">
-        <div class="hd"><h2>Trainer Card Oficial</h2><p>G-Verso Liga Pokémon 2026</p></div>
-        <div class="card">
-          <div class="prev-wrap"><canvas id="cv" width="1200" height="675"></canvas></div>
-          <div class="tid">Trainer ID: <strong id="tid"></strong></div>
-          <div class="btns" style="margin-top:20px;">
-            <button class="btn btn-s" onclick="goStep(3)">← Voltar</button>
-            <button class="btn btn-g" onclick="dlCard()">⬇ Baixar Frente + Verso</button>
-            <button class="btn btn-b" onclick="printCard()">🖨 Imprimir</button>
-          </div>
-          <div style="margin-top:28px;border-top:1px solid var(--border);padding-top:22px;">
-            <p style="text-align:center;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">📁 Arquivos Oficiais G-Verso</p>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
-              <a href="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/GVerso_Regras_Torneio.pdf" download target="_blank" class="dl-link" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(245,196,0,.25)'">
-                <span style="font-size:24px;">📋</span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);">REGRAS DO TORNEIO</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">Regulamento oficial 2026</div></div>
-              </a>
-              <a href="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/GVerso_Regulation_J.pdf" download target="_blank" class="dl-link" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(245,196,0,.25)'">
-                <span style="font-size:24px;">⚔️</span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);">REGULAÇÃO J</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">Pokémon VGC 2026</div></div>
-              </a>
-              <a href="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/GVerso_Termos_Condicoes.pdf" download target="_blank" class="dl-link" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(245,196,0,.25)'">
-                <span style="font-size:24px;">📜</span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);">TERMOS & CONDIÇÕES</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">Regras de participação</div></div>
-              </a>
-              <a href="https://gverso.github.io" target="_blank" class="dl-link" style="border-color:rgba(26,143,227,.25)!important;" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='rgba(26,143,227,.25)'">
-                <span style="font-size:24px;">🌐</span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);">SITE OFICIAL</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">gverso.github.io</div></div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
+ <!-- S4 CARD FINAL -->
+ <div class="scr" id="s4">
+ <div class="hd"><h2>Trainer Card Oficial</h2><p>G-Verso Liga Pokémon 2026</p></div>
+ <div class="card">
+ <div class="prev-wrap"><canvas id="cv" width="1200" height="675"></canvas></div>
+ <div class="tid">Trainer ID: <strong id="tid"></strong></div>
+ <div class="btns" style="margin-top:20px;">
+ <button class="btn btn-s" onclick="goStep(3)">← Voltar</button>
+ <button class="btn btn-g" onclick="dlCard()">⬇ Baixar Frente + Verso</button>
+ <button class="btn btn-b" onclick="printCard()"> Imprimir</button>
+ </div>
+ <div style="margin-top:28px;border-top:1px solid var(--border);padding-top:22px;">
+ <p style="text-align:center;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;"> Arquivos Oficiais G-Verso</p>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+ <a href="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/GVerso_Regras_Torneio.pdf" download target="_blank" class="dl-link" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(245,196,0,.25)'">
+ <span style="font-size:24px;"></span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);">REGRAS DO TORNEIO</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">Regulamento oficial 2026</div></div>
+ </a>
+ <a href="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/GVerso_Regulation_J.pdf" download target="_blank" class="dl-link" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(245,196,0,.25)'">
+ <span style="font-size:24px;"></span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);">REGULAÇÃO J</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">Pokémon VGC 2026</div></div>
+ </a>
+ <a href="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/GVerso_Termos_Condicoes.pdf" download target="_blank" class="dl-link" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='rgba(245,196,0,.25)'">
+ <span style="font-size:24px;"></span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);">TERMOS & CONDIÇÕES</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">Regras de participação</div></div>
+ </a>
+ <a href="https://gverso.github.io" target="_blank" class="dl-link" style="border-color:rgba(26,143,227,.25)!important;" onmouseover="this.style.borderColor='var(--blue)'" onmouseout="this.style.borderColor='rgba(26,143,227,.25)'">
+ <span style="font-size:24px;"></span><div><div style="font-size:11px;font-weight:700;letter-spacing:1px;color:var(--blue);">SITE OFICIAL</div><div style="font-size:9px;color:var(--muted);margin-top:2px;">gverso.github.io</div></div>
+ </a>
+ </div>
+ </div>
+ </div>
+ </div>
 
-    </div><!-- /wrap -->
-  </div><!-- /pn -->
+ </div><!-- /wrap -->
+ </div><!-- /pn -->
 </div><!-- /p1 -->
 
 <style>
 .dl-link{display:flex;align-items:center;gap:10px;padding:12px 14px;background:rgba(4,14,40,.7);
-  border:1px solid rgba(245,196,0,.25);border-radius:10px;text-decoration:none;
-  transition:border-color .2s;color:var(--white);}
+ border:1px solid rgba(245,196,0,.25);border-radius:10px;text-decoration:none;
+ transition:border-color .2s;color:var(--white);}
 </style>
 
 
 <!-- ════════ PORTAL 02 — RESULTADO ════════ -->
 <div class="panel" id="p2">
-  <button class="panel-close" onclick="closePanel('p2')">✕</button>
-  <div class="confetti-wrap" id="confetti-p2" style="display:none;"></div>
+ <button class="panel-close" onclick="closePanel('p2')"></button>
+ <div class="confetti-wrap" id="confetti-p2" style="display:none;"></div>
 
-  <div class="pn" id="p2-form">
-    <div class="pnl-header">
-      <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" alt="G-Verso" onerror="this.style.display='none'">
-      <h1>Reportar Resultado</h1>
-      <p>G-Verso Liga Pokémon 2026 — 1ª Temporada Kanto</p>
-    </div>
-    <div class="wrap-sm">
+ <div class="pn" id="p2-form">
+ <div class="pnl-header">
+ <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" alt="G-Verso" onerror="this.style.display='none'">
+ <h1>Reportar Resultado</h1>
+ <p>G-Verso Liga Pokémon 2026 — 1ª Temporada Kanto</p>
+ </div>
+ <div class="wrap-sm">
 
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">⚔️ Tipo de Batalha</div>
-        <div class="torneio-opts">
-          <div class="torneio-opt sel" data-val="Torneio Semanal" onclick="selTorneio(this)"><div class="ti">📅</div><div class="tl">Semanal</div></div>
-          <div class="torneio-opt" data-val="Desafio Gym Leader" onclick="selTorneio(this)"><div class="ti">🏅</div><div class="tl">Gym Leader</div></div>
-          <div class="torneio-opt" data-val="Elite 4" onclick="selTorneio(this)"><div class="ti">👑</div><div class="tl">Elite 4</div></div>
-          <div class="torneio-opt" data-val="Amistoso" onclick="selTorneio(this)"><div class="ti">🤝</div><div class="tl">Amistoso</div></div>
-        </div>
-        <input type="hidden" id="tipo-torneio" value="Torneio Semanal">
-      </div>
+ <div class="card" style="margin-bottom:20px;">
+ <div class="card-title"> Tipo de Batalha</div>
+ <div class="torneio-opts">
+ <div class="torneio-opt sel" data-val="Torneio Semanal" onclick="selTorneio(this)"><div class="ti"></div><div class="tl">Semanal</div></div>
+ <div class="torneio-opt" data-val="Desafio Gym Leader" onclick="selTorneio(this)"><div class="ti"></div><div class="tl">Gym Leader</div></div>
+ <div class="torneio-opt" data-val="Elite 4" onclick="selTorneio(this)"><div class="ti"></div><div class="tl">Elite 4</div></div>
+ <div class="torneio-opt" data-val="Amistoso" onclick="selTorneio(this)"><div class="ti"></div><div class="tl">Amistoso</div></div>
+ </div>
+ <input type="hidden" id="tipo-torneio" value="Torneio Semanal">
+ </div>
 
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">🎴 Identificação dos Jogadores</div>
-        <div class="fg">
-          <div class="fi">
-            <label>Trainer ID — Vencedor</label>
-            <input type="text" id="tid-v" placeholder="GV-0000" maxlength="7" oninput="fmtTid(this)">
-            <p style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5;">
-              💡 O <strong style="color:var(--gold)">Trainer ID</strong> é o código <strong style="color:var(--gold)">GV-XXXX</strong> do Trainer Card — não é o ID do jogo Pokémon!<br>
-              Não tem card? <span onclick="closePanel('p2');openPanel('p1');" style="color:var(--blue);cursor:pointer;text-decoration:underline;">Gere o seu →</span>
-            </p>
-          </div>
-          <div class="fi">
-            <label>Trainer ID — Perdedor</label>
-            <input type="text" id="tid-p" placeholder="GV-0000" maxlength="7" oninput="fmtTid(this)">
-          </div>
-          <div class="fi full"><label>Nick do Vencedor</label><input type="text" id="nick-v-input" placeholder="Nome no jogo do vencedor" maxlength="30"></div>
-          <div class="fi full"><label>Nick do Perdedor</label><input type="text" id="nick-p-input" placeholder="Nome no jogo do perdedor" maxlength="30"></div>
-        </div>
-      </div>
+ <div class="card" style="margin-bottom:20px;">
+ <div class="card-title"> Identificação dos Jogadores</div>
+ <div class="fg">
+ <div class="fi">
+ <label>Trainer ID — Vencedor</label>
+ <input type="text" id="tid-v" placeholder="GV-0000" maxlength="7" oninput="fmtTid(this)">
+ <p style="font-size:10px;color:var(--muted);margin-top:6px;line-height:1.5;">
+ O <strong style="color:var(--gold)">Trainer ID</strong> é o código <strong style="color:var(--gold)">GV-XXXX</strong> do Trainer Card — não é o ID do jogo Pokémon!<br>
+ Não tem card? <span onclick="closePanel('p2');openPanel('p1');" style="color:var(--blue);cursor:pointer;text-decoration:underline;">Gere o seu →</span>
+ </p>
+ </div>
+ <div class="fi">
+ <label>Trainer ID — Perdedor</label>
+ <input type="text" id="tid-p" placeholder="GV-0000" maxlength="7" oninput="fmtTid(this)">
+ </div>
+ <div class="fi full"><label>Nick do Vencedor</label><input type="text" id="nick-v-input" placeholder="Nome no jogo do vencedor" maxlength="30"></div>
+ <div class="fi full"><label>Nick do Perdedor</label><input type="text" id="nick-p-input" placeholder="Nome no jogo do perdedor" maxlength="30"></div>
+ </div>
+ </div>
 
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">🏆 Placar da Batalha</div>
-        <div class="placar-grid">
-          <div class="placar-opt sel" data-val="2x0" onclick="selPlacar(this)"><div class="sc">2 × 0</div><div class="sl">Vitória limpa</div></div>
-          <div class="placar-opt" data-val="2x1" onclick="selPlacar(this)"><div class="sc">2 × 1</div><div class="sl">Batalha acirrada</div></div>
-          <div class="placar-opt" data-val="W.O." onclick="selPlacar(this)" style="grid-column:1/-1;"><div class="sc" style="font-size:22px;">W.O.</div><div class="sl">Adversário desistiu / não compareceu</div></div>
-        </div>
-        <input type="hidden" id="placar" value="2x0">
-        <p id="print-hint" style="display:none;margin-top:12px;text-align:center;font-size:11px;color:var(--gold);background:rgba(245,196,0,.08);border-radius:8px;padding:10px;border:1px solid rgba(245,196,0,.2);"></p>
-      </div>
+ <div class="card" style="margin-bottom:20px;">
+ <div class="card-title"> Placar da Batalha</div>
+ <div class="placar-grid">
+ <div class="placar-opt sel" data-val="2x0" onclick="selPlacar(this)"><div class="sc">2 × 0</div><div class="sl">Vitória limpa</div></div>
+ <div class="placar-opt" data-val="2x1" onclick="selPlacar(this)"><div class="sc">2 × 1</div><div class="sl">Batalha acirrada</div></div>
+ <div class="placar-opt" data-val="W.O." onclick="selPlacar(this)" style="grid-column:1/-1;"><div class="sc" style="font-size:22px;">W.O.</div><div class="sl">Adversário desistiu / não compareceu</div></div>
+ </div>
+ <input type="hidden" id="placar" value="2x0">
+ <p id="print-hint" style="display:none;margin-top:12px;text-align:center;font-size:11px;color:var(--gold);background:rgba(245,196,0,.08);border-radius:8px;padding:10px;border:1px solid rgba(245,196,0,.2);"></p>
+ </div>
 
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">📸 Comprovante do Resultado</div>
-        <div class="fi full" style="margin-bottom:12px;">
-          <label>Link do print</label>
-          <input type="text" id="print-link" placeholder="Cole o link do print (Google Fotos, Drive, Imgur...)">
-        </div>
-        <div style="font-size:11px;color:var(--muted);line-height:1.7;background:rgba(26,143,227,.07);border:1px solid rgba(26,143,227,.2);border-radius:10px;padding:12px 14px;">
-          📱 Tire o print → suba no <strong style="color:var(--white)">Google Fotos, Drive ou Imgur</strong> → cole o link acima.<br>
-          <span style="color:rgba(139,168,208,.5);font-size:10px;">⚠️ W.O. não precisa de print.</span>
-        </div>
-      </div>
+ <div class="card" style="margin-bottom:20px;">
+ <div class="card-title"> Comprovante do Resultado</div>
+ <div class="fi full" style="margin-bottom:12px;">
+ <label>Link do print</label>
+ <input type="text" id="print-link" placeholder="Cole o link do print (Google Fotos, Drive, Imgur...)">
+ </div>
+ <div style="font-size:11px;color:var(--muted);line-height:1.7;background:rgba(26,143,227,.07);border:1px solid rgba(26,143,227,.2);border-radius:10px;padding:12px 14px;">
+ Tire o print → suba no <strong style="color:var(--white)">Google Fotos, Drive ou Imgur</strong> → cole o link acima.<br>
+ <span style="color:rgba(139,168,208,.5);font-size:10px;">️ W.O. não precisa de print.</span>
+ </div>
+ </div>
 
-      <div class="card" style="margin-bottom:20px;">
-        <div class="card-title">✅ Confirmação</div>
-        <div class="check-wrap">
-          <input type="checkbox" id="confirma" onchange="toggleBtnEnviar()">
-          <label for="confirma">Confirmo que o resultado informado é <strong>verdadeiro</strong> e que o print representa fielmente a batalha. Resultados falsos resultam em <strong>banimento da temporada</strong>.</label>
-        </div>
-        <br>
-        <button class="btn btn-g btn-wide" id="btn-enviar" onclick="enviarResultado()" disabled>⚡ Enviar Resultado</button>
-      </div>
+ <div class="card" style="margin-bottom:20px;">
+ <div class="card-title"> Confirmação</div>
+ <div class="check-wrap">
+ <input type="checkbox" id="confirma" onchange="toggleBtnEnviar()">
+ <label for="confirma">Confirmo que o resultado informado é <strong>verdadeiro</strong> e que o print representa fielmente a batalha. Resultados falsos resultam em <strong>banimento da temporada</strong>.</label>
+ </div>
+ <br>
+ <button class="btn btn-g btn-wide" id="btn-enviar" onclick="enviarResultado()" disabled> Enviar Resultado</button>
+ </div>
 
-      <div style="text-align:center;margin-top:10px;">
-        <span onclick="closePanel('p2')" style="color:var(--muted);font-size:12px;letter-spacing:1px;cursor:pointer;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">← Voltar ao site</span>
-      </div>
-    </div>
-  </div>
+ <div style="text-align:center;margin-top:10px;">
+ <span onclick="closePanel('p2')" style="color:var(--muted);font-size:12px;letter-spacing:1px;cursor:pointer;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">← Voltar ao site</span>
+ </div>
+ </div>
+ </div>
 
-  <!-- SUCESSO -->
-  <div class="success-panel" id="p2-success">
-    <div class="result-inner">
-      <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" style="height:60px;width:auto;margin-bottom:32px;" alt="" onerror="this.style.display='none'">
-      <div class="trophy-anim">🏆</div>
-      <h1>Reporte Enviado!</h1>
-      <p class="sub">Resultado registrado com sucesso</p>
-      <div class="result-card-box">
-        <div class="vs-row">
-          <div class="rplayer winner"><div class="role">🥇 Vencedor</div><div class="rname" id="res-vencedor">—</div></div>
-          <div class="rvs">VS</div>
-          <div class="rplayer"><div class="role">Perdedor</div><div class="rname" id="res-perdedor">—</div></div>
-        </div>
-        <div class="rbadges">
-          <div class="rbadge">📊 Placar: <strong id="res-placar">—</strong></div>
-          <div class="rbadge">⚔️ <strong id="res-tipo">—</strong></div>
-        </div>
-      </div>
-      <div class="info-box">
-        ⏰ O perdedor tem <strong>24 horas</strong> para confirmar o resultado.<br>
-        Após esse prazo, a vitória é <strong>validada automaticamente</strong>.<br><br>
-        📊 Confira sua posição no <strong>Portal 03 — Ranking</strong>!
-      </div>
-      <div class="btns" style="flex-direction:column;">
-        <button class="btn btn-g" onclick="closePanel('p2');openPanel('p3')">🏅 Ver Tabela de Classificação</button>
-        <button class="btn btn-b" onclick="resetResultado()">⚔️ Reportar outro resultado</button>
-        <button class="btn btn-s" onclick="closePanel('p2')">← Voltar ao site</button>
-      </div>
-    </div>
-  </div>
+ <!-- SUCESSO -->
+ <div class="success-panel" id="p2-success">
+ <div class="result-inner">
+ <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" style="height:60px;width:auto;margin-bottom:32px;" alt="" onerror="this.style.display='none'">
+ <div class="trophy-anim"></div>
+ <h1>Reporte Enviado!</h1>
+ <p class="sub">Resultado registrado com sucesso</p>
+ <div class="result-card-box">
+ <div class="vs-row">
+ <div class="rplayer winner"><div class="role"> Vencedor</div><div class="rname" id="res-vencedor">—</div></div>
+ <div class="rvs">VS</div>
+ <div class="rplayer"><div class="role">Perdedor</div><div class="rname" id="res-perdedor">—</div></div>
+ </div>
+ <div class="rbadges">
+ <div class="rbadge"> Placar: <strong id="res-placar">—</strong></div>
+ <div class="rbadge"> <strong id="res-tipo">—</strong></div>
+ </div>
+ </div>
+ <div class="info-box">
+ ⏰ O perdedor tem <strong>24 horas</strong> para confirmar o resultado.<br>
+ Após esse prazo, a vitória é <strong>validada automaticamente</strong>.<br><br>
+ Confira sua posição no <strong>Portal 03 — Ranking</strong>!
+ </div>
+ <div class="btns" style="flex-direction:column;">
+ <button class="btn btn-g" onclick="closePanel('p2');openPanel('p3')"> Ver Tabela de Classificação</button>
+ <button class="btn btn-b" onclick="resetResultado()"> Reportar outro resultado</button>
+ <button class="btn btn-s" onclick="closePanel('p2')">← Voltar ao site</button>
+ </div>
+ </div>
+ </div>
 </div><!-- /p2 -->
 
 
 <!-- ════════ PORTAL 03 — RANKING ════════ -->
 <div class="panel" id="p3">
-  <button class="panel-close" onclick="closePanel('p3')">✕</button>
-  <div class="pn">
-    <div class="pnl-header">
-      <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" alt="G-Verso" onerror="this.style.display='none'">
-      <h1>Tabela de Classificação</h1>
-      <p>G-Verso Liga Pokémon 2026 — 1ª Temporada Kanto</p>
-    </div>
-    <div class="ranking-wrap">
-      <div style="text-align:center;margin-bottom:24px;"><div class="season-badge">🗺️ 1ª TEMPORADA — KANTO 2026</div></div>
+ <button class="panel-close" onclick="closePanel('p3')"></button>
+ <div class="pn">
+ <div class="pnl-header">
+ <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" alt="G-Verso" onerror="this.style.display='none'">
+ <h1>Tabela de Classificação</h1>
+ <p>G-Verso Liga Pokémon 2026 — 1ª Temporada Kanto</p>
+ </div>
+ <div class="ranking-wrap">
+ <div style="text-align:center;margin-bottom:24px;"><div class="season-badge">️ 1ª TEMPORADA — KANTO 2026</div></div>
 
-      <div class="rank-card">
-        <div class="rank-title">🏅 Gym Leaders — Liga Kanto</div>
-        <div class="gym-grid">
-          <div class="gym-slot"><div class="gi">🌿</div><div class="gtp">Planta</div><div class="gnm">Vaga Aberta</div></div>
-          <div class="gym-slot"><div class="gi">💧</div><div class="gtp">Água</div><div class="gnm">Vaga Aberta</div></div>
-          <div class="gym-slot"><div class="gi">⚡</div><div class="gtp">Elétrico</div><div class="gnm">Vaga Aberta</div></div>
-          <div class="gym-slot"><div class="gi">🔥</div><div class="gtp">Fogo</div><div class="gnm">Vaga Aberta</div></div>
-          <div class="gym-slot"><div class="gi">🧊</div><div class="gtp">Gelo</div><div class="gnm">Vaga Aberta</div></div>
-          <div class="gym-slot"><div class="gi">👊</div><div class="gtp">Lutador</div><div class="gnm">Vaga Aberta</div></div>
-          <div class="gym-slot"><div class="gi">☠️</div><div class="gtp">Veneno</div><div class="gnm">Vaga Aberta</div></div>
-          <div class="gym-slot"><div class="gi">🌍</div><div class="gtp">Terra</div><div class="gnm">Vaga Aberta</div></div>
-        </div>
-        <p style="text-align:center;font-size:10px;color:var(--muted);margin-top:14px;">Acumule 8 insígnias para desafiar a Elite 4 e o Campeão da Temporada</p>
-      </div>
+ <div class="rank-card">
+ <div class="rank-title"> Gym Leaders — Liga Kanto</div>
+ <div class="gym-grid">
+ <div class="gym-slot"><div class="gi"></div><div class="gtp">Planta</div><div class="gnm">Vaga Aberta</div></div>
+ <div class="gym-slot"><div class="gi"></div><div class="gtp">Água</div><div class="gnm">Vaga Aberta</div></div>
+ <div class="gym-slot"><div class="gi"></div><div class="gtp">Elétrico</div><div class="gnm">Vaga Aberta</div></div>
+ <div class="gym-slot"><div class="gi"></div><div class="gtp">Fogo</div><div class="gnm">Vaga Aberta</div></div>
+ <div class="gym-slot"><div class="gi"></div><div class="gtp">Gelo</div><div class="gnm">Vaga Aberta</div></div>
+ <div class="gym-slot"><div class="gi"></div><div class="gtp">Lutador</div><div class="gnm">Vaga Aberta</div></div>
+ <div class="gym-slot"><div class="gi">️</div><div class="gtp">Veneno</div><div class="gnm">Vaga Aberta</div></div>
+ <div class="gym-slot"><div class="gi"></div><div class="gtp">Terra</div><div class="gnm">Vaga Aberta</div></div>
+ </div>
+ <p style="text-align:center;font-size:10px;color:var(--muted);margin-top:14px;">Acumule 8 insígnias para desafiar a Elite 4 e o Campeão da Temporada</p>
+ </div>
 
-      <div class="rank-card">
-        <div class="rank-title">📊 Ranking dos Treinadores</div>
-        <div class="em-breve">
-          <div class="eb-ico">🚧</div>
-          <h3>Em Breve</h3>
-          <p>O ranking será ativado com o início da temporada.<br>Registre-se no <strong style="color:var(--gold)">Portal 01</strong> e comece a batalhar!<br><br>Reporte seus resultados no <strong style="color:var(--gold)">Portal 02</strong> para ganhar pontos.</p>
-        </div>
-      </div>
+ <div class="rank-card">
+ <div class="rank-title"> Ranking dos Treinadores</div>
+ <div class="em-breve">
+ <div class="eb-ico"></div>
+ <h3>Em Breve</h3>
+ <p>O ranking será ativado com o início da temporada.<br>Registre-se no <strong style="color:var(--gold)">Portal 01</strong> e comece a batalhar!<br><br>Reporte seus resultados no <strong style="color:var(--gold)">Portal 02</strong> para ganhar pontos.</p>
+ </div>
+ </div>
 
-      <div class="rank-card">
-        <div class="rank-title">⭐ Sistema de Pontuação</div>
-        <div class="pts-grid">
-          <div class="pts-item"><span class="pi">📅 Vitória Semanal</span><span class="pv">+3 pts</span></div>
-          <div class="pts-item"><span class="pi">💀 Derrota Semanal</span><span class="pv">+1 pt</span></div>
-          <div class="pts-item"><span class="pi">🏅 Vencer Gym Leader</span><span class="pv">+5 pts</span></div>
-          <div class="pts-item"><span class="pi">🛡️ Defender Gym</span><span class="pv">+4 pts</span></div>
-          <div class="pts-item"><span class="pi">👑 Vencer Elite 4</span><span class="pv">+10 pts</span></div>
-          <div class="pts-item"><span class="pi">🏆 Campeão da Temporada</span><span class="pv">+20 pts</span></div>
-        </div>
-      </div>
+ <div class="rank-card">
+ <div class="rank-title">⭐ Sistema de Pontuação</div>
+ <div class="pts-grid">
+ <div class="pts-item"><span class="pi"> Vitória Semanal</span><span class="pv">+3 pts</span></div>
+ <div class="pts-item"><span class="pi"> Derrota Semanal</span><span class="pv">+1 pt</span></div>
+ <div class="pts-item"><span class="pi"> Vencer Gym Leader</span><span class="pv">+5 pts</span></div>
+ <div class="pts-item"><span class="pi">️ Defender Gym</span><span class="pv">+4 pts</span></div>
+ <div class="pts-item"><span class="pi"> Vencer Elite 4</span><span class="pv">+10 pts</span></div>
+ <div class="pts-item"><span class="pi"> Campeão da Temporada</span><span class="pv">+20 pts</span></div>
+ </div>
+ </div>
 
-      <div style="text-align:center;margin-top:20px;">
-        <span onclick="closePanel('p3')" style="color:var(--muted);font-size:12px;letter-spacing:1px;cursor:pointer;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">← Voltar ao site</span>
-      </div>
-    </div>
-  </div>
+ <div style="text-align:center;margin-top:20px;">
+ <span onclick="closePanel('p3')" style="color:var(--muted);font-size:12px;letter-spacing:1px;cursor:pointer;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">← Voltar ao site</span>
+ </div>
+ </div>
+ </div>
 </div><!-- /p3 -->
 
 
 <!-- ════════ PORTAL 04 — NOVIDADES ════════ -->
 <div class="panel" id="p4">
-  <button class="panel-close" onclick="closePanel('p4')">✕</button>
-  <div class="pn">
-    <div class="pnl-header">
-      <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" alt="G-Verso" onerror="this.style.display='none'">
-      <h1>Novidades Pokémon</h1>
-      <p>Últimas notícias do mundo competitivo e do game</p>
-    </div>
-    <div class="news-wrap">
-      <div class="news-sources">
-        <span class="news-src on" onclick="filterNews('all',this)">Todas</span>
-        <span class="news-src" onclick="filterNews('Serebii',this)">Serebii</span>
-        <span class="news-src" onclick="filterNews('Smogon',this)">Smogon</span>
-        <span class="news-src" onclick="filterNews('Limitless',this)">Limitless</span>
-        <span class="news-src" onclick="filterNews('G-Verso',this)">G-Verso</span>
-      </div>
-      <div class="news-list" id="news-list"></div>
-      <div style="text-align:center;margin-top:24px;">
-        <span onclick="closePanel('p4')" style="color:var(--muted);font-size:12px;letter-spacing:1px;cursor:pointer;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">← Voltar ao site</span>
-      </div>
-    </div>
-  </div>
+ <button class="panel-close" onclick="closePanel('p4')"></button>
+ <div class="pn">
+ <div class="pnl-header">
+ <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp" alt="G-Verso" onerror="this.style.display='none'">
+ <h1>Novidades Pokémon</h1>
+ <p>Últimas notícias do mundo competitivo e do game</p>
+ </div>
+ <div class="news-wrap">
+ <div class="news-sources">
+ <span class="news-src on" onclick="filterNews('all',this)">Todas</span>
+ <span class="news-src" onclick="filterNews('Serebii',this)">Serebii</span>
+ <span class="news-src" onclick="filterNews('Smogon',this)">Smogon</span>
+ <span class="news-src" onclick="filterNews('Limitless',this)">Limitless</span>
+ <span class="news-src" onclick="filterNews('G-Verso',this)">G-Verso</span>
+ </div>
+ <div class="news-list" id="news-list"></div>
+ <div style="text-align:center;margin-top:24px;">
+ <span onclick="closePanel('p4')" style="color:var(--muted);font-size:12px;letter-spacing:1px;cursor:pointer;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--muted)'">← Voltar ao site</span>
+ </div>
+ </div>
+ </div>
 </div><!-- /p4 -->
 
 
@@ -688,25 +684,25 @@ const CLOUDINARY_PRESET='gverso_resultados';
 
 // ── HOME WARP ──
 (function(){
-  const canvas=document.getElementById("warp"),ctx=canvas.getContext("2d");
-  function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
-  window.addEventListener("resize",resize);resize();
-  const p=[];
-  for(let i=0;i<120;i++)p.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,length:Math.random()*30+15,speed:Math.random()*.4+.25,alpha:Math.random()*.4+.2});
-  function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    p.forEach(q=>{ctx.strokeStyle=`rgba(180,220,255,${q.alpha})`;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(q.x,q.y);ctx.lineTo(q.x+q.length,q.y);ctx.stroke();q.x+=q.speed;if(q.x>canvas.width){q.x=-q.length;q.y=Math.random()*canvas.height;}});
-    requestAnimationFrame(animate);
-  }
-  animate();
+ const canvas=document.getElementById("warp"),ctx=canvas.getContext("2d");
+ function resize(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight;}
+ window.addEventListener("resize",resize);resize();
+ const p=[];
+ for(let i=0;i<120;i++)p.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,length:Math.random()*30+15,speed:Math.random()*.4+.25,alpha:Math.random()*.4+.2});
+ function animate(){
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ p.forEach(q=>{ctx.strokeStyle=`rgba(180,220,255,${q.alpha})`;ctx.lineWidth=1.2;ctx.beginPath();ctx.moveTo(q.x,q.y);ctx.lineTo(q.x+q.length,q.y);ctx.stroke();q.x+=q.speed;if(q.x>canvas.width){q.x=-q.length;q.y=Math.random()*canvas.height;}});
+ requestAnimationFrame(animate);
+ }
+ animate();
 })();
 
 function toggleRedes(){const b=document.getElementById("barraRedes");b.style.display=b.style.display==="flex"?"none":"flex";}
 
 // Auto-abre portal se vier redirecionado do resultado-enviado.html
 (function(){
-  const portal = sessionStorage.getItem('openPortal');
-  if(portal){sessionStorage.removeItem('openPortal');setTimeout(()=>openPanel(portal),300);}
+ const portal = sessionStorage.getItem('openPortal');
+ if(portal){sessionStorage.removeItem('openPortal');setTimeout(()=>openPanel(portal),300);}
 })();
 
 // ── PANELS ──
@@ -715,157 +711,249 @@ function closePanel(id){document.getElementById(id).classList.remove('on');docum
 
 // ── PORTAL 01 — TRAINER CARD ──
 const ALL_AV=[
-  {id:'G1',label:'Treinador 1',previewUrl:BASE+'G1.png',cardUrl:BASE+'GG1.png'},
-  {id:'G2',label:'Treinador 2',previewUrl:BASE+'G2.png',cardUrl:BASE+'GG2.png'},
-  {id:'G3',label:'Treinador 3',previewUrl:BASE+'G3.png',cardUrl:BASE+'GG3.png'},
-  {id:'G4',label:'Treinador 4',previewUrl:BASE+'G4.png',cardUrl:BASE+'GG4.png'},
-  {id:'G5',label:'Treinador 5',previewUrl:BASE+'G5.png',cardUrl:BASE+'GG5.png'},
-  {id:'G6',label:'Treinador 6',previewUrl:BASE+'G6.png',cardUrl:BASE+'GG6.png'},
+ {id:'G1',label:'Treinador 1',previewUrl:BASE+'G1.png',cardUrl:BASE+'GG1.png'},
+ {id:'G2',label:'Treinador 2',previewUrl:BASE+'G2.png',cardUrl:BASE+'GG2.png'},
+ {id:'G3',label:'Treinador 3',previewUrl:BASE+'G3.png',cardUrl:BASE+'GG3.png'},
+ {id:'G4',label:'Treinador 4',previewUrl:BASE+'G4.png',cardUrl:BASE+'GG4.png'},
+ {id:'G5',label:'Treinador 5',previewUrl:BASE+'G5.png',cardUrl:BASE+'GG5.png'},
+ {id:'G6',label:'Treinador 6',previewUrl:BASE+'G6.png',cardUrl:BASE+'GG6.png'},
 ];
 const NICK_P={x:10,y:469,w:432,h:69};
 const SL=[
-  {x:495,y:118,w:179,h:185},{x:719,y:118,w:179,h:185},{x:943,y:118,w:179,h:185},
-  {x:495,y:345,w:179,h:185},{x:719,y:345,w:179,h:185},{x:943,y:345,w:179,h:185},
+ {x:495,y:118,w:179,h:185},{x:719,y:118,w:179,h:185},{x:943,y:118,w:179,h:185},
+ {x:495,y:345,w:179,h:185},{x:719,y:345,w:179,h:185},{x:943,y:345,w:179,h:185},
 ];
 const S={nome:'',nick:'',email:'',fone:'',cidade:'',avatarCard:BASE+'GG1.png',avatarId:'G1',pokemon:Array(6).fill(null),tid:''};
 
 function goStep(n){
-  document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
-  document.getElementById('s'+n).classList.add('on');
-  for(let i=0;i<=4;i++){const d=document.getElementById('d'+i);if(!d)continue;d.classList.remove('on','done');if(i<n)d.classList.add('done');else if(i===n)d.classList.add('on');if(i<4){const l=document.getElementById('l'+i);if(l)l.classList.toggle('done',i<n);}}
-  document.getElementById('p1').scrollTop=0;
+ document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
+ document.getElementById('s'+n).classList.add('on');
+ for(let i=0;i<=4;i++){const d=document.getElementById('d'+i);if(!d)continue;d.classList.remove('on','done');if(i<n)d.classList.add('done');else if(i===n)d.classList.add('on');if(i<4){const l=document.getElementById('l'+i);if(l)l.classList.toggle('done',i<n);}}
+ document.getElementById('p1').scrollTop=0;
 }
 function toggleAceitar(){const btn=document.getElementById('btn-aceitar'),ok=document.getElementById('aceita-termos').checked;btn.disabled=!ok;btn.style.opacity=ok?'1':'0.4';btn.style.cursor=ok?'pointer':'not-allowed';}
 function aceitarTermos(){if(!document.getElementById('aceita-termos').checked)return;goStep(1);}
 function go2(){
-  const nick=document.getElementById('i-nick').value.trim(),nome=document.getElementById('i-nome').value.trim();
-  if(!nick){alert('Insira seu Nick!');return;}if(!nome){alert('Insira seu Nome!');return;}
-  Object.assign(S,{nome,nick,email:document.getElementById('i-email').value.trim(),fone:document.getElementById('i-fone').value.trim(),cidade:document.getElementById('i-cidade').value.trim(),tid:'GV-'+String(Math.floor(Math.random()*9000)+1000)});
-  fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:'🎴 Novo Trainer Card — '+S.nick,nome:S.nome,nick:S.nick,email:S.email,telefone:S.fone,cidade:S.cidade,trainer_id:S.tid})}).catch(()=>{});
-  goStep(2);
+ const nick=document.getElementById('i-nick').value.trim(),nome=document.getElementById('i-nome').value.trim();
+ if(!nick){alert('Insira seu Nick!');return;}if(!nome){alert('Insira seu Nome!');return;}
+ Object.assign(S,{nome,nick,email:document.getElementById('i-email').value.trim(),fone:document.getElementById('i-fone').value.trim(),cidade:document.getElementById('i-cidade').value.trim(),tid:'GV-'+String(Math.floor(Math.random()*9000)+1000)});
+ fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({_subject:' Novo Trainer Card — '+S.nick,nome:S.nome,nick:S.nick,email:S.email,telefone:S.fone,cidade:S.cidade,trainer_id:S.tid})}).catch(()=>{});
+ goStep(2);
 }
 function go3(){if(!S.avatarCard){alert('Selecione um avatar!');return;}goStep(3);buildSlots();}
 async function go4(){goStep(4);document.getElementById('tid').textContent=S.tid;await renderCard();}
 
 function buildAvatarGrids(){
-  const grid=document.getElementById('grid-all');grid.innerHTML='';
-  ALL_AV.forEach(av=>{
-    const div=document.createElement('div');div.className='av-card'+(av.id===S.avatarId?' sel':'');
-    div.innerHTML=`<div class="av-chk">✓</div><img src="${av.previewUrl}" alt="${av.label}" loading="lazy" onerror="this.style.height='120px';this.style.background='rgba(10,29,106,.8)'"><div class="av-lbl">${av.label}</div>`;
-    div.onclick=()=>{S.avatarCard=av.cardUrl;S.avatarId=av.id;document.querySelectorAll('.av-card').forEach(c=>c.classList.remove('sel'));div.classList.add('sel');};
-    grid.appendChild(div);
-  });
+ const grid=document.getElementById('grid-all');grid.innerHTML='';
+ ALL_AV.forEach(av=>{
+ const div=document.createElement('div');div.className='av-card'+(av.id===S.avatarId?' sel':'');
+ div.innerHTML=`<div class="av-chk"></div><img src="${av.previewUrl}" alt="${av.label}" loading="lazy" onerror="this.style.height='120px';this.style.background='rgba(10,29,106,.8)'"><div class="av-lbl">${av.label}</div>`;
+ div.onclick=()=>{S.avatarCard=av.cardUrl;S.avatarId=av.id;document.querySelectorAll('.av-card').forEach(c=>c.classList.remove('sel'));div.classList.add('sel');};
+ grid.appendChild(div);
+ });
 }
 function buildSlots(){
-  const c=document.getElementById('slots');c.innerHTML='';
-  for(let i=0;i<6;i++){
-    const p=S.pokemon[i],d=document.createElement('div');d.className='pslot'+(p?' filled':'');
-    if(p){d.innerHTML=`<span class="sn">${i+1}</span><img src="${p.url}" alt="${p.name}"><span class="nm">${p.name}</span><button class="rm" onclick="rmP(${i},event)">✕</button>`;}
-    else{d.innerHTML=`<span class="sn">${i+1}</span><span class="ico">＋</span>`;d.onclick=()=>document.getElementById('psearch').focus();}
-    c.appendChild(d);
-  }
-  document.getElementById('sc').textContent=S.pokemon.filter(Boolean).length+' / 6 Pokémon';
+ const c=document.getElementById('slots');c.innerHTML='';
+ for(let i=0;i<6;i++){
+ const p=S.pokemon[i],d=document.createElement('div');d.className='pslot'+(p?' filled':'');
+ if(p){d.innerHTML=`<span class="sn">${i+1}</span><img src="${p.url}" alt="${p.name}"><span class="nm">${p.name}</span><button class="rm" onclick="rmP(${i},event)"></button>`;}
+ else{d.innerHTML=`<span class="sn">${i+1}</span><span class="ico">＋</span>`;d.onclick=()=>document.getElementById('psearch').focus();}
+ c.appendChild(d);
+ }
+ document.getElementById('sc').textContent=S.pokemon.filter(Boolean).length+' / 6 Pokémon';
 }
 function rmP(i,e){e.stopPropagation();S.pokemon[i]=null;buildSlots();}
 
 let stmr=null;
 function srch(q){clearTimeout(stmr);const r=document.getElementById('sres');if(!q||q.length<2){r.innerHTML='<div class="hint">Digite o nome de um Pokémon...</div>';return;}r.innerHTML='<div class="hint">Buscando...</div>';stmr=setTimeout(()=>fetchPoke(q.toLowerCase().trim()),400);}
 async function fetchPoke(q){
-  const r=document.getElementById('sres');
-  try{const res=await fetch(`https://pokeapi.co/api/v2/pokemon/${q}`);if(res.ok){showRes([await res.json()]);return;}
-    const res2=await fetch('https://pokeapi.co/api/v2/pokemon?limit=1302');
-    const matches=(await res2.json()).results.filter(p=>p.name.includes(q)).slice(0,18);
-    if(!matches.length){r.innerHTML='<div class="hint">Nenhum Pokémon encontrado.</div>';return;}
-    showRes(await Promise.all(matches.map(m=>fetch(m.url).then(x=>x.json()))));}
-  catch(e){r.innerHTML='<div class="hint">Erro ao buscar. Verifique sua conexão.</div>';}
+ const r=document.getElementById('sres');
+ try{const res=await fetch(`https://pokeapi.co/api/v2/pokemon/${q}`);if(res.ok){showRes([await res.json()]);return;}
+ const res2=await fetch('https://pokeapi.co/api/v2/pokemon?limit=1302');
+ const matches=(await res2.json()).results.filter(p=>p.name.includes(q)).slice(0,18);
+ if(!matches.length){r.innerHTML='<div class="hint">Nenhum Pokémon encontrado.</div>';return;}
+ showRes(await Promise.all(matches.map(m=>fetch(m.url).then(x=>x.json()))));}
+ catch(e){r.innerHTML='<div class="hint">Erro ao buscar. Verifique sua conexão.</div>';}
 }
 function showRes(list){
-  const r=document.getElementById('sres');r.innerHTML='';
-  list.forEach(p=>{const url=p.sprites?.other?.['official-artwork']?.front_default||p.sprites?.front_default;if(!url)return;const d=document.createElement('div');d.className='pres';d.innerHTML=`<img src="${url}" alt="${p.name}"><span>${p.name}</span>`;d.onclick=()=>addP(p.name,url);r.appendChild(d);});
+ const r=document.getElementById('sres');r.innerHTML='';
+ list.forEach(p=>{const url=p.sprites?.other?.['official-artwork']?.front_default||p.sprites?.front_default;if(!url)return;const d=document.createElement('div');d.className='pres';d.innerHTML=`<img src="${url}" alt="${p.name}"><span>${p.name}</span>`;d.onclick=()=>addP(p.name,url);r.appendChild(d);});
 }
-function addP(name,url){const i=S.pokemon.findIndex(p=>p===null);if(i===-1){alert('Time cheio!');return;}S.pokemon[i]={name,url};buildSlots();document.getElementById('psearch').value='';document.getElementById('sres').innerHTML='<div class="hint">✓ Adicionado! Continue buscando...</div>';}
+function addP(name,url){const i=S.pokemon.findIndex(p=>p===null);if(i===-1){alert('Time cheio!');return;}S.pokemon[i]={name,url};buildSlots();document.getElementById('psearch').value='';document.getElementById('sres').innerHTML='<div class="hint"> Adicionado! Continue buscando...</div>';}
 
 function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>res(i);i.onerror=()=>rej();i.src=src;});}
 async function renderCard(){
-  const cv=document.getElementById('cv'),ctx=cv.getContext('2d');ctx.clearRect(0,0,1200,675);
-  try{const bg=await loadImg(S.avatarCard);ctx.drawImage(bg,0,0,1200,675);}
-  catch(e){ctx.fillStyle='#0A2060';ctx.fillRect(0,0,1200,675);}
-  ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
-  const nx=NICK_P.x+NICK_P.w/2,ny=NICK_P.y+NICK_P.h/2;
-  ctx.font='bold 36px "Exo 2",Georgia,sans-serif';ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillText(S.nick,nx+2,ny+2);ctx.fillStyle='#061240';ctx.fillText(S.nick,nx,ny);ctx.restore();
-  for(let i=0;i<6;i++){const pk=S.pokemon[i];if(!pk)continue;const sl=SL[i];try{const img=await loadImg(pk.url);const pad=12,maxW=sl.w-pad*2,maxH=sl.h-pad*2,scale=Math.min(maxW/img.width,maxH/img.height),iw=img.width*scale,ih=img.height*scale;ctx.drawImage(img,sl.x+(sl.w-iw)/2,sl.y+(sl.h-ih)/2,iw,ih);}catch(e){}}
-  ctx.save();ctx.font='bold 18px "Exo 2",sans-serif';ctx.fillStyle='#061240';ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillText('Trainer ID: '+S.tid,1172,658);ctx.restore();
+ const cv=document.getElementById('cv'),ctx=cv.getContext('2d');ctx.clearRect(0,0,1200,675);
+ try{const bg=await loadImg(S.avatarCard);ctx.drawImage(bg,0,0,1200,675);}
+ catch(e){ctx.fillStyle='#0A2060';ctx.fillRect(0,0,1200,675);}
+ ctx.save();ctx.textAlign='center';ctx.textBaseline='middle';
+ const nx=NICK_P.x+NICK_P.w/2,ny=NICK_P.y+NICK_P.h/2;
+ ctx.font='bold 36px "Exo 2",Georgia,sans-serif';ctx.fillStyle='rgba(0,0,0,0.15)';ctx.fillText(S.nick,nx+2,ny+2);ctx.fillStyle='#061240';ctx.fillText(S.nick,nx,ny);ctx.restore();
+ for(let i=0;i<6;i++){const pk=S.pokemon[i];if(!pk)continue;const sl=SL[i];try{const img=await loadImg(pk.url);const pad=12,maxW=sl.w-pad*2,maxH=sl.h-pad*2,scale=Math.min(maxW/img.width,maxH/img.height),iw=img.width*scale,ih=img.height*scale;ctx.drawImage(img,sl.x+(sl.w-iw)/2,sl.y+(sl.h-ih)/2,iw,ih);}catch(e){}}
+ ctx.save();ctx.font='bold 18px "Exo 2",sans-serif';ctx.fillStyle='#061240';ctx.textAlign='right';ctx.textBaseline='middle';ctx.fillText('Trainer ID: '+S.tid,1172,658);ctx.restore();
 }
 async function dlCard(){
-  const a1=document.createElement('a');a1.download=`GVerso_Frente_${S.nick||'trainer'}.png`;a1.href=document.getElementById('cv').toDataURL('image/png');a1.click();
-  await new Promise(r=>setTimeout(r,600));
-  try{const vi=await loadImg(VERSO_URL);const vc=document.createElement('canvas');vc.width=1200;vc.height=675;vc.getContext('2d').drawImage(vi,0,0,1200,675);const a2=document.createElement('a');a2.download=`GVerso_Verso_${S.nick||'trainer'}.png`;a2.href=vc.toDataURL('image/png');a2.click();}
-  catch(e){alert('Frente baixada! Verso não pôde ser carregado.');}
+ const a1=document.createElement('a');a1.download=`GVerso_Frente_${S.nick||'trainer'}.png`;a1.href=document.getElementById('cv').toDataURL('image/png');a1.click();
+ await new Promise(r=>setTimeout(r,600));
+ try{const vi=await loadImg(VERSO_URL);const vc=document.createElement('canvas');vc.width=1200;vc.height=675;vc.getContext('2d').drawImage(vi,0,0,1200,675);const a2=document.createElement('a');a2.download=`GVerso_Verso_${S.nick||'trainer'}.png`;a2.href=vc.toDataURL('image/png');a2.click();}
+ catch(e){alert('Frente baixada! Verso não pôde ser carregado.');}
 }
 async function printCard(){
-  const frente=document.getElementById('cv').toDataURL('image/png');let verso=frente;
-  try{const vi=await loadImg(VERSO_URL);const vc=document.createElement('canvas');vc.width=1200;vc.height=675;vc.getContext('2d').drawImage(vi,0,0,1200,675);verso=vc.toDataURL('image/png');}catch(e){}
-  const w=window.open('','_blank');
-  w.document.write(`<!DOCTYPE html><html><head><title>Trainer Card – ${S.nick}</title><style>*{margin:0;padding:0;box-sizing:border-box;}html,body{width:100%;background:#fff;}.page{width:210mm;margin:0 auto;padding:10mm;display:flex;flex-direction:column;align-items:center;gap:6mm;}img{width:190mm;height:auto;border-radius:6mm;display:block;}@media print{.page{padding:8mm;gap:5mm;}}</style></head><body><div class="page"><img src="${frente}"><img src="${verso}" onload="setTimeout(()=>window.print(),400)"></div></body></html>`);
+ const frente=document.getElementById('cv').toDataURL('image/png');let verso=frente;
+ try{const vi=await loadImg(VERSO_URL);const vc=document.createElement('canvas');vc.width=1200;vc.height=675;vc.getContext('2d').drawImage(vi,0,0,1200,675);verso=vc.toDataURL('image/png');}catch(e){}
+ const w=window.open('','_blank');
+ w.document.write(`<!DOCTYPE html><html><head><title>Trainer Card – ${S.nick}</title><style>*{margin:0;padding:0;box-sizing:border-box;}html,body{width:100%;background:#fff;}.page{width:210mm;margin:0 auto;padding:10mm;display:flex;flex-direction:column;align-items:center;gap:6mm;}img{width:190mm;height:auto;border-radius:6mm;display:block;}@media print{.page{padding:8mm;gap:5mm;}}</style></head><body><div class="page"><img src="${frente}"><img src="${verso}" onload="setTimeout(()=>window.print(),400)"></div>
+<!-- PORTAL 01 BLOQUEADO -->
+<div class="panel" id="p1-locked">
+  <button class="panel-close" onclick="closePanel('p1-locked')">X</button>
+  <div class="pn" style="display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px 20px;">
+    <div style="max-width:480px;">
+      <div style="font-size:80px;margin-bottom:24px;">&#128274;</div>
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:clamp(18px,4vw,26px);font-weight:900;color:var(--gold);letter-spacing:3px;margin-bottom:12px;">Portal Fechado</h2>
+      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:32px;">
+        O registro sera aberto quando os desafios oficiais forem lancados.<br>
+        <strong style="color:var(--white)">Fique de olho nas redes sociais!</strong>
+      </p>
+      <div style="background:rgba(245,196,0,.08);border:1px solid rgba(245,196,0,.25);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:'Orbitron',sans-serif;margin-bottom:10px;">Em Breve</p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">Trainer Cards, Gym Leaders, Elite 4 e muito mais aguardam voce na 1a Temporada Kanto 2026.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="https://www.instagram.com/gv3rso/" target="_blank" class="btn btn-g" style="text-decoration:none;justify-content:center;">Seguir no Instagram</a>
+        <button class="btn btn-s" onclick="closePanel('p1-locked')">Voltar ao site</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTAL 02 BLOQUEADO -->
+<div class="panel" id="p2-locked">
+  <button class="panel-close" onclick="closePanel('p2-locked')">X</button>
+  <div class="pn" style="display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px 20px;">
+    <div style="max-width:480px;">
+      <div style="font-size:80px;margin-bottom:24px;">&#128274;</div>
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:clamp(18px,4vw,26px);font-weight:900;color:var(--gold);letter-spacing:3px;margin-bottom:12px;">Portal Fechado</h2>
+      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:32px;">
+        O reporte de resultados sera aberto quando os desafios oficiais forem lancados.<br>
+        <strong style="color:var(--white)">Fique de olho nas redes sociais!</strong>
+      </p>
+      <div style="background:rgba(245,196,0,.08);border:1px solid rgba(245,196,0,.25);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:'Orbitron',sans-serif;margin-bottom:10px;">Em Breve</p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">As batalhas da 1a Temporada Kanto 2026 estao chegando. Prepare seu time!</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="https://www.instagram.com/gv3rso/" target="_blank" class="btn btn-g" style="text-decoration:none;justify-content:center;">Seguir no Instagram</a>
+        <button class="btn btn-s" onclick="closePanel('p2-locked')">Voltar ao site</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>`);
 }
 window.addEventListener('load',()=>{buildAvatarGrids();buildSlots();});
 
 // ── PORTAL 02 — RESULTADO ──
 function selTorneio(el){document.querySelectorAll('.torneio-opt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');document.getElementById('tipo-torneio').value=el.dataset.val;}
-function selPlacar(el){document.querySelectorAll('.placar-opt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');const val=el.dataset.val;document.getElementById('placar').value=val;const hint=document.getElementById('print-hint');if(val==='W.O.'){hint.style.display='block';hint.textContent='⚠️ W.O. — print não obrigatório, mas recomendado.';}else hint.style.display='none';}
+function selPlacar(el){document.querySelectorAll('.placar-opt').forEach(e=>e.classList.remove('sel'));el.classList.add('sel');const val=el.dataset.val;document.getElementById('placar').value=val;const hint=document.getElementById('print-hint');if(val==='W.O.'){hint.style.display='block';hint.textContent='️ W.O. — print não obrigatório, mas recomendado.';}else hint.style.display='none';}
 function fmtTid(el){let v=el.value.toUpperCase().replace(/[^GV0-9\-]/g,'');if(!v.startsWith('GV'))v='GV-'+v.replace(/[^0-9]/g,'');el.value=v;}
 function toggleBtnEnviar(){document.getElementById('btn-enviar').disabled=!document.getElementById('confirma').checked;}
 async function enviarResultado(){
-  const tidV=document.getElementById('tid-v').value.trim(),tidP=document.getElementById('tid-p').value.trim();
-  const nickV=document.getElementById('nick-v-input').value.trim(),nickP=document.getElementById('nick-p-input').value.trim();
-  if(!tidV||!tidP){alert('Insira os Trainer IDs!');return;}if(!nickV||!nickP){alert('Insira os nicks!');return;}if(tidV===tidP){alert('Os Trainer IDs não podem ser iguais!');return;}
-  const btn=document.getElementById('btn-enviar');btn.disabled=true;btn.textContent='⏳ Enviando...';
-  const tipo=document.getElementById('tipo-torneio').value,placar=document.getElementById('placar').value;
-  let printUrl=document.getElementById('print-link').value.trim();
+ const tidV=document.getElementById('tid-v').value.trim(),tidP=document.getElementById('tid-p').value.trim();
+ const nickV=document.getElementById('nick-v-input').value.trim(),nickP=document.getElementById('nick-p-input').value.trim();
+ if(!tidV||!tidP){alert('Insira os Trainer IDs!');return;}if(!nickV||!nickP){alert('Insira os nicks!');return;}if(tidV===tidP){alert('Os Trainer IDs não podem ser iguais!');return;}
+ const btn=document.getElementById('btn-enviar');btn.disabled=true;btn.textContent='⏳ Enviando...';
+ const tipo=document.getElementById('tipo-torneio').value,placar=document.getElementById('placar').value;
+ let printUrl=document.getElementById('print-link').value.trim();
 
-  if(!printUrl){if(placar!=='W.O.'){alert('Envie o print!');btn.disabled=false;btn.textContent='⚡ Enviar Resultado';return;}printUrl='W.O. — sem print necessário';}
-  
-  // Envia pro Formspree em background (não bloqueia o redirect)
-  fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({_subject:`⚔️ Resultado — ${nickV} venceu ${nickP} — ${tipo} (${placar})`,tipo_batalha:tipo,vencedor_tid:tidV,vencedor_nick:nickV,perdedor_tid:tidP,perdedor_nick:nickP,placar,print_url:printUrl,data_hora:new Date().toLocaleString('pt-BR'),confirmado_pelo_vencedor:'SIM ✅'})
-  }).catch(()=>{});
+ if(!printUrl){if(placar!=='W.O.'){alert('Envie o print!');btn.disabled=false;btn.textContent=' Enviar Resultado';return;}printUrl='W.O. — sem print necessário';}
+ 
+ // Envia pro Formspree em background (não bloqueia o redirect)
+ fetch(FORMSPREE,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+ body:JSON.stringify({_subject:` Resultado — ${nickV} venceu ${nickP} — ${tipo} (${placar})`,tipo_batalha:tipo,vencedor_tid:tidV,vencedor_nick:nickV,perdedor_tid:tidP,perdedor_nick:nickP,placar,print_url:printUrl,data_hora:new Date().toLocaleString('pt-BR'),confirmado_pelo_vencedor:'SIM '})
+ }).catch(()=>{});
 
-  // Redireciona imediatamente para a tela de sucesso
-  const params=new URLSearchParams({vencedor:nickV,perdedor:nickP,placar,tipo});
-  window.location.href='resultado-enviado.html?'+params.toString();
+ // Redireciona imediatamente para a tela de sucesso
+ const params=new URLSearchParams({vencedor:nickV,perdedor:nickP,placar,tipo});
+ window.location.href='resultado-enviado.html?'+params.toString();
 }
 function launchConfetti(){
-  const colors=['#F5C400','#1A8FE3','#ffffff','#C8960A','#0A1D6A'];
-  const wrap=document.getElementById('confetti-p2');wrap.innerHTML='';wrap.style.display='block';
-  for(let i=0;i<50;i++){const el=document.createElement('div');el.className='confetti-piece';el.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*2}s;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;border-radius:${Math.random()>.5?'50%':'2px'};`;wrap.appendChild(el);}
-  setTimeout(()=>{wrap.style.display='none';},5000);
+ const colors=['#F5C400','#1A8FE3','#ffffff','#C8960A','#0A1D6A'];
+ const wrap=document.getElementById('confetti-p2');wrap.innerHTML='';wrap.style.display='block';
+ for(let i=0;i<50;i++){const el=document.createElement('div');el.className='confetti-piece';el.style.cssText=`left:${Math.random()*100}%;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${2+Math.random()*3}s;animation-delay:${Math.random()*2}s;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;border-radius:${Math.random()>.5?'50%':'2px'};`;wrap.appendChild(el);}
+ setTimeout(()=>{wrap.style.display='none';},5000);
 }
 function resetResultado(){
-  document.getElementById('p2-form').style.display='block';document.getElementById('p2-success').classList.remove('on');
-  ['tid-v','tid-p','nick-v-input','nick-p-input','print-link'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
-  document.getElementById('confirma').checked=false;document.getElementById('btn-enviar').disabled=true;document.getElementById('btn-enviar').textContent='⚡ Enviar Resultado';
-  document.getElementById('upload-preview').style.display='none';document.getElementById('p2').scrollTop=0;
-  document.querySelectorAll('.torneio-opt').forEach((e,i)=>e.classList.toggle('sel',i===0));document.getElementById('tipo-torneio').value='Torneio Semanal';
-  document.querySelectorAll('.placar-opt').forEach((e,i)=>e.classList.toggle('sel',i===0));document.getElementById('placar').value='2x0';
+ document.getElementById('p2-form').style.display='block';document.getElementById('p2-success').classList.remove('on');
+ ['tid-v','tid-p','nick-v-input','nick-p-input','print-link'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+ document.getElementById('confirma').checked=false;document.getElementById('btn-enviar').disabled=true;document.getElementById('btn-enviar').textContent=' Enviar Resultado';
+ document.getElementById('upload-preview').style.display='none';document.getElementById('p2').scrollTop=0;
+ document.querySelectorAll('.torneio-opt').forEach((e,i)=>e.classList.toggle('sel',i===0));document.getElementById('tipo-torneio').value='Torneio Semanal';
+ document.querySelectorAll('.placar-opt').forEach((e,i)=>e.classList.toggle('sel',i===0));document.getElementById('placar').value='2x0';
 }
 
 // ── PORTAL 04 — NOVIDADES ──
 const NEWS=[
-  {src:'G-Verso',ico:'🎴',title:'G-Verso Liga 2026 — 1ª Temporada Kanto aberta!',date:'Março 2026',desc:'Registre-se agora! Gere seu Trainer Card no Portal 01 e comece a batalhar na liga. Sistema de Gym Leaders, Elite 4 e Campeão espera por você.'},
-  {src:'VGC',ico:'⚔️',title:'Regulation J ativa para torneios 2026',date:'VGC 2026',desc:'A nova Regulação J está oficialmente ativa. Confira a lista completa de Pokémon permitidos, restritos e banidos — baixe o PDF no Portal 01.'},
-  {src:'Smogon',ico:'📊',title:'Top picks do meta VGC Regulation J',date:'Smogon Forums',desc:'Miraidon e Calyrex-Ice lideram o meta competitivo. Incineroar continua essencial como suporte universal.'},
-  {src:'Serebii',ico:'🌐',title:'Novos torneios online anunciados pela Nintendo',date:'Serebii.net',desc:'A Nintendo anunciou a agenda de torneios online para 2026. Fique de olho nas datas das classificatórias regionais!'},
-  {src:'Limitless',ico:'🏆',title:'Resultados do último major VGC',date:'Limitless TCG',desc:'Confira os resultados do último major e as listas dos top 8 finalizadores do evento. Surpresas no meta!'},
-  {src:'G-Verso',ico:'📋',title:'Baixe os documentos oficiais da liga',date:'G-Verso 2026',desc:'Regras do Torneio, Regulação J e Termos & Condições estão disponíveis para download no Portal 01 — Tela 4.'},
+ {src:'G-Verso',ico:'',title:'G-Verso Liga 2026 — 1ª Temporada Kanto aberta!',date:'Março 2026',desc:'Registre-se agora! Gere seu Trainer Card no Portal 01 e comece a batalhar na liga. Sistema de Gym Leaders, Elite 4 e Campeão espera por você.'},
+ {src:'VGC',ico:'',title:'Regulation J ativa para torneios 2026',date:'VGC 2026',desc:'A nova Regulação J está oficialmente ativa. Confira a lista completa de Pokémon permitidos, restritos e banidos — baixe o PDF no Portal 01.'},
+ {src:'Smogon',ico:'',title:'Top picks do meta VGC Regulation J',date:'Smogon Forums',desc:'Miraidon e Calyrex-Ice lideram o meta competitivo. Incineroar continua essencial como suporte universal.'},
+ {src:'Serebii',ico:'',title:'Novos torneios online anunciados pela Nintendo',date:'Serebii.net',desc:'A Nintendo anunciou a agenda de torneios online para 2026. Fique de olho nas datas das classificatórias regionais!'},
+ {src:'Limitless',ico:'',title:'Resultados do último major VGC',date:'Limitless TCG',desc:'Confira os resultados do último major e as listas dos top 8 finalizadores do evento. Surpresas no meta!'},
+ {src:'G-Verso',ico:'',title:'Baixe os documentos oficiais da liga',date:'G-Verso 2026',desc:'Regras do Torneio, Regulação J e Termos & Condições estão disponíveis para download no Portal 01 — Tela 4.'},
 ];
 let currentFilter='all';
 function renderNews(filter){
-  const list=document.getElementById('news-list');
-  const filtered=filter==='all'?NEWS:NEWS.filter(n=>n.src===filter);
-  list.innerHTML=filtered.map(n=>`<div class="news-item"><div class="ni-ico">${n.ico}</div><div style="flex:1;"><div class="ni-src">${n.src}</div><div class="ni-title">${n.title}</div><div style="color:var(--muted);font-size:12px;margin-top:4px;line-height:1.5;">${n.desc}</div><div style="font-size:10px;color:rgba(139,168,208,.5);margin-top:8px;letter-spacing:.5px;">📅 ${n.date}</div></div></div>`).join('');
+ const list=document.getElementById('news-list');
+ const filtered=filter==='all'?NEWS:NEWS.filter(n=>n.src===filter);
+ list.innerHTML=filtered.map(n=>`<div class="news-item"><div class="ni-ico">${n.ico}</div><div style="flex:1;"><div class="ni-src">${n.src}</div><div class="ni-title">${n.title}</div><div style="color:var(--muted);font-size:12px;margin-top:4px;line-height:1.5;">${n.desc}</div><div style="font-size:10px;color:rgba(139,168,208,.5);margin-top:8px;letter-spacing:.5px;"> ${n.date}</div></div></div>`).join('');
 }
 function filterNews(src,el){document.querySelectorAll('.news-src').forEach(e=>e.classList.remove('on'));el.classList.add('on');renderNews(src);}
 document.addEventListener('DOMContentLoaded',()=>renderNews('all'));
 </script>
+
+<!-- PORTAL 01 BLOQUEADO -->
+<div class="panel" id="p1-locked">
+  <button class="panel-close" onclick="closePanel('p1-locked')">X</button>
+  <div class="pn" style="display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px 20px;">
+    <div style="max-width:480px;">
+      <div style="font-size:80px;margin-bottom:24px;">&#128274;</div>
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:clamp(18px,4vw,26px);font-weight:900;color:var(--gold);letter-spacing:3px;margin-bottom:12px;">Portal Fechado</h2>
+      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:32px;">
+        O registro sera aberto quando os desafios oficiais forem lancados.<br>
+        <strong style="color:var(--white)">Fique de olho nas redes sociais!</strong>
+      </p>
+      <div style="background:rgba(245,196,0,.08);border:1px solid rgba(245,196,0,.25);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:'Orbitron',sans-serif;margin-bottom:10px;">Em Breve</p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">Trainer Cards, Gym Leaders, Elite 4 e muito mais aguardam voce na 1a Temporada Kanto 2026.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="https://www.instagram.com/gv3rso/" target="_blank" class="btn btn-g" style="text-decoration:none;justify-content:center;">Seguir no Instagram</a>
+        <button class="btn btn-s" onclick="closePanel('p1-locked')">Voltar ao site</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTAL 02 BLOQUEADO -->
+<div class="panel" id="p2-locked">
+  <button class="panel-close" onclick="closePanel('p2-locked')">X</button>
+  <div class="pn" style="display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px 20px;">
+    <div style="max-width:480px;">
+      <div style="font-size:80px;margin-bottom:24px;">&#128274;</div>
+      <h2 style="font-family:'Orbitron',sans-serif;font-size:clamp(18px,4vw,26px);font-weight:900;color:var(--gold);letter-spacing:3px;margin-bottom:12px;">Portal Fechado</h2>
+      <p style="color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:32px;">
+        O reporte de resultados sera aberto quando os desafios oficiais forem lancados.<br>
+        <strong style="color:var(--white)">Fique de olho nas redes sociais!</strong>
+      </p>
+      <div style="background:rgba(245,196,0,.08);border:1px solid rgba(245,196,0,.25);border-radius:14px;padding:20px 24px;margin-bottom:28px;">
+        <p style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-family:'Orbitron',sans-serif;margin-bottom:10px;">Em Breve</p>
+        <p style="color:var(--muted);font-size:13px;line-height:1.6;">As batalhas da 1a Temporada Kanto 2026 estao chegando. Prepare seu time!</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="https://www.instagram.com/gv3rso/" target="_blank" class="btn btn-g" style="text-decoration:none;justify-content:center;">Seguir no Instagram</a>
+        <button class="btn btn-s" onclick="closePanel('p2-locked')">Voltar ao site</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
