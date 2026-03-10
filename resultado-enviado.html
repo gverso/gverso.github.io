@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resultado Enviado — G-Verso Liga</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --navy:#061240;--navy2:#0A1D6A;--blue:#1A8FE3;
+  --gold:#F5C400;--gold2:#C8960A;
+  --white:#fff;--muted:#8BA8D0;--border:rgba(245,196,0,0.25);
+}
+body{
+  background:linear-gradient(140deg,#040e28 0%,#0a1d6a 55%,#040e28 100%);
+  min-height:100vh;font-family:'Exo 2',sans-serif;color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:30px 18px;overflow-x:hidden;
+}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 15% 50%,rgba(26,143,227,.07) 0,transparent 55%),
+             radial-gradient(ellipse at 85% 20%,rgba(245,196,0,.05) 0,transparent 45%);}
+
+.wrap{max-width:560px;width:100%;text-align:center;position:relative;z-index:1;}
+
+/* LOGO */
+.logo{height:60px;width:auto;margin-bottom:32px;}
+
+/* TROPHY ANIMATION */
+.trophy{font-size:90px;margin-bottom:8px;
+  animation:bounce .6s ease infinite alternate;}
+@keyframes bounce{from{transform:translateY(0) scale(1)}to{transform:translateY(-12px) scale(1.05)}}
+
+/* TITLE */
+h1{font-family:'Orbitron',sans-serif;font-size:clamp(18px,5vw,28px);
+  font-weight:900;color:var(--gold);letter-spacing:3px;margin-bottom:8px;
+  text-shadow:0 0 30px rgba(245,196,0,.4);}
+.sub{color:var(--muted);font-size:13px;letter-spacing:1px;margin-bottom:32px;}
+
+/* RESULT CARD */
+.result-card{background:rgba(10,29,106,.6);border:1px solid var(--border);
+  border-radius:16px;padding:28px;backdrop-filter:blur(12px);margin-bottom:24px;
+  position:relative;overflow:hidden;}
+.result-card::before{content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(245,196,0,.05) 0,transparent 60%);
+  pointer-events:none;}
+
+.vs-row{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:20px;}
+.player{flex:1;text-align:center;}
+.player .role{font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:6px;}
+.player .name{font-family:'Orbitron',sans-serif;font-size:clamp(13px,3vw,17px);
+  font-weight:700;color:var(--white);word-break:break-word;}
+.player.winner .name{color:var(--gold);}
+.vs{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;
+  color:rgba(139,168,208,.4);flex-shrink:0;}
+
+.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.badge{background:rgba(4,14,40,.7);border:1px solid rgba(245,196,0,.25);
+  border-radius:20px;padding:6px 14px;font-size:11px;letter-spacing:1px;
+  color:var(--muted);display:flex;align-items:center;gap:6px;}
+.badge strong{color:var(--gold);}
+
+/* INFO BOX */
+.info-box{background:rgba(26,143,227,.08);border:1px solid rgba(26,143,227,.2);
+  border-radius:12px;padding:16px;margin-bottom:24px;font-size:13px;
+  color:var(--muted);line-height:1.7;}
+.info-box strong{color:var(--gold);}
+
+/* BUTTONS */
+.btns{display:flex;flex-direction:column;gap:12px;}
+.btn{font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;
+  padding:14px 28px;border-radius:10px;transition:all .2s;
+  text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-g{background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--navy);
+  box-shadow:0 4px 18px rgba(245,196,0,.28);}
+.btn-g:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(245,196,0,.38);}
+.btn-s{background:transparent;color:var(--muted);border:1px solid rgba(139,168,208,.28);}
+.btn-s:hover{border-color:var(--blue);color:var(--blue);}
+.btn-b{background:linear-gradient(135deg,#1a8fe3,#0a5fa0);color:#fff;
+  box-shadow:0 4px 18px rgba(26,143,227,.28);}
+.btn-b:hover{transform:translateY(-2px);}
+
+/* COUNTDOWN */
+.countdown{font-size:11px;color:var(--muted);margin-top:16px;letter-spacing:1px;}
+.countdown strong{color:var(--gold);}
+
+/* CONFETTI */
+.confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.confetti-piece{position:absolute;width:8px;height:8px;border-radius:2px;
+  animation:fall linear infinite;}
+@keyframes fall{
+  0%{transform:translateY(-20px) rotate(0deg);opacity:1;}
+  100%{transform:translateY(110vh) rotate(720deg);opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- CONFETTI -->
+<div class="confetti-wrap" id="confetti"></div>
+
+<div class="wrap">
+  <img src="https://raw.githubusercontent.com/gverso/gverso.github.io/main/assets/Gverso.webp"
+       class="logo" alt="G-Verso" onerror="this.style.display='none'">
+
+  <div class="trophy">🏆</div>
+  <h1>Reporte Enviado!</h1>
+  <p class="sub">Resultado registrado com sucesso</p>
+
+  <!-- CARD DO RESULTADO -->
+  <div class="result-card">
+    <div class="vs-row">
+      <div class="player winner">
+        <div class="role">🥇 Vencedor</div>
+        <div class="name" id="nome-vencedor">—</div>
+      </div>
+      <div class="vs">VS</div>
+      <div class="player">
+        <div class="role">Perdedor</div>
+        <div class="name" id="nome-perdedor">—</div>
+      </div>
+    </div>
+    <div class="badges">
+      <div class="badge">📊 Placar: <strong id="badge-placar">—</strong></div>
+      <div class="badge">⚔️ <strong id="badge-tipo">—</strong></div>
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="info-box">
+    ⏰ O perdedor tem <strong>24 horas</strong> para confirmar o resultado.<br>
+    Após esse prazo, a vitória é <strong>validada automaticamente</strong>.<br><br>
+    📊 Confira sua posição na <strong>tabela de classificação</strong> após a validação!
+  </div>
+
+  <!-- BOTÕES -->
+  <div class="btns">
+    <a href="index.html#p3" onclick="sessionStorage.setItem('openPortal','p3')" class="btn btn-g">🏅 Ver Tabela de Classificação</a>
+    <a href="index.html" onclick="sessionStorage.setItem('openPortal','p2')" class="btn btn-b">⚔️ Reportar outro resultado</a>
+    <a href="index.html" class="btn btn-s">← Voltar ao site</a>
+  </div>
+
+  <div class="countdown" id="countdown"></div>
+</div>
+
+<script>
+// Pega os params da URL
+const params = new URLSearchParams(window.location.search);
+const vencedor = params.get('vencedor') || '—';
+const perdedor  = params.get('perdedor')  || '—';
+const placar    = params.get('placar')    || '—';
+const tipo      = params.get('tipo')      || '—';
+
+document.getElementById('nome-vencedor').textContent = vencedor;
+document.getElementById('nome-perdedor').textContent  = perdedor;
+document.getElementById('badge-placar').textContent   = placar;
+document.getElementById('badge-tipo').textContent     = tipo;
+
+// Confetti
+const colors = ['#F5C400','#1A8FE3','#ffffff','#C8960A','#0A1D6A'];
+const wrap = document.getElementById('confetti');
+for(let i=0;i<40;i++){
+  const el = document.createElement('div');
+  el.className = 'confetti-piece';
+  el.style.cssText = `
+    left:${Math.random()*100}%;
+    background:${colors[Math.floor(Math.random()*colors.length)]};
+    animation-duration:${2+Math.random()*3}s;
+    animation-delay:${Math.random()*2}s;
+    width:${6+Math.random()*8}px;
+    height:${6+Math.random()*8}px;
+    border-radius:${Math.random()>0.5?'50%':'2px'};
+  `;
+  wrap.appendChild(el);
+}
+
+// Para o confetti após 5 segundos
+setTimeout(()=>{ wrap.style.display='none'; }, 5000);
+</script>
+</body>
+</html>
