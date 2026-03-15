@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pokédex G-Verso</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Exo+2:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--type-color:#888;--blue:#1565C0;}
+
+html,body{height:100%;overflow:hidden;}
+body{font-family:'Exo 2',sans-serif;background:#f4f6fb;display:flex;flex-direction:column;}
+
+#pdx-header{background:var(--blue);padding:8px 14px;display:flex;align-items:center;gap:12px;border-bottom:2px solid #F8D030;flex-shrink:0;}
+.pdx-logo{font-family:'Rajdhani',sans-serif;font-size:19px;font-weight:700;color:#F8D030;letter-spacing:2px;white-space:nowrap;}
+.pdx-logo span{color:#fff;}
+.pdx-back{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);color:#fff;border-radius:6px;padding:4px 10px;font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;text-decoration:none;text-transform:uppercase;transition:all .15s;}
+.pdx-back:hover{background:var(--gold, #F8D030);color:#0d1f42;}
+#pdx-search{flex:1;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);border-radius:6px;padding:6px 11px;color:#fff;font-family:'Exo 2',sans-serif;font-size:13px;outline:none;}
+#pdx-search:focus{border-color:#F8D030;}
+#pdx-search::placeholder{color:rgba(255,255,255,0.4);}
+
+#pdx-filters{background:#fff;padding:6px 14px;display:flex;gap:5px;flex-wrap:nowrap;overflow-x:auto;border-bottom:1px solid #eee;scrollbar-width:none;flex-shrink:0;}
+#pdx-filters::-webkit-scrollbar{display:none;}
+.gen-btn{background:transparent;border:1px solid #e0e0e0;color:#999;border-radius:20px;padding:3px 10px;font-size:11px;font-family:'Rajdhani',sans-serif;font-weight:700;cursor:pointer;letter-spacing:0.5px;white-space:nowrap;transition:all .15s;flex-shrink:0;}
+.gen-btn:hover,.gen-btn.active{background:var(--blue);color:#fff;border-color:var(--blue);}
+
+#pdx-count{font-family:'Rajdhani',sans-serif;font-size:11px;color:#bbb;letter-spacing:1px;padding:5px 14px 3px;text-transform:uppercase;flex-shrink:0;}
+
+#pdx-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;padding:8px 14px 14px;overflow-y:auto;flex:1;align-content:start;scrollbar-width:thin;scrollbar-color:var(--blue) #eee;}
+@media(max-width:600px){#pdx-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:380px){#pdx-grid{grid-template-columns:repeat(2,1fr);}}
+
+.poke-card{background:#fff;border:1.5px solid #eee;border-radius:12px;padding:10px 6px 8px;cursor:pointer;text-align:center;transition:all .15s;}
+.poke-card:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:0 5px 16px rgba(21,101,192,.12);}
+.poke-card img{width:64px;height:64px;image-rendering:pixelated;display:block;margin:0 auto;}
+.poke-card .pnum{font-family:'Rajdhani',sans-serif;font-size:9px;color:#ccc;font-weight:600;letter-spacing:1px;margin-bottom:2px;}
+.poke-card .pname{font-size:11px;font-weight:700;color:#333;text-transform:capitalize;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:3px;}
+
+#pdx-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;flex:1;}
+.spinner{width:38px;height:38px;border:3px solid #eee;border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+#pdx-loading p{font-family:'Rajdhani',sans-serif;font-size:13px;color:#bbb;letter-spacing:2px;text-transform:uppercase;}
+
+/* MODAL */
+#pdx-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:100;align-items:center;justify-content:center;padding:12px;}
+#pdx-modal.open{display:flex;}
+.modal-card{background:#fff;border-radius:20px;width:100%;max-width:600px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5);transform:scale(0.92) translateY(16px);opacity:0;transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),opacity .25s ease;max-height:92vh;overflow-y:auto;scrollbar-width:thin;}
+#pdx-modal.open .modal-card{transform:scale(1) translateY(0);opacity:1;}
+
+.modal-header{position:relative;height:210px;overflow:hidden;display:flex;align-items:flex-end;background:var(--type-color);transition:background .3s;}
+.modal-header::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 60%),linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.2) 100%);}
+.modal-pokeball{position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;border:35px solid rgba(255,255,255,.1);}
+#modal-sprite{position:absolute;right:28px;bottom:0;width:175px;height:175px;object-fit:contain;filter:drop-shadow(0 8px 22px rgba(0,0,0,.3));image-rendering:pixelated;animation:float 3s ease-in-out infinite;z-index:2;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.modal-info{position:relative;z-index:2;padding:0 22px 20px;flex:1;}
+.modal-num{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:3px;text-transform:uppercase;margin-bottom:2px;}
+.modal-name{font-size:36px;font-weight:900;color:#fff;line-height:1;text-transform:capitalize;text-shadow:0 2px 14px rgba(0,0,0,.25);margin-bottom:9px;}
+.modal-types{display:flex;gap:5px;flex-wrap:wrap;}
+.modal-type-badge{padding:4px 12px;border-radius:30px;background:rgba(255,255,255,.22);border:1.5px solid rgba(255,255,255,.4);font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:#fff;letter-spacing:1.5px;text-transform:uppercase;}
+
+.modal-tabs{display:flex;background:#fafafa;border-bottom:1px solid #eee;}
+.mtab{flex:1;background:transparent;border:none;padding:10px 4px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;color:#bbb;cursor:pointer;letter-spacing:1px;text-transform:uppercase;border-bottom:2.5px solid transparent;transition:all .15s;}
+.mtab.active,.mtab:hover{color:var(--blue);border-bottom-color:var(--blue);}
+
+.modal-body{padding:18px 22px 16px;background:#fff;}
+.modal-desc{font-size:14px;color:#555;line-height:1.6;font-weight:300;border-left:3px solid var(--type-color);padding-left:12px;margin-bottom:16px;transition:border-color .3s;}
+
+.info-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1.5px solid #eee;border-radius:12px;overflow:hidden;margin-bottom:18px;}
+.info-item{padding:12px 10px;border-right:1.5px solid #eee;text-align:center;}
+.info-item:last-child{border-right:none;}
+.info-label{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;color:#bbb;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;}
+.info-value{font-size:15px;font-weight:700;color:#222;}
+
+.stats-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;color:#ccc;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.stat-row{display:flex;align-items:center;gap:10px;margin-bottom:7px;}
+.stat-name{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:600;color:#aaa;width:36px;letter-spacing:.5px;text-transform:uppercase;}
+.stat-num{font-size:12px;font-weight:700;color:#333;width:26px;text-align:right;}
+.stat-bar-bg{flex:1;height:6px;background:#f0f0f0;border-radius:10px;overflow:hidden;}
+.stat-bar{height:100%;border-radius:10px;background:var(--type-color);width:0%;transition:width .8s cubic-bezier(.4,0,.2,1);opacity:.85;}
+
+.ability-row{display:flex;align-items:center;padding:8px 11px;background:#f8f8f8;border-radius:8px;margin-bottom:6px;font-size:13px;gap:8px;}
+.ability-name{flex:1;text-transform:capitalize;color:#333;font-weight:600;}
+.ability-hidden{font-size:10px;color:#e05555;background:rgba(224,85,85,.1);padding:2px 6px;border-radius:4px;font-family:'Rajdhani',sans-serif;font-weight:700;}
+
+.evo-chain{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:7px;}
+.evo-item{text-align:center;cursor:pointer;}
+.evo-item img{width:50px;height:50px;image-rendering:pixelated;display:block;margin:0 auto;}
+.evo-item .en{font-size:11px;font-weight:700;color:#555;text-transform:capitalize;margin-top:2px;}
+.evo-item:hover .en{color:var(--blue);}
+.evo-arrow{color:#ccc;font-size:16px;}
+
+#gen-select{width:100%;background:#f8f8f8;border:1.5px solid #eee;color:#333;border-radius:8px;padding:7px 10px;font-family:'Exo 2',sans-serif;font-size:13px;margin-bottom:11px;outline:none;}
+.move-section{margin-bottom:11px;}
+.move-section-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;padding-bottom:3px;border-bottom:1.5px solid #f0f0f0;}
+.move-row{display:flex;align-items:center;gap:8px;padding:4px 6px;border-radius:6px;font-size:12px;}
+.move-row:nth-child(odd){background:#fafafa;}
+.move-lv{font-family:'Rajdhani',sans-serif;font-weight:700;color:var(--blue);min-width:36px;font-size:11px;}
+.move-name{flex:1;text-transform:capitalize;color:#444;}
+.no-moves{font-size:13px;color:#bbb;text-align:center;padding:16px;font-family:'Rajdhani',sans-serif;letter-spacing:1px;}
+
+.compat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(66px,1fr));gap:5px;max-height:190px;overflow-y:auto;}
+.compat-card{background:#f8f8f8;border:1.5px solid #eee;border-radius:10px;padding:5px;cursor:pointer;text-align:center;transition:all .12s;}
+.compat-card:hover{border-color:var(--blue);background:#f0f4ff;}
+.compat-card img{width:40px;height:40px;image-rendering:pixelated;}
+.compat-card .cn{font-size:10px;font-weight:700;text-transform:capitalize;color:#555;margin-top:1px;}
+
+.egg-group-badge{display:inline-block;background:#f0f4ff;border:1.5px solid #c5d5f0;color:var(--blue);border-radius:8px;padding:4px 10px;font-size:12px;font-weight:600;text-transform:capitalize;margin-right:5px;margin-bottom:5px;}
+
+.modal-footer{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:var(--blue);}
+.gverso-sig{font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;color:#fff;letter-spacing:2.5px;text-transform:uppercase;}
+.footer-hint{font-family:'Rajdhani',sans-serif;font-size:12px;color:rgba(255,255,255,.55);letter-spacing:.5px;cursor:pointer;}
+.footer-hint:hover{color:#fff;}
+.section-title-sm{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;color:#bbb;text-transform:uppercase;letter-spacing:1.5px;margin:13px 0 6px;}
+</style>
+</head>
+<body>
+
+<div id="pdx-header">
+  <a href="index.html" class="pdx-back">← Site</a>
+  <div class="pdx-logo">G<span>-VERSO</span> <span style="font-size:12px;color:rgba(255,255,255,.45);font-weight:400;letter-spacing:1px">POKÉDEX</span></div>
+  <input id="pdx-search" type="text" placeholder="Buscar por nome ou número..." oninput="filterPokemon()">
+</div>
+
+<div id="pdx-filters">
+  <button class="gen-btn active" onclick="setGen(0,this)">TODOS</button>
+  <button class="gen-btn" onclick="setGen(1,this)">GEN I</button>
+  <button class="gen-btn" onclick="setGen(2,this)">GEN II</button>
+  <button class="gen-btn" onclick="setGen(3,this)">GEN III</button>
+  <button class="gen-btn" onclick="setGen(4,this)">GEN IV</button>
+  <button class="gen-btn" onclick="setGen(5,this)">GEN V</button>
+  <button class="gen-btn" onclick="setGen(6,this)">GEN VI</button>
+  <button class="gen-btn" onclick="setGen(7,this)">GEN VII</button>
+  <button class="gen-btn" onclick="setGen(8,this)">GEN VIII</button>
+  <button class="gen-btn" onclick="setGen(9,this)">GEN IX</button>
+</div>
+
+<div id="pdx-loading"><div class="spinner"></div><p>CARREGANDO POKÉDEX...</p></div>
+<div id="pdx-count" style="display:none"></div>
+<div id="pdx-grid" style="display:none"></div>
+
+<div id="pdx-modal" onclick="handleModalClick(event)">
+  <div class="modal-card">
+    <div id="modal-inner-loading" style="display:none;position:absolute;inset:0;background:rgba(255,255,255,.9);align-items:center;justify-content:center;z-index:10;border-radius:20px"><div class="spinner"></div></div>
+    <div class="modal-header" id="modal-header">
+      <div class="modal-pokeball"></div>
+      <img id="modal-sprite" src="" alt="">
+      <div class="modal-info">
+        <div class="modal-num" id="modal-num">#000</div>
+        <div class="modal-name" id="modal-name">—</div>
+        <div class="modal-types" id="modal-types"></div>
+      </div>
+    </div>
+    <div class="modal-tabs">
+      <button class="mtab active" onclick="showTab('info',this)">INFO</button>
+      <button class="mtab" onclick="showTab('stats',this)">STATS</button>
+      <button class="mtab" onclick="showTab('moves',this)">ATAQUES</button>
+      <button class="mtab" onclick="showTab('breed',this)">CRUZAMENTO</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <span class="gverso-sig">Desenvolvido pela G-Verso</span>
+      <span class="footer-hint" onclick="closeModal()">fechar ✕</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const TYPE_COLORS={normal:'#A8A878',fire:'#F08030',water:'#6890F0',electric:'#F8D030',grass:'#78C850',ice:'#98D8D8',fighting:'#C03028',poison:'#A040A0',ground:'#E0C068',flying:'#A890F0',psychic:'#F85888',bug:'#A8B820',rock:'#B8A038',ghost:'#705898',dragon:'#7038F8',dark:'#705848',steel:'#B8B8D0',fairy:'#EE99AC',stellar:'#40B5A5'};
+const STAT_NAMES={hp:'HP',attack:'ATK',defense:'DEF','special-attack':'SPA','special-defense':'SPD',speed:'SPE'};
+const GEN_RANGES=[[1,1025],[1,151],[152,251],[252,386],[387,493],[494,649],[650,721],[722,809],[810,905],[906,1025]];
+const GEN_VG={1:['red-blue','yellow'],2:['gold-silver','crystal'],3:['ruby-sapphire','emerald','firered-leafgreen'],4:['diamond-pearl','platinum','heartgold-soulsilver'],5:['black-white','black-2-white-2'],6:['x-y','omega-ruby-alpha-sapphire'],7:['sun-moon','ultra-sun-ultra-moon'],8:['sword-shield','brilliant-diamond-and-shining-pearl'],9:['scarlet-violet']};
+
+let allPokemon=[],currentGen=0,currentPData=null,currentSpecData=null,detailCache={};
+
+async function init(){
+  const list=await fetch('https://pokeapi.co/api/v2/pokemon?limit=1025').then(r=>r.json());
+  allPokemon=list.results.map((p,i)=>({name:p.name,id:i+1,url:p.url}));
+  document.getElementById('pdx-loading').style.display='none';
+  document.getElementById('pdx-count').style.display='block';
+  document.getElementById('pdx-grid').style.display='grid';
+  renderGrid(allPokemon);
+}
+
+function renderGrid(list){
+  const grid=document.getElementById('pdx-grid');
+  document.getElementById('pdx-count').textContent=list.length+' POKÉMON';
+  grid.innerHTML='';
+  list.slice(0,300).forEach(p=>{
+    const div=document.createElement('div');div.className='poke-card';
+    div.innerHTML=`<div class="pnum">#${String(p.id).padStart(4,'0')}</div><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" loading="lazy" alt="${p.name}"><div class="pname">${p.name.replace(/-/g,' ')}</div>`;
+    div.onclick=()=>openDetail(p);grid.appendChild(div);
+  });
+  if(list.length>300){
+    const m=document.createElement('div');
+    m.style.cssText='grid-column:1/-1;text-align:center;padding:10px;color:#bbb;font-size:12px;font-family:Rajdhani,sans-serif;letter-spacing:1px;text-transform:uppercase';
+    m.textContent=`+ ${list.length-300} pokémon — refine a busca`;grid.appendChild(m);
+  }
+}
+
+function setGen(g,btn){currentGen=g;document.querySelectorAll('.gen-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');filterPokemon();}
+function filterPokemon(){const q=document.getElementById('pdx-search').value.toLowerCase().trim();const[min,max]=GEN_RANGES[currentGen];let f=allPokemon.filter(p=>p.id>=min&&p.id<=max);if(q)f=f.filter(p=>p.name.includes(q)||String(p.id).includes(q));renderGrid(f);}
+
+async function openDetail(p){
+  document.querySelectorAll('.mtab').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.getElementById('pdx-modal').classList.add('open');
+  document.getElementById('modal-inner-loading').style.display='flex';
+  document.getElementById('modal-body').innerHTML='';
+  document.getElementById('modal-name').textContent=p.name.replace(/-/g,' ');
+  document.getElementById('modal-num').textContent='#'+String(p.id).padStart(3,'0');
+  document.getElementById('modal-types').innerHTML='';
+  if(!detailCache[p.id]){
+    const[pData,specData]=await Promise.all([fetch(p.url).then(r=>r.json()),fetch(`https://pokeapi.co/api/v2/pokemon-species/${p.id}`).then(r=>r.json()).catch(()=>null)]);
+    detailCache[p.id]={pData,specData};
+  }
+  const{pData,specData}=detailCache[p.id];
+  currentPData=pData;currentSpecData=specData;
+  const color=TYPE_COLORS[pData.types[0].type.name]||'#888';
+  document.documentElement.style.setProperty('--type-color',color);
+  document.getElementById('modal-header').style.background=color;
+  document.getElementById('modal-sprite').src=pData.sprites.other?.['official-artwork']?.front_default||pData.sprites.front_default||'';
+  document.getElementById('modal-types').innerHTML=pData.types.map(t=>`<span class="modal-type-badge">${t.type.name}</span>`).join('');
+  document.getElementById('modal-inner-loading').style.display='none';
+  renderTabContent('info');
+}
+
+function showTab(tab,btn){document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');renderTabContent(tab);}
+
+function renderTabContent(tab){
+  const body=document.getElementById('modal-body'),p=currentPData,s=currentSpecData;if(!p)return;
+  if(tab==='info'){
+    const gen=s?.generation?.name?.replace('generation-','').toUpperCase()||'?';
+    const desc=(s?.flavor_text_entries?.find(e=>e.language.name==='en')?.flavor_text||'').replace(/[\f\n\r]/g,' ');
+    const abilities=p.abilities.map(a=>`<div class="ability-row"><span class="ability-name">${a.ability.name.replace(/-/g,' ')}</span>${a.is_hidden?'<span class="ability-hidden">OCULTA</span>':''}</div>`).join('');
+    body.innerHTML=`${desc?`<div class="modal-desc">${desc}</div>`:''}
+      <div class="info-grid">
+        <div class="info-item"><div class="info-label">Altura</div><div class="info-value">${(p.height/10).toFixed(1)} m</div></div>
+        <div class="info-item"><div class="info-label">Peso</div><div class="info-value">${(p.weight/10).toFixed(1)} kg</div></div>
+        <div class="info-item"><div class="info-label">Exp. Base</div><div class="info-value">${p.base_experience||'?'}</div></div>
+        <div class="info-item"><div class="info-label">Geração</div><div class="info-value">${gen}</div></div>
+      </div>
+      <div class="section-title-sm">Habilidades</div>
+      <div style="margin-bottom:13px">${abilities}</div>
+      <div class="section-title-sm">Cadeia Evolutiva</div>
+      <div id="evo-wrap"><span style="color:#ccc;font-size:12px;font-family:Rajdhani,sans-serif">Carregando...</span></div>`;
+    if(s?.evolution_chain?.url)loadEvo(s.evolution_chain.url);
+  }
+  else if(tab==='stats'){
+    const sh=p.stats.map(s=>{const l=STAT_NAMES[s.stat.name]||s.stat.name;const pct=Math.min(100,Math.round(s.base_stat/255*100));return`<div class="stat-row"><span class="stat-name">${l}</span><span class="stat-num">${s.base_stat}</span><div class="stat-bar-bg"><div class="stat-bar" data-pct="${pct}"></div></div></div>`;}).join('');
+    const total=p.stats.reduce((a,s)=>a+s.base_stat,0);
+    body.innerHTML=`<div class="stats-title">Base Stats</div>${sh}<div class="stat-row" style="margin-top:8px;padding-top:8px;border-top:1px solid #f0f0f0"><span class="stat-name" style="color:#333;font-weight:700">TOTAL</span><span class="stat-num" style="color:#333;font-weight:700">${total}</span><div class="stat-bar-bg"><div class="stat-bar" data-pct="${Math.min(100,Math.round(total/720*100))}"></div></div></div>`;
+    setTimeout(()=>body.querySelectorAll('.stat-bar').forEach(b=>b.style.width=b.dataset.pct+'%'),80);
+  }
+  else if(tab==='moves'){
+    const pGen=getGenOf(p.id);
+    body.innerHTML=`<select id="gen-select" onchange="renderMoves(parseInt(this.value))">${[1,2,3,4,5,6,7,8,9].map(g=>`<option value="${g}" ${g===Math.min(pGen,9)?'selected':''}>Geração ${['I','II','III','IV','V','VI','VII','VIII','IX'][g-1]}</option>`).join('')}</select><div id="moves-body"></div>`;
+    renderMoves(Math.min(pGen,9));
+  }
+  else if(tab==='breed'){
+    if(!s){body.innerHTML='<div class="no-moves">Dados indisponíveis</div>';return;}
+    const groups=s.egg_groups||[];
+    const gr=s.gender_rate;
+    const gt=gr===-1?'Sem gênero':gr===0?'100% ♂':gr===8?'100% ♀':`${(gr/8*100).toFixed(0)}% ♀ / ${(100-gr/8*100).toFixed(0)}% ♂`;
+    body.innerHTML=`
+      <div class="section-title-sm">Grupos de Ovo</div>
+      <div style="margin-bottom:11px">${groups.map(g=>`<span class="egg-group-badge">${g.name.replace(/-/g,' ')}</span>`).join('')||'<span style="color:#bbb;font-size:12px">Nenhum</span>'}</div>
+      <div class="section-title-sm">Gênero</div>
+      <div class="ability-row" style="margin-bottom:13px"><span class="ability-name">${gt}</span></div>
+      <div class="section-title-sm">Compatíveis para cruzamento</div>
+      <div id="compat-loading" style="color:#bbb;font-size:12px;font-family:Rajdhani,sans-serif;padding:8px">Carregando...</div>
+      <div class="compat-grid" id="compat-grid"></div>`;
+    loadCompat(groups,p.id);
+  }
+}
+
+function getGenOf(id){for(let g=1;g<=9;g++)if(id>=GEN_RANGES[g][0]&&id<=GEN_RANGES[g][1])return g;return 1;}
+
+function renderMoves(gen){
+  const p=currentPData;if(!p)return;
+  const groups=GEN_VG[gen]||[],lv=[],tm=[],egg=[];
+  p.moves.forEach(m=>{const vd=m.version_group_details.find(v=>groups.includes(v.version_group.name));if(!vd)return;const name=m.move.name.replace(/-/g,' ');if(vd.move_learn_method.name==='level-up')lv.push({name,l:vd.level_learned_at});else if(vd.move_learn_method.name==='machine')tm.push({name});else if(vd.move_learn_method.name==='egg')egg.push({name});});
+  lv.sort((a,b)=>a.l-b.l);
+  let html='';
+  if(lv.length)html+=`<div class="move-section"><div class="move-section-title">▲ Por Nível</div>${lv.map(m=>`<div class="move-row"><span class="move-lv">Lv.${m.l||1}</span><span class="move-name">${m.name}</span></div>`).join('')}</div>`;
+  if(tm.length)html+=`<div class="move-section"><div class="move-section-title">◉ TM / HM</div>${tm.map(m=>`<div class="move-row"><span class="move-lv">TM</span><span class="move-name">${m.name}</span></div>`).join('')}</div>`;
+  if(egg.length)html+=`<div class="move-section"><div class="move-section-title">🥚 Ovo</div>${egg.map(m=>`<div class="move-row"><span class="move-lv">OVO</span><span class="move-name">${m.name}</span></div>`).join('')}</div>`;
+  if(!html)html='<div class="no-moves">Nenhum ataque nesta geração</div>';
+  const mb=document.getElementById('moves-body');if(mb)mb.innerHTML=html;
+}
+
+async function loadEvo(url){
+  const wrap=document.getElementById('evo-wrap');if(!wrap)return;
+  try{
+    const data=await fetch(url).then(r=>r.json());
+    const chain=[];let node=data.chain;
+    while(node){const id=parseInt(node.species.url.split('/').filter(Boolean).pop());chain.push({name:node.species.name,id});node=node.evolves_to?.[0]||null;}
+    wrap.innerHTML='<div class="evo-chain">'+chain.map((e,i)=>{const pd=allPokemon.find(a=>a.id===e.id)||{name:e.name,id:e.id,url:`https://pokeapi.co/api/v2/pokemon/${e.id}`};return(i>0?'<span class="evo-arrow">▶</span>':'')+`<div class="evo-item" onclick='openDetail(${JSON.stringify(pd)})'><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${e.id}.png"><div class="en">${e.name}</div></div>`;}).join('')+'</div>';
+  }catch(e){if(wrap)wrap.innerHTML='';}
+}
+
+async function loadCompat(groups,excludeId){
+  const loading=document.getElementById('compat-loading'),grid=document.getElementById('compat-grid');
+  if(!groups.length||groups[0]?.name==='no-eggs'){if(loading)loading.textContent='Reprodução especial.';return;}
+  try{
+    const results=await Promise.all(groups.map(g=>fetch(g.url).then(r=>r.json())));
+    const seen=new Set([excludeId]),compat=[];
+    results.forEach(gr=>gr.pokemon_species?.forEach(p=>{const id=parseInt(p.url.split('/').filter(Boolean).pop());if(!seen.has(id)){seen.add(id);compat.push({name:p.name,id});}}));
+    if(loading)loading.style.display='none';
+    compat.slice(0,60).forEach(p=>{const pd=allPokemon.find(a=>a.id===p.id)||{name:p.name,id:p.id,url:`https://pokeapi.co/api/v2/pokemon/${p.id}`};const c=document.createElement('div');c.className='compat-card';c.innerHTML=`<img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" loading="lazy"><div class="cn">${p.name.replace(/-/g,' ')}</div>`;c.onclick=()=>openDetail(pd);if(grid)grid.appendChild(c);});
+    if(compat.length>60&&grid){const m=document.createElement('div');m.style.cssText='grid-column:1/-1;text-align:center;color:#bbb;font-size:11px;padding:5px;font-family:Rajdhani,sans-serif;text-transform:uppercase;letter-spacing:1px';m.textContent=`+${compat.length-60} compatíveis`;grid.appendChild(m);}
+  }catch(e){if(loading)loading.textContent='Erro ao carregar.';}
+}
+
+function handleModalClick(e){if(e.target===document.getElementById('pdx-modal'))closeModal();}
+function closeModal(){document.getElementById('pdx-modal').classList.remove('open');}
+init();
+</script>
+</body>
+</html>
