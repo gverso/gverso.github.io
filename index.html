@@ -20,10 +20,12 @@ header{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b3c
 #warp{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;}
 header .content{position:relative;z-index:2;height:100%;width:100%;display:flex;align-items:center;justify-content:center;}
 .logo{height:95%;width:auto;max-width:95%;object-fit:contain;}
-.barra-redes{display:flex;background:#ffcc00;padding:11px 20px;justify-content:center;gap:22px;flex-wrap:wrap;align-items:center;}
-.barra-redes a{color:#000;text-decoration:none;font-weight:700;transition:.2s;font-family:'Exo 2',sans-serif;font-size:14px;letter-spacing:.5px;}
-.barra-redes a:hover{opacity:.7;}
-.barra-redes .apoie{color:#000;font-weight:700;font-family:'Exo 2',sans-serif;font-size:14px;letter-spacing:.5px;cursor:pointer;text-decoration:none;border-left:1.5px solid rgba(0,0,0,.2);padding-left:22px;}
+.barra-explorar{background:#ffcc00;padding:14px;}
+.barra-redes{display:flex;background:#0b3c6f;padding:14px;justify-content:center;gap:25px;flex-wrap:wrap;}
+.barra-redes a{color:white;text-decoration:none;font-weight:bold;transition:.2s;font-family:'Exo 2',sans-serif;}
+.barra-redes a:hover{text-decoration:underline;}
+.barra-redes .apoie{color:white;text-decoration:none;font-weight:bold;font-family:'Exo 2',sans-serif;border-left:1.5px solid rgba(255,255,255,.3);padding-left:25px;transition:.2s;}
+.barra-redes .apoie:hover{text-decoration:underline;}
 .section{background:#f4f4f4;color:#1e3c72;padding:50px 20px 70px;}
 .section h2{font-family:'Orbitron',sans-serif;font-size:clamp(16px,4vw,24px);font-weight:900;letter-spacing:3px;margin-bottom:8px;}
 .section p{color:#4a6a9a;font-size:13px;margin-bottom:50px;letter-spacing:.5px;}
@@ -283,6 +285,7 @@ footer{background:black;padding:20px;color:rgba(255,255,255,.5);font-size:12px;f
  </div>
  </header>
 
+ <div class="barra-explorar"></div>
  <div id="barraRedes" class="barra-redes">
  <a href="https://www.instagram.com/gv3rso/" target="_blank">Instagram</a>
  <a href="https://www.youtube.com/@GamersFriendsevolution" target="_blank">YouTube</a>
