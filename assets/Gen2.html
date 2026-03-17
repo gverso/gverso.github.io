@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G-Verso Team Analyzer PRO - Gen 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Exo+2:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue:#1565C0;--blue-l:#1976D2;--blue-d:#0D47A1;
+  --yellow:#FFD600;--white:#fff;--gray:#f4f6fb;--gray2:#e4e9f2;
+  --text:#1a2340;--text2:#4a5568;--shadow:0 4px 24px rgba(21,101,192,0.10);
+  --green:#2e7d32;--orange:#E65100;--red:#c62828;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Exo 2',sans-serif;background:var(--gray);color:var(--text);min-height:100vh;}
+.header{background:var(--blue-d);padding:22px 24px 18px;position:relative;overflow:hidden;}
+.header::before{content:'';position:absolute;top:-50px;right:-50px;width:220px;height:220px;border-radius:50%;background:rgba(255,214,0,0.07);}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.badge{background:var(--yellow);color:var(--blue-d);font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:2px;padding:3px 10px;border-radius:20px;text-transform:uppercase;display:inline-block;margin-bottom:6px;}
+.header-title{font-size:28px;font-weight:900;color:#fff;line-height:1;}
+.header-title span{color:var(--yellow);}
+.header-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:3px;}
+.accent-bar{height:4px;background:linear-gradient(90deg,var(--yellow) 0%,var(--yellow) 40%,transparent 100%);}
+.main{max-width:1200px;margin:0 auto;padding:24px 16px;}
+.tabs{display:flex;gap:0;background:var(--white);border-radius:12px;padding:4px;box-shadow:var(--shadow);margin-bottom:20px;overflow-x:auto;}
+.tab{flex:1;padding:10px 8px;text-align:center;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text2);border-radius:8px;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.tab.active{background:var(--blue);color:#fff;}
+.tab:hover:not(.active){background:var(--gray);}
+.card{background:var(--white);border-radius:16px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px;}
+.card-title{font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.card-title::after{content:'';flex:1;height:1px;background:var(--gray2);}
+input[type=text],input[type=number],select{width:100%;padding:10px 12px;border:1.5px solid var(--gray2);border-radius:9px;font-family:'Exo 2',sans-serif;font-size:13px;color:var(--text);background:var(--white);outline:none;transition:border-color 0.2s;}
+input[type=text]:focus,input[type=number]:focus,select:focus{border-color:var(--blue-l);}
+label{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text2);display:block;margin-bottom:4px;}
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.stat-block{background:var(--gray);border-radius:10px;padding:10px 6px;text-align:center;}
+.stat-label{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text2);margin-bottom:6px;}
+.stat-final{font-size:20px;font-weight:900;color:var(--blue);font-family:'Rajdhani',sans-serif;}
+.stat-input-row{display:flex;flex-direction:column;gap:3px;margin-top:6px;}
+.stat-input-row input{text-align:center;font-size:11px;padding:4px 4px;}
+.stat-sub{font-family:'Rajdhani',sans-serif;font-size:9px;color:#bbb;letter-spacing:0.5px;}
+.stat-bonus{font-family:'Rajdhani',sans-serif;font-size:9px;color:var(--green);font-weight:700;}
+/* Moves */
+.moves-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.move-slot{background:var(--gray);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;}
+.move-num{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;color:#bbb;width:16px;}
+.move-slot input{flex:1;background:transparent;border:none;border-bottom:1.5px solid var(--gray2);border-radius:0;padding:4px 0;font-size:13px;}
+.move-slot input:focus{border-bottom-color:var(--blue);}
+/* Pokemon header */
+.poke-header{display:flex;align-items:center;gap:16px;padding:14px;background:var(--gray);border-radius:12px;margin-bottom:16px;}
+.poke-sprite{width:72px;height:72px;object-fit:contain;image-rendering:pixelated;}
+.poke-info-name{font-size:22px;font-weight:900;text-transform:capitalize;color:var(--text);}
+.poke-types{display:flex;gap:5px;margin-top:4px;}
+.type-badge{font-family:'Rajdhani',sans-serif;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 9px;border-radius:10px;color:#fff;}
+.poke-bst{font-family:'Rajdhani',sans-serif;font-size:12px;color:var(--text2);margin-top:4px;}
+/* Analysis */
+.analysis-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+.analysis-card{background:var(--white);border-radius:14px;padding:18px;box-shadow:var(--shadow);}
+.analysis-card.full{grid-column:1/-1;}
+.a-title{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text2);margin-bottom:12px;}
+.score-big{text-align:center;padding:24px 0;}
+.score-ring{width:100px;height:100px;border-radius:50%;background:conic-gradient(var(--yellow) var(--pct), var(--gray2) 0);display:flex;align-items:center;justify-content:center;margin:0 auto 10px;position:relative;}
+.score-ring-inner{width:72px;height:72px;border-radius:50%;background:var(--white);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-val{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;color:var(--blue-d);}
+.score-txt{font-family:'Rajdhani',sans-serif;font-size:9px;color:var(--text2);letter-spacing:1px;}
+.score-label{font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;color:var(--text);}
+.weakness-row{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border-radius:7px;margin-bottom:4px;}
+.weakness-row:nth-child(odd){background:var(--gray);}
+.wtype{display:flex;align-items:center;gap:6px;font-size:13px;text-transform:capitalize;}
+.wdot{width:9px;height:9px;border-radius:50%;}
+.wcount{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;}
+.coverage-pills{display:flex;flex-wrap:wrap;gap:4px;}
+.cov-pill{font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:8px;color:#fff;}
+.cov-pill.miss{opacity:0.2;}
+.team-row{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;margin-bottom:6px;background:var(--gray);}
+.team-row img{width:44px;height:44px;object-fit:contain;image-rendering:pixelated;}
+.team-row-name{font-size:14px;font-weight:700;text-transform:capitalize;flex:1;}
+.team-row-stats{display:flex;gap:6px;flex-wrap:wrap;}
+.mini-stat{font-family:'Rajdhani',sans-serif;font-size:11px;background:var(--blue);color:#fff;padding:2px 6px;border-radius:6px;}
+.suggestion{display:flex;gap:8px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--gray2);font-size:13px;color:var(--text2);line-height:1.5;}
+.suggestion:last-child{border-bottom:none;}
+.btn{padding:12px 22px;border:none;border-radius:10px;font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:all 0.2s;}
+.btn-danger{background:#ffebee;color:var(--red);}
+.btn-sm{padding:7px 14px;font-size:12px;}
+/* Team overview */
+.team-overview{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:20px;}
+.ov-slot{background:var(--white);border-radius:12px;padding:12px 6px;text-align:center;box-shadow:var(--shadow);border:2px solid transparent;position:relative;cursor:pointer;transition:all 0.15s;}
+.ov-slot.active{border-color:var(--yellow);}
+.ov-slot.filled{border-color:var(--blue-l);}
+.ov-slot:hover{transform:translateY(-2px);}
+.ov-slot img{width:60px;height:60px;object-fit:contain;image-rendering:pixelated;}
+.ov-name{font-size:11px;font-weight:700;text-transform:capitalize;margin-top:4px;color:var(--text);}
+.ov-empty{color:#ccc;font-size:24px;margin:18px 0 10px;}
+.ov-num{position:absolute;top:5px;left:7px;font-family:'Rajdhani',sans-serif;font-size:9px;color:#ccc;}
+.ov-remove{position:absolute;top:4px;right:6px;background:none;border:none;color:#ddd;cursor:pointer;font-size:12px;}
+.ov-remove:hover{color:var(--red);}
+.loading{display:none;text-align:center;padding:30px;color:var(--blue);font-family:'Rajdhani',sans-serif;font-size:14px;letter-spacing:1px;}
+.spinner{display:inline-block;width:22px;height:22px;border:3px solid var(--gray2);border-top-color:var(--blue);border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:8px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.footer{background:var(--blue-d);padding:14px 24px;text-align:center;}
+.footer-text{font-family:'Rajdhani',sans-serif;font-size:12px;color:rgba(255,255,255,0.45);letter-spacing:1px;}
+.footer-text span{color:var(--yellow);font-weight:700;}
+/* Autocomplete */
+.ac-wrap{position:relative;}
+.ac-list{position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid var(--gray2);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.13);z-index:300;max-height:180px;overflow-y:auto;margin-top:3px;display:none;}
+.ac-list.open{display:block;}
+.ac-item{padding:8px 12px;font-size:13px;cursor:pointer;color:var(--text);transition:background .1s;text-transform:capitalize;}
+.ac-item:hover,.ac-item.sel{background:var(--gray);}
+.ac-item strong{color:var(--blue);}
+/* Slot search */
+.ov-slot.searching{border-color:var(--yellow);padding:8px 5px;}
+.slot-search-input{width:100%;border:1.5px solid var(--gray2);border-radius:7px;padding:5px 6px;font-family:'Exo 2',sans-serif;font-size:11px;outline:none;text-align:center;color:var(--text);}
+.slot-search-input:focus{border-color:var(--blue);}
+.slot-search-results{position:absolute;top:100%;left:0;right:0;background:#fff;border:1.5px solid var(--gray2);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:200;max-height:200px;overflow-y:auto;margin-top:4px;}
+.slot-search-item{display:flex;align-items:center;gap:6px;padding:6px 8px;cursor:pointer;transition:background .1s;}
+.slot-search-item:hover{background:var(--gray);}
+.slot-search-item img{width:32px;height:32px;image-rendering:pixelated;}
+.slot-search-item span{font-size:12px;font-weight:700;text-transform:capitalize;color:var(--text);}
+.slot-searching-label{font-size:9px;color:var(--blue);font-family:'Rajdhani',sans-serif;letter-spacing:1px;margin-bottom:4px;text-transform:uppercase;}
+/* Gen2 info */
+.gen2-info{background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border:1.5px solid var(--green);border-radius:12px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--text2);line-height:1.7;}
+.gen2-info strong{color:var(--green);}
+/* Item */
+.form-row{display:grid;gap:10px;margin-bottom:10px;}
+.form-row.cols2{grid-template-columns:1fr 1fr;}
+/* Stat Exp bar */
+.statexp-bar{height:3px;background:var(--gray2);border-radius:3px;margin:3px 0;}
+.statexp-bar-inner{height:3px;background:var(--green);border-radius:3px;transition:width .3s;}
+.max-btn{background:var(--blue);color:#fff;border:none;border-radius:5px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;padding:2px 5px;cursor:pointer;margin-top:2px;width:100%;}
+.zero-btn{background:var(--gray2);color:var(--text2);border:none;border-radius:5px;font-family:'Rajdhani',sans-serif;font-size:9px;font-weight:700;padding:2px 5px;cursor:pointer;margin-top:2px;width:100%;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <div class="badge">G-Verso</div>
+      <div class="header-title">Team <span>Analyzer</span> PRO Gen 2</div>
+      <div class="header-sub">DVs · Stat Exp · Itens · Moveset · Análise Completa (GSC)</div>
+    </div>
+  </div>
+</div>
+<div class="accent-bar"></div>
+
+<div class="main">
+  <div class="team-overview" id="teamOverview"></div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('editor')">✏️ Editor</div>
+    <div class="tab" onclick="switchTab('analysis')">📊 Análise</div>
+  </div>
+
+  <input type="text" id="searchInput" style="display:none"/>
+
+  <div id="tabEditor">
+    <div id="editorArea" style="display:none">
+
+      <div id="pokeHeader"></div>
+
+      <!-- Info Gen 2 -->
+      <div class="gen2-info">
+        🎮 <strong>Mecânicas da 2ª Geração (GSC):</strong>
+        Sem Naturezas · Sem Habilidades · Com <strong>Itens</strong> (novidade desta geração!).<br>
+        📊 <strong>DVs (0–15):</strong> igual à Gen 1 — determinam os stats base de cada Pokémon.<br>
+        ⚡ <strong>Stat Exp (0–65535):</strong> o "EV da época". Ao derrotar Pokémon você ganha Stat Exp. A contribuição real no stat é <strong>√StatExp ÷ 4</strong> (máx. +63). Botão "MAX" simula um Pokémon completamente treinado.
+      </div>
+
+      <!-- Item -->
+      <div class="card">
+        <div class="card-title">Item Segurado</div>
+        <div class="form-row cols2">
+          <div>
+            <label>Item</label>
+            <div class="ac-wrap">
+              <input type="text" id="inpItem" placeholder="ex: leftovers, king rock..." oninput="acItem(this.value)" onblur="setTimeout(()=>closeAc('acItemList'),200)" autocomplete="off"/>
+              <div class="ac-list" id="acItemList"></div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:flex-end">
+            <div style="font-family:'Rajdhani',sans-serif;font-size:11px;color:var(--text2);line-height:1.5;padding-bottom:10px;">
+              🆕 <strong>Gen 2</strong> foi a primeira geração a introduzir itens segurados em batalha.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="card">
+        <div class="card-title">Stats (DVs · Stat Exp · Final — Nível 50)</div>
+        <div class="stats-grid" id="statsGrid"></div>
+        <div style="margin-top:10px;display:flex;gap:8px;">
+          <button onclick="maxAllStatExp()" style="padding:7px 16px;background:var(--green);color:#fff;border:none;border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">✅ MAX todos Stat Exp</button>
+          <button onclick="zeroAllStatExp()" style="padding:7px 16px;background:var(--gray2);color:var(--text2);border:none;border-radius:8px;font-family:'Rajdhani',sans-serif;font-size:12px;font-weight:700;cursor:pointer;">🔄 Zerar Stat Exp</button>
+        </div>
+      </div>
+
+      <!-- Moves -->
+      <div class="card">
+        <div class="card-title">Moveset</div>
+        <div class="moves-grid" id="movesGrid"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="tabAnalysis" style="display:none">
+    <div class="loading" id="loading"><span class="spinner"></span>Analisando time...</div>
+    <div id="analysisContent"></div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-text">Desenvolvido pela <span>G-Verso</span> · Dados: PokéAPI · Gen 2 National Dex (#001–#251)</div>
+</div>
+
+<script>
+// ==================== CONSTANTES GEN 2 ====================
+const STAT_KEYS = ['hp','attack','defense','special-attack','special-defense','speed'];
+const STAT_ABBR = {hp:'HP', attack:'ATK', defense:'DEF', 'special-attack':'SpA', 'special-defense':'SpD', speed:'SPD'};
+
+// Gen 2 — Steel e Dark adicionados; Ghost→Psychic corrigido para 2x
+const TYPE_COLORS = {
+  normal:'#A8A878', fire:'#F08030', water:'#6890F0', electric:'#F8D030',
+  grass:'#78C850', ice:'#98D8D8', fighting:'#C03028', poison:'#A040A0',
+  ground:'#E0C068', flying:'#A890F0', psychic:'#F85888', bug:'#A8B820',
+  rock:'#B8A038', ghost:'#705898', dragon:'#7038F8', dark:'#705848', steel:'#B8B8D0'
+};
+
+const TYPE_CHART = {
+  normal:   {rock:0.5, ghost:0, steel:0.5},
+  fire:     {fire:0.5, water:0.5, grass:2, ice:2, bug:2, rock:0.5, dragon:0.5, steel:0.5},
+  water:    {fire:2, water:0.5, grass:0.5, ground:2, rock:2, dragon:0.5},
+  electric: {water:2, electric:0.5, grass:0.5, ground:0, flying:2, dragon:0.5, steel:0.5},
+  grass:    {fire:0.5, water:2, grass:0.5, poison:0.5, ground:2, flying:0.5, bug:0.5, rock:2, dragon:0.5, steel:0.5},
+  ice:      {fire:0.5, water:0.5, grass:2, ice:0.5, ground:2, flying:2, dragon:2, steel:0.5},
+  fighting: {normal:2, ice:2, poison:0.5, flying:0.5, psychic:0.5, bug:0.5, rock:2, ghost:0, dark:2, steel:2},
+  poison:   {grass:2, poison:0.5, ground:0.5, rock:0.5, ghost:0.5, steel:0},
+  ground:   {fire:2, electric:2, grass:0.5, poison:2, flying:0, bug:0.5, rock:2, steel:2},
+  flying:   {electric:0.5, grass:2, fighting:2, bug:2, rock:0.5, steel:0.5},
+  psychic:  {fighting:2, poison:2, psychic:0.5, dark:0, steel:0.5},
+  bug:      {fire:0.5, grass:2, fighting:0.5, flying:0.5, psychic:2, ghost:0.5, dark:2, steel:0.5},
+  rock:     {fire:2, ice:2, fighting:0.5, ground:0.5, flying:2, bug:2, steel:0.5},
+  ghost:    {normal:0, fighting:0, psychic:2, ghost:2, dark:0.5, steel:0.5},
+  dragon:   {dragon:2, steel:0.5},
+  dark:     {fighting:0.5, psychic:2, ghost:2, dark:0.5},
+  steel:    {fire:0.5, water:0.5, electric:0.5, ice:2, rock:2, steel:0.5}
+};
+
+// Itens da Gen 2
+const GEN2_ITEMS = [
+  'Leftovers','King\'s Rock','Bright Powder','Lax Incense','Quick Claw','Scope Lens',
+  'Metal Coat','Dragon Scale','Up-Grade','Sun Stone','Moon Stone','Fire Stone',
+  'Thunder Stone','Water Stone','Leaf Stone','TwistedSpoon','Charcoal','Mystic Water',
+  'Miracle Seed','Blackglasses','Black Belt','Magnet','Poison Barb','Soft Sand',
+  'Hard Stone','Silver Powder','NeverMeltIce','Spell Tag','Dragon Fang','Sharp Beak',
+  'Silk Scarf','Pink Bow','Polkadot Bow','Berry','Gold Berry','Bitter Berry',
+  'Burnt Berry','Ice Berry','Mint Berry','Mystery Berry','Prz Cure Berry',
+  'Psn Cure Berry','MiracleBerry','Lucky Egg','Amulet Coin','Cleanse Tag',
+  'Focus Band','Smoke Ball','Thick Club','Light Ball','Lucky Punch','Metal Powder',
+  'Stick','Soothe Bell','Exp. Share','Everstone'
+];
+
+let team = Array(6).fill(null);
+let activeSlot = -1;
+let currentTab = 'editor';
+let slotSearchTimer = null;
+let _slotCloseHandler = null;
+
+// ==================== FÓRMULA GEN 2 (Nível 50) ====================
+// StatExpBonus = floor(min(255, ceil(sqrt(statExp))) / 4)
+// HP:    floor(((2*(Base+DV) + statExpBonus) * 50/100)) + 60
+// Outro: floor(((2*(Base+DV) + statExpBonus) * 50/100)) + 5
+function statExpBonus(statExp) {
+  statExp = Math.max(0, Math.min(65535, parseInt(statExp) || 0));
+  return Math.floor(Math.min(255, Math.ceil(Math.sqrt(statExp))) / 4);
+}
+
+function calcStatGen2(statKey, base, dv, statExp) {
+  dv = Math.max(0, Math.min(15, parseInt(dv) || 0));
+  const bonus = statExpBonus(statExp);
+  const inner = 2 * (base + dv) + bonus;
+  if (statKey === 'hp') return Math.floor(inner * 50 / 100) + 60;
+  return Math.floor(inner * 50 / 100) + 5;
+}
+
+// ==================== ITEM AUTOCOMPLETE ====================
+function acItem(q) {
+  const list = document.getElementById('acItemList');
+  if (!q) { closeAc('acItemList'); saveItem(); return; }
+  const ql = q.toLowerCase();
+  const matches = GEN2_ITEMS.filter(i => i.toLowerCase().includes(ql)).slice(0, 10);
+  if (!matches.length) { closeAc('acItemList'); saveItem(); return; }
+  list.innerHTML = matches.map(i => {
+    const hi = i.replace(new RegExp(`(${q})`, 'gi'), '<strong>$1</strong>');
+    return `<div class="ac-item" onmousedown="pickItem('${i}')">${hi}</div>`;
+  }).join('');
+  list.classList.add('open');
+  saveItem();
+}
+function pickItem(val) { document.getElementById('inpItem').value = val; closeAc('acItemList'); if (activeSlot >= 0 && team[activeSlot]) team[activeSlot].item = val; }
+function saveItem() { if (activeSlot >= 0 && team[activeSlot]) team[activeSlot].item = document.getElementById('inpItem').value; }
+
+// ==================== RENDER STATS ====================
+function renderStats() {
+  if (activeSlot < 0 || !team[activeSlot]) return;
+  const p = team[activeSlot];
+  const grid = document.getElementById('statsGrid');
+  grid.innerHTML = STAT_KEYS.map(sk => {
+    const base = p.baseStats[sk] || 0;
+    const dv = p.dvs[sk] !== undefined ? p.dvs[sk] : 15;
+    const se = p.statExp[sk] !== undefined ? p.statExp[sk] : 0;
+    const bonus = statExpBonus(se);
+    const final = calcStatGen2(sk, base, dv, se);
+    const pct = Math.round(final / 3);
+    const col = final >= 150 ? 'var(--green)' : final >= 100 ? 'var(--blue)' : final >= 70 ? 'var(--orange)' : 'var(--red)';
+    const sePct = Math.round((se / 65535) * 100);
+    return `<div class="stat-block">
+      <div class="stat-label">${STAT_ABBR[sk]}</div>
+      <div style="font-size:9px;color:#bbb;margin-bottom:2px">base ${base}</div>
+      <div class="stat-final" style="color:${col}">${final}</div>
+      <div style="height:4px;background:var(--gray2);border-radius:4px;margin:5px 0">
+        <div style="height:4px;background:${col};border-radius:4px;width:${Math.min(100,pct)}%"></div>
+      </div>
+      <div class="stat-input-row">
+        <div class="stat-sub">DV (0–15)</div>
+        <input type="number" min="0" max="15" value="${dv}" onchange="setDV('${sk}',this.value)" />
+        <div class="stat-sub" style="margin-top:4px">Stat Exp <span class="stat-bonus">(+${bonus})</span></div>
+        <input type="number" min="0" max="65535" value="${se}" onchange="setStatExp('${sk}',this.value)" />
+        <div class="statexp-bar"><div class="statexp-bar-inner" id="sebar_${sk}" style="width:${sePct}%"></div></div>
+        <button class="max-btn" onclick="setStatExpMax('${sk}')">MAX</button>
+        <button class="zero-btn" onclick="setStatExpZero('${sk}')">0</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function setDV(sk, val) {
+  if (activeSlot < 0 || !team[activeSlot]) return;
+  team[activeSlot].dvs[sk] = Math.max(0, Math.min(15, parseInt(val) || 0));
+  renderStats();
+}
+function setStatExp(sk, val) {
+  if (activeSlot < 0 || !team[activeSlot]) return;
+  team[activeSlot].statExp[sk] = Math.max(0, Math.min(65535, parseInt(val) || 0));
+  renderStats();
+}
+function setStatExpMax(sk) { setStatExp(sk, 65535); }
+function setStatExpZero(sk) { setStatExp(sk, 0); }
+function maxAllStatExp() { if (activeSlot < 0 || !team[activeSlot]) return; STAT_KEYS.forEach(sk => team[activeSlot].statExp[sk] = 65535); renderStats(); }
+function zeroAllStatExp() { if (activeSlot < 0 || !team[activeSlot]) return; STAT_KEYS.forEach(sk => team[activeSlot].statExp[sk] = 0); renderStats(); }
+
+// ==================== MOVES ====================
+function renderMoves() {
+  if (activeSlot < 0 || !team[activeSlot]) return;
+  const p = team[activeSlot];
+  document.getElementById('movesGrid').innerHTML = [0,1,2,3].map(i => {
+    const mv = p.moves[i] || '';
+    return `<div class="move-slot" style="position:relative">
+      <span class="move-num">${i+1}</span>
+      <div class="ac-wrap" style="flex:1">
+        <input type="text" value="${mv}" placeholder="${p.allMoves?.length ? 'Digite para buscar...' : 'ex: earthquake'}"
+          oninput="acMove(${i},this.value)" onblur="setTimeout(()=>closeAc('acMove${i}'),200)" id="moveInp${i}"/>
+        <div class="ac-list" id="acMove${i}"></div>
+      </div>
+      ${mv ? `<span style="font-size:10px;color:#bbb;cursor:pointer" onclick="clearMove(${i})">✕</span>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function acMove(i, q) {
+  if (activeSlot < 0 || !team[activeSlot]) return;
+  setMove(i, q);
+  const p = team[activeSlot];
+  const list = document.getElementById('acMove' + i);
+  if (!q || !p.allMoves?.length) { closeAc('acMove' + i); return; }
+  const ql = q.toLowerCase();
+  const matches = p.allMoves.filter(m => m.toLowerCase().includes(ql)).slice(0, 10);
+  if (!matches.length) { closeAc('acMove' + i); return; }
+  list.innerHTML = matches.map(m => {
+    const hi = m.replace(new RegExp(`(${q})`, 'gi'), '<strong>$1</strong>');
+    return `<div class="ac-item" onmousedown="pickMove(${i},'${m}')">${hi}</div>`;
+  }).join('');
+  list.classList.add('open');
+}
+function pickMove(i, val) { if (activeSlot < 0 || !team[activeSlot]) return; team[activeSlot].moves[i] = val; document.getElementById('moveInp'+i).value = val; closeAc('acMove'+i); renderMoves(); }
+function clearMove(i) { if (activeSlot < 0 || !team[activeSlot]) return; team[activeSlot].moves[i] = ''; renderMoves(); }
+function setMove(i, val) { if (activeSlot < 0 || !team[activeSlot]) return; team[activeSlot].moves[i] = val; }
+function closeAc(id) { const el = document.getElementById(id); if (el) el.classList.remove('open'); }
+
+// ==================== POKEMON HEADER ====================
+function renderPokeHeader() {
+  if (activeSlot < 0 || !team[activeSlot]) return;
+  const p = team[activeSlot];
+  const typePills = p.types.map(t => `<span class="type-badge" style="background:${TYPE_COLORS[t]||'#888'}">${t}</span>`).join('');
+  const bst = Object.values(p.baseStats).reduce((a,b) => a+b, 0);
+  document.getElementById('pokeHeader').innerHTML = `
+    <div class="card poke-header">
+      <img class="poke-sprite" src="${p.sprite}" alt="${p.name}">
+      <div>
+        <div class="poke-info-name">${p.name}</div>
+        <div class="poke-types">${typePills}</div>
+        <div class="poke-bst">BST: ${bst}${p.item ? ' · 🎒 ' + p.item : ''}</div>
+      </div>
+      <div style="margin-left:auto">
+        <button class="btn btn-danger btn-sm" onclick="removeSlot(${activeSlot})">Remover</button>
+      </div>
+    </div>`;
+}
+
+// ==================== RENDER EDITOR ====================
+function renderEditor() {
+  if (activeSlot < 0 || !team[activeSlot]) { document.getElementById('editorArea').style.display = 'none'; return; }
+  document.getElementById('editorArea').style.display = 'block';
+  const p = team[activeSlot];
+  renderPokeHeader();
+  document.getElementById('inpItem').value = p.item || '';
+  renderStats();
+  renderMoves();
+}
+
+// ==================== RENDER OVERVIEW ====================
+function renderOverview() {
+  const grid = document.getElementById('teamOverview');
+  grid.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const el = document.createElement('div');
+    el.className = 'ov-slot' + (team[i] ? ' filled' : '') + (i === activeSlot ? ' active' : '');
+    el.dataset.index = i;
+    if (team[i]) {
+      el.innerHTML = `<span class="ov-num">#${i+1}</span>
+        <button class="ov-remove" onclick="event.stopPropagation();removeSlot(${i})">✕</button>
+        <img src="${team[i].sprite}" alt="${team[i].name}">
+        <div class="ov-name">${team[i].name}</div>`;
+    } else {
+      el.innerHTML = `<span class="ov-num">#${i+1}</span><div class="ov-empty">+</div><div class="ov-name" style="color:#bbb;font-size:10px">Adicionar</div>`;
+    }
+    grid.appendChild(el);
+  }
+}
+
+// ==================== SLOT EVENTS ====================
+document.getElementById('teamOverview').addEventListener('click', function(e) {
+  const slot = e.target.closest('.ov-slot');
+  if (!slot) return;
+  const i = parseInt(slot.dataset.index);
+  if (slot.classList.contains('searching')) return;
+  if (team[i]) { selectSlot(i); } else { openSlotSearch(i); }
+});
+
+function selectSlot(i) { if (!team[i]) return; activeSlot = i; renderOverview(); renderEditor(); }
+function removeSlot(i) { team[i] = null; if (activeSlot === i) activeSlot = team.findIndex(p => p !== null); renderOverview(); renderEditor(); }
+
+// ==================== SLOT SEARCH ====================
+function openSlotSearch(slotIndex) {
+  if (_slotCloseHandler) { document.removeEventListener('click', _slotCloseHandler); _slotCloseHandler = null; }
+  renderOverview();
+  const slotEl = document.getElementById('teamOverview').children[slotIndex];
+  slotEl.classList.add('searching');
+  slotEl.innerHTML = `
+    <span class="ov-num">#${slotIndex+1}</span>
+    <div class="slot-searching-label">Buscar (1–251)</div>
+    <input class="slot-search-input" id="slotInp${slotIndex}" type="text" placeholder="ex: tyranitar, espeon..." autocomplete="off" />
+    <div class="slot-search-results" id="slotRes${slotIndex}"></div>
+  `;
+  const inp = slotEl.querySelector(`#slotInp${slotIndex}`);
+  setTimeout(() => inp.focus(), 50);
+  inp.oninput = () => {
+    clearTimeout(slotSearchTimer);
+    const q = inp.value.trim().toLowerCase();
+    const res = slotEl.querySelector(`#slotRes${slotIndex}`);
+    if (!q || q.length < 2) { res.innerHTML = ''; return; }
+    res.innerHTML = `<div style="padding:8px;text-align:center"><span class="spinner" style="width:14px;height:14px;border-width:2px"></span></div>`;
+    slotSearchTimer = setTimeout(() => doSlotSearch(q, slotIndex, res), 400);
+  };
+  inp.onkeydown = e => { if (e.key === 'Escape') renderOverview(); };
+  setTimeout(() => {
+    const handler = ev => {
+      if (!slotEl.contains(ev.target)) { renderOverview(); document.removeEventListener('click', handler); _slotCloseHandler = null; }
+    };
+    _slotCloseHandler = handler;
+    document.addEventListener('click', handler);
+  }, 100);
+}
+
+async function doSlotSearch(q, slotIdx, resEl) {
+  try {
+    const r = await fetch(`https://pokeapi.co/api/v2/pokemon/${q}`);
+    if (r.ok) {
+      const data = await r.json();
+      const speciesId = data.species ? parseInt(data.species.url.split('/').filter(Boolean).pop()) || data.id : data.id;
+      if (speciesId > 251) { resEl.innerHTML = '<div style="padding:8px;text-align:center;font-size:11px;color:#bbb">Pokémon não existe na Gen 2 (só #1–251)</div>'; return; }
+      showSlotResults([data], slotIdx, resEl); return;
+    }
+    const list = await fetch('https://pokeapi.co/api/v2/pokemon?limit=251').then(r => r.json());
+    const matches = list.results.filter(p => p.name.includes(q)).slice(0, 8);
+    if (!matches.length) { resEl.innerHTML = '<div style="padding:8px;text-align:center;font-size:11px;color:#bbb">Não encontrado</div>'; return; }
+    const results = await Promise.all(matches.map(m => fetch(m.url).then(r => r.json())));
+    showSlotResults(results, slotIdx, resEl);
+  } catch(e) {
+    resEl.innerHTML = '<div style="padding:8px;text-align:center;font-size:11px;color:#bbb">Erro de conexão</div>';
+  }
+}
+
+function showSlotResults(list, slotIdx, resEl) {
+  resEl.innerHTML = '';
+  list.forEach(data => {
+    const sprite = data.sprites?.other?.['official-artwork']?.front_default || data.sprites?.front_default;
+    if (!sprite) return;
+    const item = document.createElement('div');
+    item.className = 'slot-search-item';
+    item.innerHTML = `<img src="${sprite}" alt="${data.name}"><span>${data.name}</span>`;
+    item.onclick = e => { e.stopPropagation(); addPokemonFromSlot(data, slotIdx); };
+    resEl.appendChild(item);
+  });
+}
+
+async function addPokemonFromSlot(data, slotIdx) {
+  if (_slotCloseHandler) { document.removeEventListener('click', _slotCloseHandler); _slotCloseHandler = null; }
+  const speciesId = data.species ? parseInt(data.species.url.split('/').filter(Boolean).pop()) || data.id : data.id;
+  if (speciesId > 251) { alert('Este Pokémon não existe na Gen 2!'); renderOverview(); return; }
+  if (team.filter(p => p !== null).length >= 6) { alert('Time completo (6 Pokémon)!'); return; }
+  if (team.some(p => p && p.name === data.name)) { alert('Já está no time!'); return; }
+
+  const baseStats = {};
+  data.stats.forEach(s => baseStats[s.stat.name] = s.base_stat);
+
+  const allMoves = data.moves
+    .filter(m => m.version_group_details.some(d => ['gold-silver','crystal'].includes(d.version_group.name)))
+    .map(m => m.move.name.replace(/-/g,' ')).sort();
+
+  team[slotIdx] = {
+    name: data.name,
+    types: data.types.map(t => t.type.name),
+    baseStats,
+    sprite: data.sprites?.other?.['official-artwork']?.front_default || data.sprites?.front_default,
+    dvs:     {hp:15, attack:15, defense:15, 'special-attack':15, 'special-defense':15, speed:15},
+    statExp: {hp:0, attack:0, defense:0, 'special-attack':0, 'special-defense':0, speed:0},
+    item: '',
+    allMoves,
+    moves: ['','','','']
+  };
+  activeSlot = slotIdx;
+  renderOverview();
+  renderEditor();
+}
+
+// ==================== ANALYSIS ====================
+function getDefWeaknesses(types) {
+  const res = {};
+  Object.keys(TYPE_COLORS).forEach(atk => {
+    let mult = 1;
+    types.forEach(def => { if ((TYPE_CHART[atk]||{})[def] !== undefined) mult *= TYPE_CHART[atk][def]; });
+    if (mult !== 1) res[atk] = mult;
+  });
+  return res;
+}
+
+function analyzeTeam() {
+  const activeTeam = team.filter(p => p !== null);
+  if (!activeTeam.length) {
+    document.getElementById('analysisContent').innerHTML = '<div class="card" style="text-align:center;color:#bbb;padding:30px;">Adicione pelo menos 1 Pokémon!</div>';
+    return;
+  }
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('analysisContent').innerHTML = '';
+  setTimeout(() => {
+    document.getElementById('loading').style.display = 'none';
+    const allTypes = Object.keys(TYPE_COLORS);
+    const teamWeaknesses = {}, teamResistances = {};
+
+    activeTeam.forEach(p => {
+      const chart = getDefWeaknesses(p.types);
+      Object.entries(chart).forEach(([t, m]) => {
+        if (m > 1) teamWeaknesses[t] = (teamWeaknesses[t]||0) + 1;
+        else if (m < 1 && m > 0) teamResistances[t] = (teamResistances[t]||0) + 1;
+      });
+    });
+
+    const covered = new Set();
+    activeTeam.forEach(p => p.types.forEach(t => allTypes.forEach(def => { if ((TYPE_CHART[t]||{})[def] > 1) covered.add(def); })));
+
+    const avgBST = activeTeam.reduce((s,p) => s + Object.values(p.baseStats).reduce((a,b)=>a+b,0), 0) / activeTeam.length;
+    const bigWeak = Object.values(teamWeaknesses).filter(v => v >= 3).length;
+    const typeVar = new Set(activeTeam.flatMap(p => p.types)).size;
+    let score = 50 + Math.min(20,(avgBST-400)/10) + covered.size*1.5 + typeVar*2 - bigWeak*6;
+    score = Math.max(5, Math.min(99, Math.round(score)));
+
+    const scoreColor = score>=75?'#2e7d32':score>=50?'#E65100':'#c62828';
+    const scorePct = (score/100*360)+'deg';
+    const topWeak = Object.entries(teamWeaknesses).sort((a,b)=>b[1]-a[1]).slice(0,8);
+    const topRes  = Object.entries(teamResistances).sort((a,b)=>b[1]-a[1]).slice(0,6);
+
+    const suggestions = [];
+    Object.entries(teamWeaknesses).filter(([,v])=>v>=3).sort((a,b)=>b[1]-a[1]).slice(0,2)
+      .forEach(([t]) => suggestions.push(`⚠️ Muitas fraquezas ao tipo <strong>${t}</strong> — considere um Pokémon resistente.`));
+    if (typeVar < 3) suggestions.push('⚠️ Pouca variedade de tipos — diversifique.');
+    if (avgBST < 430) suggestions.push('📊 BST médio baixo para um time competitivo da Gen 2.');
+    if (covered.size < 6) suggestions.push('🎯 Cobertura ofensiva limitada.');
+    const itemless = activeTeam.filter(p => !p.item);
+    if (itemless.length > 0) suggestions.push(`🎒 ${itemless.map(p=>p.name).join(', ')} sem item — considere Leftovers ou outro item de suporte.`);
+    if (!suggestions.length) suggestions.push('✅ Time excelente!');
+
+    const teamRows = activeTeam.map(p => {
+      return {
+        name: p.name, sprite: p.sprite, item: p.item,
+        hp:  calcStatGen2('hp',      p.baseStats.hp,               p.dvs.hp,               p.statExp.hp),
+        atk: calcStatGen2('attack',  p.baseStats.attack,           p.dvs.attack,           p.statExp.attack),
+        spa: calcStatGen2('special-attack',  p.baseStats['special-attack'],  p.dvs['special-attack'],  p.statExp['special-attack']),
+        spd: calcStatGen2('speed',   p.baseStats.speed,            p.dvs.speed,            p.statExp.speed),
+        moves: p.moves.filter(m=>m)
+      };
+    });
+
+    document.getElementById('analysisContent').innerHTML = `
+      <div class="analysis-grid">
+        <div class="analysis-card" style="text-align:center">
+          <div class="a-title">Score do Time</div>
+          <div class="score-big">
+            <div class="score-ring" style="--pct:${scorePct}">
+              <div class="score-ring-inner">
+                <div class="score-val" style="color:${scoreColor}">${score}</div>
+                <div class="score-txt">/ 99</div>
+              </div>
+            </div>
+            <div class="score-label">${score>=75?'🔥 Excelente':score>=60?'⚡ Bom':score>=45?'⚠️ Regular':'❌ Fraco'}</div>
+          </div>
+        </div>
+        <div class="analysis-card">
+          <div class="a-title">Fraquezas do Time</div>
+          ${topWeak.map(([t,c])=>`<div class="weakness-row"><span class="wtype"><span class="wdot" style="background:${TYPE_COLORS[t]||'#888'}"></span>${t}</span><span class="wcount" style="color:${c>=3?'var(--red)':'var(--orange)'}">${c}×</span></div>`).join('')||'<div style="color:#bbb;font-size:13px">Nenhuma crítica!</div>'}
+        </div>
+        <div class="analysis-card">
+          <div class="a-title">Resistências</div>
+          ${topRes.map(([t,c])=>`<div class="weakness-row"><span class="wtype"><span class="wdot" style="background:${TYPE_COLORS[t]||'#888'}"></span>${t}</span><span class="wcount" style="color:var(--green)">${c}×</span></div>`).join('')||'<div style="color:#bbb;font-size:13px">—</div>'}
+        </div>
+        <div class="analysis-card full">
+          <div class="a-title">Cobertura Ofensiva (${covered.size}/${allTypes.length} tipos)</div>
+          <div class="coverage-pills">${allTypes.map(t=>`<span class="cov-pill ${covered.has(t)?'':'miss'}" style="background:${TYPE_COLORS[t]}">${t}</span>`).join('')}</div>
+        </div>
+        <div class="analysis-card full">
+          <div class="a-title">Stats do Time (Nível 50)</div>
+          ${teamRows.map(p=>`
+            <div class="team-row">
+              <img src="${p.sprite}" alt="${p.name}">
+              <div class="team-row-name">${p.name} <span style="font-size:11px;color:#bbb">${p.item ? '🎒 '+p.item : ''}</span></div>
+              <div class="team-row-stats">
+                <span class="mini-stat">HP ${p.hp}</span>
+                <span class="mini-stat">ATK ${p.atk}</span>
+                <span class="mini-stat">SpA ${p.spa}</span>
+                <span class="mini-stat">SPD ${p.spd}</span>
+                ${p.moves.length?`<span class="mini-stat" style="background:var(--gray2);color:var(--text2)">${p.moves.slice(0,2).join(' · ')}</span>`:''}
+              </div>
+            </div>`).join('')}
+        </div>
+        <div class="analysis-card full">
+          <div class="a-title">Sugestões G-Verso</div>
+          ${suggestions.map(s=>`<div class="suggestion"><span>${s}</span></div>`).join('')}
+        </div>
+      </div>`;
+  }, 600);
+}
+
+function switchTab(tab) {
+  currentTab = tab;
+  document.getElementById('tabEditor').style.display = tab==='editor'?'block':'none';
+  document.getElementById('tabAnalysis').style.display = tab==='analysis'?'block':'none';
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='editor')||(i===1&&tab==='analysis')));
+  if (tab==='analysis') analyzeTeam();
+}
+
+renderOverview();
+</script>
+</body>
+</html>
